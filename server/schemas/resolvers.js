@@ -11,7 +11,15 @@ const resolvers = {
         throw new AuthenticationError("Log In to Continue");
       },
     },
+  
+    Mutation: {
+      addUser: async (parent, { username, email, password }) => {
+        const user = await User.create({ username, email, password });
+        const token = signToken(user);
+        return { token, user };
+      },
 
+    },
   };
 
 module.exports = resolvers;
