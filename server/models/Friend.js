@@ -7,3 +7,6 @@ const friendSchema = new Schema({
         ref: 'User'
     }]
 })
+const Friend = model('Friend', friendSchema);
+
+module.exports = Friend;
