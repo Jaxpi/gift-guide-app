@@ -22,8 +22,11 @@ export const CREATE_WISHLIST = gql`
 `;
 
 export const UPDATE_WISHLIST = gql`
-  mutation updateWishlist($wishlistId: ID!, $title: title, $items: [String], $share: [User]) {
-    updateWishlist(wishlistId: $wishlistId, title: $title, items: )
+  mutation updateWishlist($wishlistId: ID!, $title: title) {
+    updateWishlist(wishlistId: $wishlistId, title: $title) {
+      _id
+      title
+    }
   }
 `;
 
