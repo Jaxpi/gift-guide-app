@@ -1,5 +1,5 @@
-const { Schema, model } = require('mongoose');
-const { Wishlist } = require('.');
+// const { Schema, model } = require('mongoose');
+// const { Wishlist } = require('.');
 
 const wishlistSchema = new Schema({
     title: {
@@ -29,6 +29,6 @@ const wishlistSchema = new Schema({
     ],
 });
 
-const Wishlist = model('Wishlist', wishlistSchema);
+// const Wishlist = model('Wishlist', wishlistSchema);
 
-module.exports = Wishlist;
+// module.exports = Wishlist;
