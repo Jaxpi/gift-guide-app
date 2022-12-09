@@ -1,11 +1,11 @@
-import React,{useState} from "react";
+import React, {useState} from "react";
 import { Jumbotron } from "react-bootstrap";
 import { Button } from "react-bootstrap/lib/InputGroup";
 import { Container } from "react-bootstrap/lib/Tab";
 
-const WishList = () => {
-    const handleFormSubmit = async (event) => {
-        event.preventDefault();}
+const WishListCard = () => {
+    // const handleFormSubmit = async (event) => {
+    //     event.preventDefault();}
     const [item, setItem] = useState([]);
     const handleAdd = () => {
         const newItem = [...item, []]
@@ -42,9 +42,9 @@ const WishList = () => {
                 
             )
         })}
-        <Form onSubmit={handleFormSubmit}>
+        {/* <Form onSubmit={handleFormSubmit}>
 
-        </Form>
+        </Form> */}
         </>
     )
 }
@@ -52,4 +52,4 @@ const WishList = () => {
 
 
 
-export default WishList;
+export default WishListCard;
