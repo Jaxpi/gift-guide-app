@@ -43,9 +43,12 @@ function NavBar() {
     return (
         <header className="flex-row px-1">
             <h1>
-                <Link to="/">
-                    <span role="img" aria-label="shopping bag">🛍️</span>
-                    -Shop-Shop
+                <Link to="/Dashboard">
+                    <a class="navbar-brand" href="./public/assets/images/logotrans.png">
+                        <div class="logo-image">
+                            <img src="image" class="img-fluid"></img>
+                        </div>
+                    </a>
                 </Link>
             </h1>
 
