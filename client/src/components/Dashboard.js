@@ -43,6 +43,8 @@ useEffect(() => {
 })
 
     return (
+        <div className='countdownTimer'>]
         <Clock timerDays={timerDays} timerHours={timerHours} timerMinutes={timerMinutes} timerSeconds={timerSeconds} />
+        </div>
     )
 }
