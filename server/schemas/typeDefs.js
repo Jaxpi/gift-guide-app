@@ -42,6 +42,8 @@ const typeDefs = gql`
     createWishlist(title: String!, items: [String], friends: [String]): User
     updateWishlist(wishlistId: ID!): Wishlist
     deleteWishlist(wishlistId: ID!): User
+    addItemToWishlist(wishlistId: ID!, itemText: String!): Wishlist
+    removeItemFromWishlist(wishlistId: ID!, itemId: ID!): Wishlist
   }
 `;
 
