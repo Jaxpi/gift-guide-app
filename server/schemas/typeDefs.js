@@ -23,10 +23,10 @@ const typeDefs = gql`
     user: User
   }
 
-  input WishlistInput {
+  input wishlistInput {
     title: String!
     items: [String]
-    friends: [User]
+    friends: [ID]
   }
 
   type Query {
@@ -36,7 +36,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    createWishlist(createWishlist: WishlistInput!): User
+    createWishlist(input: wishlistInput!): User
     # updateWishlist(wishlistId: ID!): Wishlist
     deleteWishlist(wishlistId: ID!): User
   }
