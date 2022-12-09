@@ -6,17 +6,16 @@ const typeDefs = gql`
     username: String!
     email: String!
     password: String!
-    savedBooks: [Book]!
+    friends: [User]
+    wishlists: [Wishlist]
   }
 
-  type Book {
+  type Wishlist {
     _id: ID
-    description: String
-    bookId: String
-    image: String
-    link: String
-    title: String
-    authors: [String]!
+    title: String!
+    items: [String]
+    userId: String!
+    share: [User]
   }
 
   type Auth {
@@ -24,13 +23,10 @@ const typeDefs = gql`
     user: User
   }
 
-  input BookInput {
-    description: String!
-    bookId: String!
-    image: String
-    link: String
+  input WishlistInput {
     title: String!
-    authors: [String]!
+    items: [String]
+    friends: [User]
   }
 
   type Query {
@@ -40,8 +36,9 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    saveBook(newBook: BookInput!): User
-    removeBook(bookId: ID!): User
+    createWishlist(createWishlist: WishlistInput!): User
+    updateWishlist(wishlistId: ID!): Wishlist
+    deleteWishlist(wishlistId: ID!): User
   }
 `;
 
