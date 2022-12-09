@@ -32,6 +32,12 @@ const typeDefs = gql`
     user: User
   }
 
+  input wishlistInput {
+    title: String!
+    items: [String]
+    friends: [ID]
+  }
+  
   type Query {
     me: User
   }
@@ -39,8 +45,8 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    createWishlist(title: String!, items: [String], friends: [String]): User
-    updateWishlist(wishlistId: ID!): Wishlist
+    createWishlist(input: wishlistInput!): User
+    # updateWishlist(wishlistId: ID!): Wishlist
     deleteWishlist(wishlistId: ID!): User
     addItemToWishlist(wishlistId: ID!, itemText: String!): Wishlist
     removeItemFromWishlist(wishlistId: ID!, itemId: ID!): Wishlist
