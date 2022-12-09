@@ -38,3 +38,11 @@ export const ADD_ITEM_TO_WISHLIST = gql`
     }
   }
 `
+
+export const REMOVE_ITEM_FROM_WISHLIST = gql`
+  mutation removeItemFromWishlist($itemId: ID!) {
+    removeItemFromWishlist(itemId: $itemId) {
+      _id
+    }
+  }
+`
