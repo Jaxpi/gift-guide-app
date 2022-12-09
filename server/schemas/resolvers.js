@@ -56,7 +56,20 @@ const resolvers = {
         throw new AuthenticationError("Log In to Continue");
       },
   
-
+      deleteWishlist: async (parent, {wishlistId}, context) => {
+        if (context.user) {
+          return User.findOneAndUpdate(
+            { _id: context.user._id },
+            {
+              $pull: { wishlists: {wishlistId} },
+            },
+            {
+              new: true,
+            }
+          );
+        }
+        throw new AuthenticationError("Log In to Continue");
+      },
     },
   };
 
