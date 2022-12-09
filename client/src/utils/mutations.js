@@ -11,3 +11,12 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const CREATE_WISHLIST = gql`
+  mutation createWishlist($title: String!) {
+    createWishlist(title: $title) {
+      _id
+      title
+    }
+  }
+`;
