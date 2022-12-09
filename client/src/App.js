@@ -9,7 +9,7 @@ function App() {
 
   <main>
     <section >
-      {/* <Navbar /> */}
+      <Navbar />
       <Dashboard /> 
       {/* <About /> */}
       {/* <Contact /> */}
