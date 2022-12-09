@@ -1,5 +1,5 @@
 import React from 'react';
-
+import NavBar from './components/Navbar';
 import Dashboard from './pages/Dashboard';
 
 // import './App.css';
@@ -9,7 +9,7 @@ function App() {
 
   <main>
     <section >
-      <Navbar />
+      <NavBar />
       <Dashboard /> 
       {/* <About /> */}
       {/* <Contact /> */}
