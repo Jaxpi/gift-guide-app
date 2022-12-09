@@ -39,7 +39,9 @@ function NavBar() {
                             >
                                 Home
                             </NavLink>
-
+                            <Form inline className="mx-3">
+                                {authButton()}
+                            </Form>
                         </li>
                     </ul>
                     <div className="nav-icon" onClick={handleClick}>
