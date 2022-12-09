@@ -3,9 +3,9 @@ import React from "react";
 
 export default function Dashboard() {
   return (
-    <>
+    <section id="tempnav">
       <img id="logo" src="./assets/images/logotrans.png" alt="Gift Guide Logo"></img>
       <h1>Coming Soon!</h1>
-    </>
+    </section>
   );
 }
