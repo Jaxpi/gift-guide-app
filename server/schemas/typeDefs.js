@@ -18,6 +18,11 @@ const typeDefs = gql`
     share: [User]
   }
 
+  type Item {
+    _id: ID!
+    itemText: String!
+  }
+
   type Auth {
     token: ID!
     user: User

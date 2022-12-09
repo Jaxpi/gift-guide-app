@@ -57,11 +57,11 @@ const resolvers = {
       },
   
       updateWishlist: ({wishlistId, input}) => {
-        if (!wishlists[id]) {
-          throw new Error('no wishlist exists with id ' + id);
+        if (!wishlistId) {
+          throw new Error('no wishlist exists with id');
         }
         // This replaces all old data, but some apps might want partial update.
-        wishlist[id] = input;
+        wishlistId = input;
         return new Message(id, input);
       },
 
