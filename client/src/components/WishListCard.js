@@ -1,7 +1,5 @@
 import React, {useState} from "react";
-import { Jumbotron } from "react-bootstrap";
-import { Button } from "react-bootstrap/lib/InputGroup";
-import { Container } from "react-bootstrap/lib/Tab";
+import { Jumbotron, Button, Container } from "react-bootstrap";
 
 const WishListCard = () => {
     // const handleFormSubmit = async (event) => {
