@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 const friendSchema = new Schema({
     friendId: [{
-        Type: String,
+        type: String,
         ref: 'User'
     }]
 })
