@@ -49,7 +49,7 @@ const typeDefs = gql`
     # updateWishlist(wishlistId: ID!): Wishlist
     deleteWishlist(wishlistId: ID!): User
     addItemToWishlist(wishlistId: ID!, itemText: String!): Wishlist
-    removeItemFromWishlist(wishlistId: ID!, itemId: ID!): Wishlist
+    removeItemFromWishlist(itemId: ID!): Wishlist
   }
 `;
 
