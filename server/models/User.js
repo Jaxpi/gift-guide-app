@@ -19,7 +19,13 @@ const userSchema = new Schema({
         required: true,
         minlength: 5,
     },
+    wishlist: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Wishlist',
+        },
+    ],
+});
+const User = model('User', userSchema);
 
-    const User = model('User', userSchema);
-
-    module.exports = User;
+module.exports = User;
