@@ -56,6 +56,15 @@ const resolvers = {
         throw new AuthenticationError("Log In to Continue");
       },
   
+      updateWishlist: ({wishlistId, input}) => {
+        if (!wishlists[id]) {
+          throw new Error('no wishlist exists with id ' + id);
+        }
+        // This replaces all old data, but some apps might want partial update.
+        wishlist[id] = input;
+        return new Message(id, input);
+      },
+
       deleteWishlist: async (parent, {wishlistId}, context) => {
         if (context.user) {
           return User.findOneAndUpdate(
