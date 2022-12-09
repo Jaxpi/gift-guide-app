@@ -37,7 +37,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     createWishlist(createWishlist: WishlistInput!): User
-    updateWishlist(wishlistId: ID!): Wishlist
+    # updateWishlist(wishlistId: ID!): Wishlist
     deleteWishlist(wishlistId: ID!): User
   }
 `;
