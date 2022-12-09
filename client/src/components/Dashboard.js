@@ -3,6 +3,6 @@ import Clock from './Clock'
 
 export default function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <Clock />
   )
 }
