@@ -40,7 +40,7 @@ export default function Dashboard() {
 
 useEffect(() => {
     startTimer();
-})
+}) 
 
     return (
         <div className='countdownTimer'>]
