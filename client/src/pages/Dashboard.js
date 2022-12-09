@@ -5,24 +5,12 @@ export default function Dashboard() {
     return (
   <>
       <nav>
-        <h1><a href="#">💡Wish Guide</a></h1>
+        <h1>Wish Guide</h1>
         <ul>
-            <li></li>
-            <li>
-                <a href="#">Learn more</a>
-                <ul>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Contact us</a></li>
-                    <li><a href="#">Get help</a></li>
-                </ul>
-            </li>
+            <li> About Us</li>
         </ul>
     </nav>
-<br></br>
-<section>
-
-</section>
-<center>🏷 Coming Soon - GIFT GUIDE</center>
+<center>Coming Soon - GIFT GUIDE</center>
 </>
     )
 }

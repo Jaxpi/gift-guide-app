@@ -37,13 +37,13 @@ const resolvers = {
         return { token, user };
       },
   
-      createWishlist: async (parent, { newWishlist }, context) => {
+      createWishlist: async (parent, args, context) => {
         if (context.user) {
           try {
             return User.findOneAndUpdate(
               { _id: context.user._id },
               {
-                $push: { wishlists: newWishlist },
+                $push: { wishlists: args.input },
               },
               {
                 new: true,
@@ -56,14 +56,14 @@ const resolvers = {
         throw new AuthenticationError("Log In to Continue");
       },
   
-      updateWishlist: ({wishlistId, input}) => {
-        if (!wishlists[id]) {
-          throw new Error('no wishlist exists with id ' + id);
-        }
-        // This replaces all old data, but some apps might want partial update.
-        wishlist[id] = input;
-        return new Message(id, input);
-      },
+      // updateWishlist: ({wishlistId, input}) => {
+      //   if (!wishlists[id]) {
+      //     throw new Error('no wishlist exists with id ' + id);
+      //   }
+      //   // This replaces all old data, but some apps might want partial update.
+      //   wishlist[id] = input;
+      //   return new Message(id, input);
+      // },
 
       deleteWishlist: async (parent, {wishlistId}, context) => {
         if (context.user) {
