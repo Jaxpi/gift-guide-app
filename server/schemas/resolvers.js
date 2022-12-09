@@ -18,7 +18,7 @@ const resolvers = {
         const token = signToken(user);
         return { token, user };
       },
-
+      
       login: async (parent, { email, password }) => {
         const user = await User.findOne({ email });
   
@@ -37,7 +37,26 @@ const resolvers = {
         return { token, user };
       },
   
-      
+      createWishlist: async (parent, { newWishlist }, context) => {
+        if (context.user) {
+          try {
+            return User.findOneAndUpdate(
+              { _id: context.user._id },
+              {
+                $push: { wishlists: newWishlist },
+              },
+              {
+                new: true,
+              }
+            )
+          } catch(error) {
+            console.log(error)
+          }
+        }
+        throw new AuthenticationError("Log In to Continue");
+      },
+  
+
     },
   };
 
