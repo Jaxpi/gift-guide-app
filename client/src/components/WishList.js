@@ -16,7 +16,11 @@ const WishList = () => {
         inputItem[i] = onChangeItem.target.value;
         setItem(inputItem)
     }
-    
+    const handleDelete = (i) => {
+        const deleteItem = [...item]
+        deleteItem.splice(i, 1)
+        setItem(deleteItem)
+    }
     console.log(item, "ITEMS")
 
     return (
@@ -32,7 +36,7 @@ const WishList = () => {
         {item.map((data,i) => {
             return(
                 <div>
-                    <input onChange={e => handleChange(e, i)}/>
+                    <input value={ data } onChange={e => handleChange(e, i)}/>
                     <Button onClick={() => handleDelete(i) }>X</Button>
                 </div>
                 
