@@ -1,5 +1,6 @@
 import React from "react";
 import { Jumbotron } from "react-bootstrap";
+import { Button } from "react-bootstrap/lib/InputGroup";
 import { Container } from "react-bootstrap/lib/Tab";
 
 const WishList = () => {
@@ -10,6 +11,7 @@ const WishList = () => {
         const newItem = [...item, []]
         setItem(newItem)
     }
+    const handleChange
     
 
     return (
@@ -26,6 +28,7 @@ const WishList = () => {
             return(
                 <div>
                     <input onChange={e => handleChange(e, i)}/>
+                    <Button>X</Button>
                 </div>
                 
             )
