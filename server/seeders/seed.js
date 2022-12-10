@@ -1,6 +1,6 @@
 
-const db = require('../../config/connection');
-const { User, Items, Wishlist, Friends } = require('../../models');
+const db = require('../config/connection');
+const { User, Items, Wishlist, Friends } = require('../models');
 const userSeeds = require('./userSeeds.json');
 const wishSeeds = require('./wishlistSeeds.json');
 const itemSeeds = require('./itemSeeds.json');
