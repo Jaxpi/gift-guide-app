@@ -16,8 +16,8 @@ export default function ThemeComponent() {
 
   const themeStyles = {
     backgroundImage: state.darkTheme
-      ? "../assets/images/genback.png"
-      : "../assets/images/heartsback.jpg",
+    ? '-webkit-linear-gradient(bottom, blue, white)'
+    : '-webkit-linear-gradient(bottom, red, white)',
     padding: "10px",
     margin: "10px",
     borderRadius: "10px",
@@ -35,7 +35,7 @@ export default function ThemeComponent() {
       <div className="cardContainer" style={themeStyles}>
         {/* <h1 id="myListTitle">Username's Wish List</h1> */}
         <text style={textStyles}>Username's Wish List</text>
-        <WishListCard style={themeStyles}/>
+        <WishListCard/>
         <button
         id="themeButton"
         // To change the theme we invoke dispatch and pass in an object containing action type and payload

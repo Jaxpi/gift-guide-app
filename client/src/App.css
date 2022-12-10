@@ -14,14 +14,14 @@
 }
 
 @font-face {
-    font-family: christmasTitle;
-    src: url(./assets/fonts/christmas.TTF);
-  }
+  font-family: christmasTitle;
+  src: url(./assets/fonts/christmas.TTF);
+}
 
-  @font-face {
-    font-family: loveTitle;
-    src: url(./assets/fonts/hearts.ttf);
-  }
+@font-face {
+  font-family: loveTitle;
+  src: url(./assets/fonts/hearts.ttf);
+}
 
 main {
   padding: 0;
@@ -54,21 +54,29 @@ h1 {
   background-image: linear-gradient(to right, red, yellow);
 }
 
+.themeProvider {
+  display: flex;
+  flex-flow: row wrap;
+  justify-items: center;
+  align-items: center;
+}
+
 .cardContainer {
-    border: 2px solid black;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    /* background-image: url("./assets/images/genback.png"); */
-    background-size: 420px 450px;
-    max-width: 600px;
-    max-height: 450px;
-    width: 400px;
-    min-height: 400px;
-    margin: 20px;
-    align-items: center;
-    justify-content: center;
-    box-shadow: black 5px 5px 5px;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* background-image: url("./assets/images/genback.png"); */
+  background-image: "state.darkTheme";
+  background-size: 420px 450px;
+  max-width: 600px;
+  max-height: 450px;
+  width: 400px;
+  min-height: 400px;
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: black 5px 5px 5px;
 }
 
 .wishCard {
