@@ -10,8 +10,11 @@ function App() {
       <section class="navbar">{/* <NavBar /> */}</section>
       <section class="dashboard">
         <Dashboard />
+      </section>
+      <section class="cardContainer">
         <WishListCard />
       </section>
+
       <div id="under">Under Construction</div>
       {/* <About /> */}
       {/* <Contact /> */}
