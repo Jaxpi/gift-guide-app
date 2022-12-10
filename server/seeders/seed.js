@@ -8,22 +8,21 @@ const itemSeeds = require('./itemSeeds.json');
 db.once('open', async () => {
   try {
     await Wishlist.deleteMany({});
-    // await User.deleteMany({});
+    await User.deleteMany({});
 
-    await Wishlist.create(wishSeeds);
+    await User.create(userSeeds);
 
-
-    // for (let i = 0; i < wishSeeds.length; i++) {
-    //   const { _id, thoughtAuthor } = await Thought.create(thoughtSeeds[i]);
-//       const Wishlist = await Wishlist.findOneAndUpdate(
-//         { username: thoughtAuthor },
-//         {
-//           $addToSet: {
-//             thoughts: _id,
-//           },
-//         }
-//       );
-//     }
+    for (let i = 0; i < wishSeeds.length; i++) {
+      const { _id, userId } = await Wishlist.create(wishSeeds[i]);
+      const user = await User.findOneAndUpdate(
+        { username: userId },
+        {
+          $addToSet: {
+            wishlists: _id,
+          },
+        }
+      );
+    }
   } 
 catch (err) {
     console.error(err);
