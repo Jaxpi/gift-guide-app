@@ -1,6 +1,5 @@
 import React from "react";
 // import logo from '/logo192.png'
-
 export default function Dashboard() {
   return (
     <section id="tempnav">
