@@ -6,15 +6,15 @@
       "friends": [1,2,3]
     },
     {
-        "title": "Fall",
-        "items": "2",
-        "userId": "2",
-        "friends": [1,2,3]
-      },
-      {
-        "title": "Summer",
-        "items": "3",
-        "userId": "3",
-        "friends": [1,2,3]
-      }
+      "title": "Fall",
+      "items": "2",
+      "userId": "2",
+      "friends": [1,2,3]
+    },
+    {
+      "title": "Summer",
+      "items": "3",
+      "userId": "3",
+      "friends": [1,2,3]
+    }
     ]
