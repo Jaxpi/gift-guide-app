@@ -25,7 +25,7 @@ const WishListCard = () => {
     <section className="wishCard">
       <Jumbotron id="wishTitle">
         {/* <Container> */}
-        <h1 id="myListTitle">Username's<br></br> Wish List</h1>
+        {/* <h1 id="myListTitle">Username's<br></br> Wish List</h1> */}
         {/* </Container> */}
       </Jumbotron>
       <Button id="addItem" onClick={() => handleAdd()}>
