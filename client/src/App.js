@@ -22,7 +22,7 @@ function App() {
       {/* <section class="cardContainer">
         <WishListCard />
       </section> */}
-      <ThemeProvider>
+      <ThemeProvider className="themeProvider">
         <ThemeComponent />
       </ThemeProvider>
     </main>
