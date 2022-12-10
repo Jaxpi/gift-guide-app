@@ -22,7 +22,7 @@ const WishListCard = () => {
   console.log(item, "ITEMS");
 
   return (
-    <section class="wishCard">
+    <section className="wishCard">
       <Jumbotron id="wishTitle">
         {/* <Container> */}
         <h1 id="myListTitle">Username's<br></br> Wish List</h1>
