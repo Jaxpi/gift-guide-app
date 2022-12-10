@@ -6,7 +6,7 @@ const WishListCard = () => {
   //     event.preventDefault();}
   const [item, setItem] = useState([]);
   const handleAdd = () => {
-    const newItem = [...item, []];
+    const newItem = [[], ...item];
     setItem(newItem);
   };
   const handleChange = (onChangeItem, i) => {
