@@ -8,7 +8,10 @@ const resolvers = {
         if (context.user) {
           return User.findOne({_id: context.user._id}).select('-__v -password');
         }
-        throw new AuthenticationError("Log In to Continue");
+        //throw new AuthenticationError("Log In to Continue");
+      },
+      users: async () => {
+        return User.find();
       },
     },
   
