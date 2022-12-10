@@ -3,9 +3,9 @@
   padding: 0;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-image: url("./assets/images/sitebackground.png");
-  background-repeat: repeat;
-  background-size: 1600px 840px;
+  background-image: url("./assets/images/siteback.jpg");
+  background-repeat: no-repeat;
+  background-size: 3600px 1500px;
 }
 
 @font-face {
@@ -63,9 +63,8 @@ h1 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  background-image: url("./assets/images/christmasback.jpg");
-  background-size: 600px 400px;
-  background-color: lightblue;
+  background-image: url("./assets/images/genback.png");
+  background-size: 400px 400px;
   max-width: 400px;
   max-height: 400px;
   margin: 20px;
@@ -78,16 +77,19 @@ h1 {
 #cardThemeGen {
     background-image: url("./assets/images/genback.png"); 
     font-family: genTitle;
+    background-size: 400px 400px;
 }
 
 #cardThemeLove {
     background-image: url("./assets/images/heartsbackgray.jpg"); 
     font-family: genTitle;
+    background-size: 400px 400px;
 }
 
 #cardThemeChristmas {
     background-image: url("./assets/images/christmasback.jpg"); 
     font-family: genTitle;
+    background-size: 600px 400px;
 }
 
 /* width */
@@ -116,7 +118,7 @@ h1 {
 }
 
 #myListTitle {
-  font-family: christmasTitle;
+  font-family: genTitle;
   font-size: 50px;
   font-weight: normal;
   text-align: center;
@@ -152,7 +154,9 @@ h1 {
   margin: 2px;
   margin-left: 10px;
   background-image: none;
-  background-color: red;
+  background-color: white;
+  color: red;
+  -webkit-text-stroke: 1px black;
   border: 1px solid black;
 }
 
@@ -162,8 +166,9 @@ h1 {
   padding: 2px;
   margin: 2px;
   background-image: none;
-  background-color: green;
+  background-color: white;
   border: 1px solid black;
+  color: black;
 }
 
 #tempnav {
