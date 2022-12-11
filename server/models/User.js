@@ -19,7 +19,7 @@ const userSchema = new Schema({
         required: true,
         minlength: 5,
     },
-    wishlist: [
+    wishlists: [
         {
             type: Schema.Types.ObjectId,
             ref: 'Wishlist',
