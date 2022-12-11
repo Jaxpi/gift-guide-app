@@ -1,62 +1,40 @@
 import React from "react";
-import Auth from "../utils/auth";
-import { NavLink } from "react-router-dom";
-// import "./NavBar.css";
+// import Auth from "../utils/auth";
+// // import { NavLink } from "react-router-dom";
+// // import "./NavBar.css";
+// import { Link } from "react-router-dom";
 
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
-function NavBar() {
-
-    function showNav() {
-        if (Auth.loggedIn()) {
-            return (
-                <ul className="flex-row">
-                    <li className="mx-1">
-                        <NavLink to="/Dashboard">
-                            Dashboard
-                        </NavLink>
-                    </li>
-                    <li className="Auth.btn">
-                        <a href="/" onClick={() => Auth.logout()}>
-                            Logout
-                        </a>
-                    </li>
-                </ul>
-            );
-        } else {
-            return (
-                <ul className="flex-row">
-                    <li className="mx-1">
-                        <NavLink to="/SignupForm">
-                            Signup
-                        </NavLink>
-                    </li>
-                    <li className="mx-1">
-                        <NavLink to="/LoginForm">
-                            Login
-                        </NavLink>
-                    </li>
-                </ul>
-            );
-        }
-    }
-
-    return (
-        <header className="flex-row px-1">
-            <h1>
-                <Link to="/Dashboard">
-                    <a class="navbar-brand" href="./public/assets/images/logotrans.png">
-                        <div class="logo-image">
-                            <img src="image" class="img-fluid"></img>
-                        </div>
-                    </a>
-                </Link>
-            </h1>
-
-            <nav>
-                {showNav()}
-            </nav>
-        </header>
-    );
+function Navigation() {
+  return (
+    <Navbar bg="light" expand="lg">
+      <Container>
+        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/createwishlist">Create Wish List</Nav.Link>
+            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">
+                Another action
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/createwishlist">Create List</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4">
+                Separated link
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 }
 
-export default NavBar;
+export default Navigation;
