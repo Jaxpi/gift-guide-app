@@ -58,14 +58,18 @@ a {
   padding: 0;
 }
 
+#navLinks {
+  background-image: none;
+}
+
 #donate, #login {
 background-image: none;
 background: none;
 border: none;
 color: black;
-font-size: 24px;
+font-size: 20px;
 font-family: nav;
-padding: 0;
+padding: 10px;
 }
 
 #donate:hover, #login:hover {

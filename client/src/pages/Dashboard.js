@@ -10,7 +10,8 @@ export default function Dashboard() {
         src="./assets/images/logotrans.png"
         alt="Gift Guide Logo"
       ></img>
-        <button id="login">Join/Log-In</button>
+      <div id="navLinks">
+      <button id="login">Join/Log-In</button>
       <a
         href="https://buy.stripe.com/test_3cs6rWcBJ0SEe9a000"
         target="_blank"
@@ -18,6 +19,8 @@ export default function Dashboard() {
       >
         <button id="donate">Donate</button>
       </a>
+      </div>
+
     </section>
   );
 }
