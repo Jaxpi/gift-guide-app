@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User } = require("../models");
+const { User, Wishlist } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -10,8 +10,21 @@ const resolvers = {
         }
         //throw new AuthenticationError("Log In to Continue");
       },
+      // TODO: fix .populate('wishlists')
       users: async () => {
-        return User.find();
+        return User.find()
+        //.populate('wishlists');
+      },
+      user: async (parent, { username }) => {
+        return User.findOne({ username })
+        //.populate('wishlists');
+      },
+      wishlists: async (parent, { username }) => {
+        const params = username ? { username } : {};
+        return Wishlist.find(params);
+      },
+      wishlist: async (parent, { wishlistId }) => {
+        return Wishlist.findOne({ _id: wishlistId });
       },
     },
   
