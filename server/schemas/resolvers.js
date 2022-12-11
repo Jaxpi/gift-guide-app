@@ -23,6 +23,9 @@ const resolvers = {
         const params = username ? { username } : {};
         return Wishlist.find(params);
       },
+      wishlist: async (parent, { wishlistId }) => {
+        return Wishlist.findOne({ _id: wishlistId });
+      },
     },
   
     Mutation: {

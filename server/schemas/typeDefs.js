@@ -37,6 +37,7 @@ const typeDefs = gql`
     users: [User]
     user(username: String!): User
     wishlists(username: String): [Wishlist]
+    wishlist(wishlistId: ID!): Wishlist
   }
 
   type Mutation {
