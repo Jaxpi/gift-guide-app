@@ -6,12 +6,25 @@ import "./App.css";
 import ThemeComponent from "./components/ThemeComponent";
 import ThemeProvider, { ThemeContext } from "./utils/ThemeContext";
 
+// NAVBAR IMPORTS
+import Navbar from "./components/Navbar";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 function App() {
   useEffect(() => {
     document.title = "Module 22.1: useReducer";
   }, []);
 
   return (
+    // NAVBAR CONNECTIONS -- NEED HELP WITH THIS - Hasan
+   /* <Router>
+      <Navbar />
+      <Routes>
+        <Route path='/' exact component = {Dashboard} />
+      </Routes>
+    </Router> */
+
+
     <main>
       <section class="navbar">{/* <NavBar /> */}</section>
       <section class="dashboard">
