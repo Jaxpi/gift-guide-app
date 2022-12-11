@@ -17,12 +17,14 @@ function App() {
 
   return (
     // NAVBAR CONNECTIONS -- NEED HELP WITH THIS - Hasan
-   /* <Router>
-      <Navbar />
-      <Routes>
-        <Route path='/' exact component = {Dashboard} />
-      </Routes>
-    </Router> */
+    // <Router>
+    //   <Navbar />
+    //   <Routes>
+    //     <Route path='/' exact component = {Dashboard} />
+    //     <Route path='/donate' exact component = {Donate} />
+    //     <Route path='/login' exact component = {Login} />
+    //   </Routes>
+    // </Router>
 
 
     <main>
