@@ -58,7 +58,7 @@ a {
   padding: 0;
 }
 
-#donate {
+#donate, #login {
 background-image: none;
 background: none;
 border: none;
@@ -68,7 +68,7 @@ font-family: nav;
 padding: 0;
 }
 
-#donate:hover {
+#donate:hover, #login:hover {
   cursor: pointer;
   text-shadow:1px 1px 5px white;
 }
