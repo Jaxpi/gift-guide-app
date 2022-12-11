@@ -4,7 +4,7 @@ https://jaxpi.github.io/DEPLOYEDLINK/
 <br><img src="assets/images/mainscreenshot.jpg" style="width:300px; height auto;">
 
 
-## Description
+## Description 
 
 Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
 
