@@ -6,7 +6,7 @@ const WishListCard = () => {
   //     event.preventDefault();}
   const [item, setItem] = useState([]);
   const handleAdd = () => {
-    const newItem = [...item, []];
+    const newItem = [[], ...item];
     setItem(newItem);
   };
   const handleChange = (onChangeItem, i) => {
@@ -22,10 +22,10 @@ const WishListCard = () => {
   console.log(item, "ITEMS");
 
   return (
-    <section class="wishCard">
+    <section className="wishCard">
       <Jumbotron id="wishTitle">
         {/* <Container> */}
-        <h1 id="myListTitle">Username's<br></br> Wish List</h1>
+        {/* <h1 id="myListTitle">Username's<br></br> Wish List</h1> */}
         {/* </Container> */}
       </Jumbotron>
       <Button id="addItem" onClick={() => handleAdd()}>
