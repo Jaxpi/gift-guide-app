@@ -16,8 +16,8 @@ export default function ThemeComponent() {
 
   const themeStyles = {
     backgroundImage: state.genTheme
-    ? '-webkit-linear-gradient(bottom, blue, white)'
-    : '-webkit-linear-gradient(bottom, red, white)',
+    ? '-webkit-linear-gradient(bottom, blue, lightblue)'
+    : '-webkit-linear-gradient(bottom, red, white, lightgreen)',
     padding: "10px",
     margin: "10px",
     borderRadius: "10px",
@@ -25,15 +25,15 @@ export default function ThemeComponent() {
 
   const textStyles = {
     background: "none",
-    color: "black",
-    fontFamily: state.genTheme ? 'genTitle' : 'christmasTitle',
+    color: 'black',
+    fontFamily: state.genTheme ? 'nav' : 'christmasTitle',
+    fontWeight: state.genTheme ? 'bold' : 'normal',
     fontSize: state.genTheme ? 32 : 40,
   };
 
   return (
     <>
       <div className="cardContainer" style={themeStyles}>
-        {/* <h1 id="myListTitle">Username's Wish List</h1> */}
         <text style={textStyles}>Username's Wish List</text>
         <WishListCard/>
         <button
