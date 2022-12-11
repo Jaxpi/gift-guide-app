@@ -83,6 +83,7 @@ padding: 10px;
   /* align-items: center; */
   /* justify-content: space-between; */
   background-image: linear-gradient(to right, red, yellow);
+  margin-bottom: 20px;
 }
 
 .themeProvider {
