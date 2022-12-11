@@ -17,7 +17,6 @@ function App() {
       <section class="dashboard">
         <Dashboard />
       </section>
-      <div id="under">Under Construction</div>
       {/* <section class="cardContainer">
         <WishListCard />
       </section> */}
