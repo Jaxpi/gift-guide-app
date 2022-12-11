@@ -10,8 +10,14 @@ const resolvers = {
         }
         //throw new AuthenticationError("Log In to Continue");
       },
+      // TODO: fix .populate('wishlists')
       users: async () => {
-        return User.find().populate('wishlists');
+        return User.find()
+        //.populate('wishlists');
+      },
+      user: async (parent, { username }) => {
+        return User.findOne({ username })
+        //.populate('wishlists');
       },
       wishlists: async (parent, { username }) => {
         const params = username ? { username } : {};
