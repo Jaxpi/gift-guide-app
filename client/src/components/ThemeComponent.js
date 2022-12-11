@@ -15,9 +15,9 @@ export default function ThemeComponent() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const themeStyles = {
-    backgroundImage: state.darkTheme
-    ? '-webkit-linear-gradient(bottom, blue, white)'
-    : '-webkit-linear-gradient(bottom, red, white)',
+    backgroundImage: state.genTheme
+    ? '-webkit-linear-gradient(bottom, blue, lightblue)'
+    : '-webkit-linear-gradient(bottom, red, white, lightgreen)',
     padding: "10px",
     margin: "10px",
     borderRadius: "10px",
@@ -25,22 +25,22 @@ export default function ThemeComponent() {
 
   const textStyles = {
     background: "none",
-    color: "black",
-    fontFamily: state.darkTheme ? 'genTitle' : 'loveTitle',
-    fontSize: 32,
+    color: 'black',
+    fontFamily: state.genTheme ? 'nav' : 'christmasTitle',
+    fontWeight: state.genTheme ? 'bold' : 'normal',
+    fontSize: state.genTheme ? 32 : 40,
   };
 
   return (
     <>
       <div className="cardContainer" style={themeStyles}>
-        {/* <h1 id="myListTitle">Username's Wish List</h1> */}
         <text style={textStyles}>Username's Wish List</text>
         <WishListCard/>
         <button
         id="themeButton"
         // To change the theme we invoke dispatch and pass in an object containing action type and payload
         onClick={() =>
-          dispatch({ type: TOGGLE_THEME, payload: state.darkTheme })
+          dispatch({ type: TOGGLE_THEME, payload: state.genTheme })
         }
         className="btn"
         type="button"

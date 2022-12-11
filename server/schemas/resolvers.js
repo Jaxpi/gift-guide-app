@@ -10,14 +10,13 @@ const resolvers = {
         }
         //throw new AuthenticationError("Log In to Continue");
       },
-      // TODO: fix .populate('wishlists')
       users: async () => {
         return User.find()
-        //.populate('wishlists');
+        .populate('wishlists');
       },
       user: async (parent, { username }) => {
         return User.findOne({ username })
-        //.populate('wishlists');
+        .populate('wishlists');
       },
       wishlists: async (parent, { username }) => {
         const params = username ? { username } : {};
@@ -53,23 +52,36 @@ const resolvers = {
         return { token, user };
       },
   
-      createWishlist: async (parent, args, context) => {
+      createWishlist: async (parent, { title }, context) => {
         if (context.user) {
-          try {
-            return User.findOneAndUpdate(
-              { _id: context.user._id },
-              {
-                $push: { wishlists: args.input },
-              },
-              {
-                new: true,
-              }
-            )
-          } catch(error) {
-            console.log(error)
-          }
+          // try {
+          //   return User.findOneAndUpdate(
+          //     { _id: context.user._id },
+          //     {
+          //       $push: { wishlists: args.input },
+          //     },
+          //     {
+          //       new: true,
+          //     }
+          //   )
+          // } catch(error) {
+          //   console.log(error)
+          // }
+          //}
+          const wishlist = await Wishlist.create({
+            title,
+            userId: context.user.username,
+          });
+  
+          await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $addToSet: { wishlists: wishlist._id } }
+          );
+  
+          return wishlist;
+
         }
-        throw new AuthenticationError("Log In to Continue");
+        //throw new AuthenticationError("Log In to Continue");
       },
   
       // updateWishlist: ({wishlistId, input}) => {

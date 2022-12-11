@@ -3,10 +3,10 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
   type User {
     _id: ID
-    username: String!
-    email: String!
-    password: String!
-    wishlists: [Wishlist]
+    username: String
+    email: String
+    password: String
+    wishlists: [Wishlist]!
   }
 
   type Friend {
@@ -16,9 +16,9 @@ const typeDefs = gql`
 
   type Wishlist {
     _id: ID
-    title: String!
+    title: String
     items: [Item]
-    userId: String!
+    userId: String
     friends: [User]
   }
 
@@ -43,7 +43,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    createWishlist(title: String!, items: [String], friends: [String]): Wishlist
+    createWishlist(title: String!): Wishlist
     updateWishlist(wishlistId: ID!, title: String!): Wishlist
     deleteWishlist(wishlistId: ID!): User
     addItemToWishlist(wishlistId: ID!, itemText: String!): Wishlist
