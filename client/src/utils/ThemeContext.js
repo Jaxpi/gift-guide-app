@@ -8,7 +8,7 @@ export const useTheme = () => useContext(ThemeContext);
 
 // Creating our theme provider. Accepts an argument of "props"
 export default function ThemeProvider(props) {
-  const darkTheme = false;
+  const genTheme = false;
 
-  return <ThemeContext.Provider value={{ darkTheme }} {...props} />;
+  return <ThemeContext.Provider value={{ genTheme }} {...props} />;
 }

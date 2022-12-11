@@ -9,6 +9,11 @@
 }
 
 @font-face {
+  font-family: nav;
+  src: url(./assets/fonts/navfont.TTF);
+}
+
+@font-face {
   font-family: genTitle;
   src: url(./assets/fonts/balloonblack.ttf);
 }
@@ -21,6 +26,11 @@
 @font-face {
   font-family: loveTitle;
   src: url(./assets/fonts/hearts.ttf);
+}
+
+@font-face {
+  font-family: genTitle;
+  src: url(./assets/fonts/balloonblack.ttf);
 }
 
 main {
@@ -44,6 +54,27 @@ main {
 h1 {
   background-image: none;
   font-size: 24px;
+}
+
+a {
+  background-image: none;
+  width: fit-content;
+  height: fit-content;
+  padding: 0;
+}
+
+#donate {
+background-image: none;
+background: none;
+border: none;
+color: black;
+font-size: 24px;
+font-family: nav;
+padding: 0;
+}
+
+#donate:hover {
+  cursor: pointer;
 }
 
 .dashboard {
