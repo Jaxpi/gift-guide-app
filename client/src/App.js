@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 // import NavBar from './components/Navbar';
-import Dashboard from "./pages/Dashboard";
+// import Dashboard from "./pages/Dashboard";
 import "./App.css";
 // import WishListCard from "./components/WishListCard";
 import ThemeComponent from "./components/ThemeComponent";
 import ThemeProvider, { ThemeContext } from "./utils/ThemeContext";
 
 // NAVBAR IMPORTS
-import Navbar from "./components/Navbar";
+import Index from "./components/Navbar/index";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -30,7 +30,8 @@ function App() {
     <main>
       <section class="navbar">{/* <NavBar /> */}</section>
       <section class="dashboard">
-        <Dashboard />
+        {/* <Dashboard /> */}
+        <Index />
       </section>
       <div id="under">Under Construction</div>
       {/* <section class="cardContainer">
