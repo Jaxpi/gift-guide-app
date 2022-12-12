@@ -2,7 +2,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
 }
 
 @font-face {
@@ -158,12 +158,23 @@ Button {
 }
 
 #myListTitle {
-  font-family: loveTitle;
   background-image: none;
   font-size: 40px;
   font-weight: normal;
   text-align: center;
   margin-top: 40px;
+}
+
+.cont1 #myListTitle {
+  font-family: loveTitle;
+}
+
+.cont2 #myListTitle {
+  font-family: christmasTitle;
+}
+
+.cont3 #myListTitle {
+  font-family: genTitle;
 }
 
 #addItem {
@@ -241,6 +252,7 @@ h4 {
   overflow-y: scroll;
   color: red;
   -webkit-text-stroke: 1px black;
+  font-family: genTitle !important;
 }
 
 .cont2 {
