@@ -121,6 +121,19 @@ const resolvers = {
             { new: true }
           )
         }
+        // throw new AuthenticationError('You need to be logged in!');
+      },
+      deleteItem: async (parent, { item }, context) => {
+        if (context.user) {
+          return Wishlist.findOneAndUpdate(
+            { _id: context.wishlist._id },
+            {
+              $pull: { items: item },
+            },
+            { new: true }
+          )
+        }
+        // throw new AuthenticationError('You need to be logged in!');
       }
     },
   };
