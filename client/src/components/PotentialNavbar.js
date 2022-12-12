@@ -24,6 +24,7 @@ import { Navbar, Nav, Button } from 'react-bootstrap';
 export default class PotentialNavbar extends Component {
     render() {
         return (
+            <Router>
             <div>
                 <Navbar bg="light" expand="lg">
                     <Container>
@@ -51,6 +52,7 @@ export default class PotentialNavbar extends Component {
                     </Container>
                 </Navbar>
             </div>
+            </Router>
         )
     }
 }
