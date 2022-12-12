@@ -21,6 +21,11 @@ Need to insert "
 import React, { Component } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 
+import Dashboard from '../pages/Dashboard';
+import Login from '../pages/Login';
+import Wishlist from '../pages/Wishlist';
+
+
 export default class PotentialNavbar extends Component {
     render() {
         return (
@@ -34,7 +39,7 @@ export default class PotentialNavbar extends Component {
                                 <Nav className="me-auto">
                                     <Nav.Link as={Link} to={"/dashboard"}>Dashboard</Nav.Link>
                                     <Nav.Link as={Link} to={"https://buy.stripe.com/test_3cs6rWcBJ0SEe9a000"}>Donate</Nav.Link>
-                                    {/* <Nav.Link as={Link} to={"/landingpage"}>Logout</Nav.Link> -- I don't know if this is right. Please modify w/ correct path when possible. - Hasan */}
+                                    {/* <Nav.Link as={Link} to={"/login"}>Logout</Nav.Link> -- I don't know if this is right. Please modify w/ correct path when possible. - Hasan */}
                                     {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.2">
@@ -61,8 +66,8 @@ export default class PotentialNavbar extends Component {
                         I don't know what the path to the donate page should be, please fix when possible - Hasan
                             <Donate />
                         </Route> */}
-                        {/* <Route path="/landingpage">
-                            <Logout />
+                        {/* <Route path="/login">
+                            <Login />
                         </Route>
                         I don't know if this is right, please fix this when possible - Hasan */}
                         <Route path="/wishlist">
