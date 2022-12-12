@@ -14,8 +14,8 @@ const resolvers = {
         return User.find()
         .populate('wishlists');
       },
-      user: async (parent, { username }) => {
-        return User.findOne({ username })
+      user: async (parent, { userId }) => {
+        return User.findOne({ _id: userId })
         .populate('wishlists');
       },
       wishlists: async (parent, { username }) => {
@@ -52,21 +52,34 @@ const resolvers = {
         return { token, user };
       },
   
-      createWishlist: async (parent, { title }, context) => {
+      createWishlist: async (parent, { userId, title }, context) => {
         if (context.user) {
-          const wishlist = await Wishlist.create({
-            title,
-            userId: context.user.username,
-          });
-  
-          await User.findOneAndUpdate(
-            { _id: context.user._id },
-            { $addToSet: { wishlists: wishlist._id } }
+          return User.findOneAndUpdate(
+            { _id: userId },
+            {
+              $addToSet: { wishlists: title },
+            },
+            {
+              new: true
+            }
           );
-  
-          return wishlist;
-
         }
+
+        
+        // if (context.user) {
+        //   const wishlist = await Wishlist.create({
+        //     title,
+        //     userId: context.user.username,
+        //   });
+  
+        //   await User.findOneAndUpdate(
+        //     { _id: context.user._id },
+        //     { $addToSet: { wishlists: wishlist._id } }
+        //   );
+  
+        //   return wishlist;
+
+        // }
         //throw new AuthenticationError("Log In to Continue");
       },
   
@@ -89,7 +102,7 @@ const resolvers = {
           return User.findOneAndUpdate(
             { _id: context.user._id },
             {
-              $pull: { wishlists: {wishlistId} },
+              $pull: { wishlists: wishlistId },
             },
             {
               new: true,

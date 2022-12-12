@@ -59,6 +59,10 @@ function App() {
                 path="/signup" 
                 element={<SignupForm />} 
               />
+              <Route
+              path="/me"
+              element={<Home />}
+              />
             </Routes>
           </div>
           <Footer />

@@ -1,7 +1,5 @@
 const { Schema, model } = require('mongoose');
 
-// const { Wishlist } = require('.');
-
 const wishlistSchema = new Schema({
     title: {
         type: String,
