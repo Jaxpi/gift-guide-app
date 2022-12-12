@@ -52,12 +52,11 @@ function App() {
         <div>
           <Header />
           <div>
-            {/* <Routes>
+            <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignupForm />} />
               <Route path="/me" element={<WishListCard />} />
-            </Routes> */}
-            <WishListCard />
+            </Routes>
           </div>
           <Footer />
         </div>
