@@ -15,7 +15,7 @@ const Footer = () => {
             &larr; Go Back
           </button>
         )}
-        <h4 style={{ color: 'white', lineHeight : 10, padding: 20 }}>&copy; {new Date().getFullYear()} - Gift Guide</h4>
+        <h4 style={{ color: 'white'}}>&copy; {new Date().getFullYear()} - Gift Guide</h4>
       </div>
     </footer>
   );
