@@ -54,3 +54,17 @@ export default class PotentialNavbar extends Component {
         )
     }
 }
+
+/* 
+insert "<PotentialNavbar />" in the App.js file.
+insert "
+import { createRoot } from "react-dom/client";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Link,
+} from "react-router-dom";
+" in the App.js file.
+- Hasan 
+*/
