@@ -8,18 +8,32 @@ export const QUERY_USER = gql`
       email
       wishlists {
         _id
-        items
-        friends
+        title
+      }
+    }
+  }
+`;
+
+export const QUERY_ONE_USER = gql`
+  query user($username: String!) {
+    user(username: $username) {
+      username
+      _id
+      email
+      wishlists {
+        _id
+        title
       }
     }
   }
 `;
 
 export const QUERY_WISHLISTS = gql`
-  query getWishlists {
-    items {
+  query Wishlists {
+    wishlists {
       _id
-      itemText
+      title
+      userId
     }
   }
 `;

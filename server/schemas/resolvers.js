@@ -105,7 +105,7 @@ const resolvers = {
             }
           );
         }
-        throw new AuthenticationError("Log In to Continue");
+        //throw new AuthenticationError("Log In to Continue");
       },
     },
   };
