@@ -1,27 +1,96 @@
-import React, { useEffect } from "react";
+// import React, { useEffect } from "react";
 // import NavBar from './components/Navbar';
-import Dashboard from "./pages/Dashboard";
+
+import React from "react";
+import { 
+  ApolloClient, 
+  ApolloProvider, 
+  InMemoryCache,
+  createHttpLink,
+ } from '@apollo/client';
+
+import { setContext } from '@apollo/client/link/context';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// import Dashboard from "./pages/Dashboard";
+import Home from './pages/Home';
+import Wishlist from './pages/Wishlist'
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import Header from './components/Header';
+import Footer from './components/Footer'
 import "./App.css";
 
-import ThemeComponent from "./components/ThemeComponent";
-import ThemeProvider, { ThemeContext } from "./utils/ThemeContext";
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('id_token');
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
 
 function App() {
-  useEffect(() => {
-    document.title = "Module 22.1: useReducer";
-  }, []);
-
   return (
-    <main>
-      <section class="navbar">{/* <NavBar /> */}</section>
-      <section class="dashboard">
-        <Dashboard />
-      </section>
-      <ThemeProvider className="themeProvider">
-        <ThemeComponent />
-      </ThemeProvider>
-    </main>
+    <ApolloProvider client={client}>
+      <Router>
+        <div>
+          <Header />
+          <div >
+            <Routes>
+              <Route 
+                path="/login" 
+                element={<Login />} 
+              />
+              <Route 
+                path="/signup" 
+                element={<Signup />} 
+              />
+            </Routes>
+          </div>
+          <Footer />
+        </div>
+      </Router>
+    </ApolloProvider>
   );
 }
 
+
+
+// import ThemeComponent from "./components/ThemeComponent";
+// import ThemeProvider, { ThemeContext } from "./utils/ThemeContext";
+
+// function App() {
+//   useEffect(() => {
+//     document.title = "Module 22.1: useReducer";
+//   }, []);
+
+//   return (
+//     <main>
+//       <section class="navbar">{/* <NavBar /> */}</section>
+//       <section class="dashboard">
+//         <Dashboard />
+//       </section>
+//       <ThemeProvider className="themeProvider">
+//         <ThemeComponent />
+//       </ThemeProvider>
+//     </main>
+//   );
+// }
+
+
 export default App;
+
+
