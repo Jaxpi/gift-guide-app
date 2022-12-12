@@ -2,38 +2,40 @@
 // import NavBar from './components/Navbar';
 
 import React from "react";
-import { 
-  ApolloClient, 
-  ApolloProvider, 
+import {
+  ApolloClient,
+  ApolloProvider,
   InMemoryCache,
   createHttpLink,
- } from '@apollo/client';
+} from "@apollo/client";
 
-import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { setContext } from "@apollo/client/link/context";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // import Dashboard from "./pages/Dashboard";
-import Home from './pages/Home';
-import Wishlist from './pages/Wishlist'
-import Signup from './pages/Signup';
-import SignupForm from './components/SignupForm'
-import Login from './pages/Login';
-import Header from './components/Header';
-import Footer from './components/Footer'
+import Home from "./pages/Home";
+import Wishlist from "./pages/Wishlist";
+import ThemeComponent from "./components/ThemeComponent"
+import Signup from "./pages/Signup";
+import SignupForm from "./components/SignupForm";
+import Login from "./pages/Login";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import "./App.css";
+import WishListCard from "./components/WishListCard";
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -49,17 +51,13 @@ function App() {
       <Router>
         <div>
           <Header />
-          <div >
-            <Routes>
-              <Route 
-                path="/login" 
-                element={<Login />} 
-              />
-              <Route 
-                path="/signup" 
-                element={<SignupForm />} 
-              />
-            </Routes>
+          <div>
+            {/* <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<SignupForm />} />
+              <Route path="/me" element={<WishListCard />} />
+            </Routes> */}
+            <WishListCard />
           </div>
           <Footer />
         </div>
@@ -67,8 +65,6 @@ function App() {
     </ApolloProvider>
   );
 }
-
-
 
 // import ThemeComponent from "./components/ThemeComponent";
 // import ThemeProvider, { ThemeContext } from "./utils/ThemeContext";
@@ -91,7 +87,4 @@ function App() {
 //   );
 // }
 
-
 export default App;
-
-
