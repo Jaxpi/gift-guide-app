@@ -14,7 +14,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // import Dashboard from "./pages/Dashboard";
 import Home from './pages/Home';
-import Wishlist from './pages/Wishlist'
+// import Wishlist from './pages/Wishlist'
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Header from './components/Header';
@@ -66,29 +66,6 @@ function App() {
     </ApolloProvider>
   );
 }
-
-
-
-// import ThemeComponent from "./components/ThemeComponent";
-// import ThemeProvider, { ThemeContext } from "./utils/ThemeContext";
-
-// function App() {
-//   useEffect(() => {
-//     document.title = "Module 22.1: useReducer";
-//   }, []);
-
-//   return (
-//     <main>
-//       <section class="navbar">{/* <NavBar /> */}</section>
-//       <section class="dashboard">
-//         <Dashboard />
-//       </section>
-//       <ThemeProvider className="themeProvider">
-//         <ThemeComponent />
-//       </ThemeProvider>
-//     </main>
-//   );
-// }
 
 
 export default App;

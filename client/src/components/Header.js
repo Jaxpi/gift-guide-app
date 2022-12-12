@@ -37,8 +37,8 @@ const Header = () => {
               <Link style={{ color: 'white', lineHeight : 10, padding: 20 }} id="login" to="/signup">
                 Signup
               </Link>
-              <Link style={{ color: 'white', lineHeight : 10, padding: 20 }} className="btn btn-dark mb-3" id="login" to="/dotate">
-                dotate
+              <Link style={{ color: 'white', lineHeight : 10, padding: 20 }} className="btn btn-dark mb-3" id="login" to="/donate">
+                Donate
               </Link>
             </>
           )}
