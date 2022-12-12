@@ -45,12 +45,32 @@ export default class PotentialNavbar extends Component {
                                     <NavDropdown.Item href="#action/3.4">
                                         Separated link
                                     </NavDropdown.Item>
-                                </NavDropdown> */}
+                                    </NavDropdown> */}
                                     <Button href='/wishlist'>Create Wishlist</Button>
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>
                     </Navbar>
+                </div>
+                <div>
+                    <Switch>
+                        <Route exact path="/dashboard">
+                            <Dashboard />
+                        </Route>
+                        {/* <Route path="/donate">
+                        I don't know what the path to the donate page should be, please fix when possible - Hasan
+                            <Donate />
+                        </Route> */}
+                        {/* <Route path="/landingpage">
+                            <Logout />
+                        </Route>
+                        I don't know if this is right, please fix this when possible - Hasan */}
+                        <Route path="/wishlist">
+                            <Wishlist />
+                        </Route>
+                        {/* Can also use a named `children` prop */}
+                        {/* <Route path="/users/:id" children={<User />} /> */}
+                    </Switch>
                 </div>
             </Router>
         )
