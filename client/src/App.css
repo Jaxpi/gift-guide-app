@@ -109,8 +109,8 @@ span {
 }
 
 .close {
- width: fit-content;
- padding: 2px;
+  width: fit-content;
+  padding: 2px;
 }
 
 Button {
@@ -127,12 +127,12 @@ Button {
   align-items: center;
 }
 
-.cardContainer {
-  border: 2px solid black;
+/* .cardContainer {
+  border: 2px solid green;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* background-image: url("./assets/images/genback.png"); */
+  background-image: url("./assets/images/genback.png");
   background-image: "state.darkTheme";
   background-size: 420px 450px;
   max-width: 600px;
@@ -146,7 +146,7 @@ Button {
 }
 
 .wishCard {
-  /* border: 2px solid black; */
+  border: 2px solid cyan;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -159,9 +159,9 @@ Button {
   margin: 20px;
   align-items: center;
   justify-content: center;
-  /* box-shadow: black 5px 5px 5px; */
+  box-shadow: black 5px 5px 5px;
   overflow-y: scroll;
-}
+} */
 
 /* width */
 ::-webkit-scrollbar {
@@ -196,6 +196,7 @@ Button {
 
 #myListTitle {
   font-family: genTitle;
+  background-image: none;
   font-size: 40px;
   font-weight: normal;
   text-align: center;
@@ -256,4 +257,62 @@ footer {
 h4 {
   height: fit-content;
   background-image: none;
+}
+
+.cont1 {
+  background-image: -webkit-linear-gradient(bottom, blue, lightblue);
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  border: 2px solid green;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-size: 420px 450px;
+  max-width: 600px;
+  max-height: 450px;
+  width: 400px;
+  min-height: 400px;
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: black 5px 5px 5px;
+}
+
+.cont2 {
+  background-image: -webkit-linear-gradient(bottom, red, lightblue);
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-size: 420px 450px;
+  max-width: 600px;
+  max-height: 450px;
+  width: 400px;
+  min-height: 400px;
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: black 5px 5px 5px;
+}
+
+.cont3 {
+  background-image: -webkit-linear-gradient(bottom, green, lightblue);
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-size: 420px 450px;
+  max-width: 600px;
+  max-height: 450px;
+  width: 400px;
+  min-height: 400px;
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: black 5px 5px 5px;
 }
