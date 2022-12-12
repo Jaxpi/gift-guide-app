@@ -13,8 +13,6 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build",
     "seed": "cd server && npm run seed"
-
-    
   },
   "keywords": [],
   "author": "",
@@ -23,6 +21,8 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
-    "apollo-server-express": "^3.11.1"
+    "@apollo/client": "^3.7.2",
+    "apollo-server-express": "^3.11.1",
+    "react-router-dom": "^6.4.5"
   }
 }
