@@ -21,16 +21,19 @@ const WishListCard = () => {
   };
   console.log(item, "ITEMS");
 
-  const [style, setStyle] = useState("cont1");
+  const [style, setStyle] = useState(localStorage.getItem("theme") || "cont1");
 
   const changeStyle = function() {
     console.log("you just clicked");
     if (style === "cont1") {
       setStyle("cont2");
+      localStorage.setItem("theme", "cont2");
     } else if (style === "cont2") {
       setStyle("cont3");
+      localStorage.setItem("theme", "cont3");
     } else {
       setStyle("cont1");
+      localStorage.setItem("theme", "cont1");
     }
   };
 
