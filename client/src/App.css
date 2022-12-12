@@ -75,6 +75,51 @@ main {
   text-shadow: 1px 1px 5px white;
 }
 
+Form {
+  background-image: linear-gradient(to top, white, gray);
+  color: black;
+  width: 25%;
+}
+
+.form-group {
+  background-image: none;
+  color: black;
+}
+
+.form-label {
+  background-image: none;
+  color: black;
+}
+
+.form-control {
+  background-image: none;
+  color: black;
+}
+
+.invalid-feedback {
+  background-image: none;
+  color: black;
+}
+
+.fade.alert.alert-danger.alert-dismissible.show,
+.sr-only,
+span {
+  background-image: none;
+  color: black;
+}
+
+.close {
+ width: fit-content;
+ padding: 2px;
+}
+
+Button {
+  background-image: none;
+  background-color: white;
+  color: black;
+  border: black;
+}
+
 .themeProvider {
   display: flex;
   flex-flow: row wrap;
