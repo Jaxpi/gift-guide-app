@@ -78,6 +78,7 @@ main {
 Form {
   background-image: linear-gradient(to top, white, gray);
   color: black;
+  width: 25%;
 }
 
 .form-group {
