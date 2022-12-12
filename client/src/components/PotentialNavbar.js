@@ -24,7 +24,7 @@ import { Navbar, Nav, Button } from 'react-bootstrap';
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
 import Wishlist from '../pages/Wishlist';
-
+ 
 
 export default class PotentialNavbar extends Component {
     render() {
