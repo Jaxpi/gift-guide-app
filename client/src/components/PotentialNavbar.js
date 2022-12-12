@@ -25,17 +25,17 @@ export default class PotentialNavbar extends Component {
     render() {
         return (
             <Router>
-            <div>
-                <Navbar bg="light" expand="lg">
-                    <Container>
-                        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="me-auto">
-                                <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-                                <Nav.Link href="https://buy.stripe.com/test_3cs6rWcBJ0SEe9a000">Donate</Nav.Link>
-                                {/* <Nav.Link href="/landingpage">Logout</Nav.Link> -- I don't know if this is right. Please modify w/ correct path when possible. - Hasan */}
-                                {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                <div>
+                    <Navbar bg="light" expand="lg">
+                        <Container>
+                            <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                            <Navbar.Collapse id="basic-navbar-nav">
+                                <Nav className="me-auto">
+                                    <Nav.Link as={Link} to={"/dashboard"}>Dashboard</Nav.Link>
+                                    <Nav.Link as={Link} to={"https://buy.stripe.com/test_3cs6rWcBJ0SEe9a000"}>Donate</Nav.Link>
+                                    {/* <Nav.Link as={Link} to={"/landingpage"}>Logout</Nav.Link> -- I don't know if this is right. Please modify w/ correct path when possible. - Hasan */}
+                                    {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.2">
                                         Another action
@@ -46,12 +46,12 @@ export default class PotentialNavbar extends Component {
                                         Separated link
                                     </NavDropdown.Item>
                                 </NavDropdown> */}
-                                <Button href='/wishlist'>Create Wishlist</Button>
-                            </Nav>
-                        </Navbar.Collapse>
-                    </Container>
-                </Navbar>
-            </div>
+                                    <Button href='/wishlist'>Create Wishlist</Button>
+                                </Nav>
+                            </Navbar.Collapse>
+                        </Container>
+                    </Navbar>
+                </div>
             </Router>
         )
     }
