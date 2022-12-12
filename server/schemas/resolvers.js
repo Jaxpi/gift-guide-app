@@ -111,6 +111,17 @@ const resolvers = {
         }
         //throw new AuthenticationError("Log In to Continue");
       },
+      addItem: async (parent, { wishlistId, item }, context) => {
+        if (context.user) {
+          return Wishlist.findOneAndUpdate(
+            { _id: wishlistId },
+            {
+              $addToSet: { items: item },
+            },
+            { new: true }
+          )
+        }
+      }
     },
   };
 
