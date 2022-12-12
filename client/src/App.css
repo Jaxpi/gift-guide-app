@@ -101,6 +101,18 @@ Form {
   color: black;
 }
 
+.fade.alert.alert-danger.alert-dismissible.show,
+.sr-only,
+span {
+  background-image: none;
+  color: black;
+}
+
+.close {
+ width: fit-content;
+ padding: 2px;
+}
+
 Button {
   background-image: none;
   background-color: white;
