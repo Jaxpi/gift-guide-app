@@ -186,7 +186,8 @@ Button {
   border: 1px solid black;
 }
 
-#themeButton:hover, #addItem:hover {
+#themeButton:hover,
+#addItem:hover {
   box-shadow: 1px 1px 1px black;
 }
 
@@ -270,7 +271,7 @@ Button {
   background-image: url(./assets/images/genback.png);
   padding: 10px;
   border-radius: 10px;
-  display: flex;  
+  display: flex;
   align-content: flex-start;
   background-size: 420px 450px;
   max-width: 370px;
@@ -297,10 +298,13 @@ h4 {
   background-image: none;
 }
 
-@media screen and (min-width: 375px) {
-  .cont1, .cont2, .cont3 {
-  margin-left: 0;
-
+@media screen and (max-width: 400px) {
+  .cont1,
+  .cont2,
+  .cont3 {
+    margin-left: 0;
+    margin-right: 0;
+    min-height: 100px;
+    max-height: 300px;
   }
-  }
-  
+}
