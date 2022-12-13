@@ -108,13 +108,28 @@ const resolvers = {
 
       deleteWishlist: async (parent, { wishlistId }, context) => {
         if (context.user) {
-          return User.findOneAndUpdate(
+          const wishlist = await Wishlist.findOneAndDelete({
+            _id: wishlistId,
+            userId: context.user.username,
+          });
+  
+          await User.findOneAndUpdate(
             { _id: context.user._id },
-            { $pull: { wishlists: wishlistId }},
-            { new: true }
+            { $pull: { wishlists: wishlist._id } }
           );
+  
+          return wishlist;
         }
-        return Wishlist.findOneAndDelete({ _id: context.wishlist._id })
+        
+        
+        // deleteWishlist: async (parent, { wishlist }, context) => {
+        // if (context.user) {
+        //   return User.findOneAndUpdate(
+        //     { _id: context.user._id },
+        //     { $pull: { wishlists: wishlist }},
+        //     { new: true }
+        //   );
+        // }
         //throw new AuthenticationError("Log In to Continue");
       },
       addItem: async (parent, { wishlistId, item }, context) => {
