@@ -96,6 +96,11 @@ Button {
   border: black;
 }
 
+.col-12.col-md-10.my-3 {
+  display: flex;
+  justify-content: center;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
