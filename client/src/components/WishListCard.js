@@ -21,40 +21,41 @@ const WishListCard = () => {
   };
   console.log(item, "ITEMS");
 
-  const [style, setStyle] = useState("cont1");
+  const [style, setStyle] = useState(localStorage.getItem("theme") || "cont1");
 
-  const changeStyle = function() {
+  const changeStyle = function () {
     console.log("you just clicked");
     if (style === "cont1") {
       setStyle("cont2");
+      localStorage.setItem("theme", "cont2");
     } else if (style === "cont2") {
       setStyle("cont3");
+      localStorage.setItem("theme", "cont3");
     } else {
       setStyle("cont1");
+      localStorage.setItem("theme", "cont1");
     }
   };
 
   return (
     <section className={style}>
-      <button
-        id="themeButton"
-        // To change the theme we invoke dispatch and pass in an object containing action type and payload
-        onClick={changeStyle}
-        className="btn"
-        type="button"
-      >
-        Theme
-      </button>
-      <Jumbotron id="wishTitle">
-        <Container>
-          <h1 id="myListTitle">
-            Username's<br></br> Wish List
-          </h1>
-        </Container>
-      </Jumbotron>
-      <Button id="addItem" onClick={() => handleAdd()}>
-        Add Item
-      </Button>
+      <div className="wishButtonsWrap">
+        <button
+          id="themeButton"
+          // To change the theme we invoke dispatch and pass in an object containing action type and payload
+          onClick={changeStyle}
+          className="btn"
+          type="button"
+        >
+          Theme
+        </button>
+        <button id="addItem" onClick={() => handleAdd()}>
+          Add Item
+        </button>
+      </div>
+      <h1 id="myListTitle">
+        Username's Wish List
+      </h1>
       <Container>
         {item.map((data, i) => {
           return (

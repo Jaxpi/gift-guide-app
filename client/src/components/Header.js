@@ -9,6 +9,11 @@ const Header = () => {
     Auth.logout();
   };
 
+  // const createList = (event) => {
+  //   event.preventDefault();
+  //   const newList = [[], ...wishlists]
+  // }
+
   return (
     <section id="nav">
       <img
@@ -20,6 +25,7 @@ const Header = () => {
         <div className="navLinks">
           <Link to="/me">View My Wishlist</Link>
           <button id="logout" onClick={logout}>Logout</button>
+          {/* <button id="createList" onClick={() => createList()}>Create Wish List</button> */}
         </div>
       ) : (
         <div className="navLinks">
