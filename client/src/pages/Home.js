@@ -1,15 +1,19 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-
+import Auth from '../utils/auth';
 import WishListCardList from '../components/WishListCard';
 
 import { QUERY_WISHLISTS } from '../utils/queries';
 import WishListCard from '../components/WishListCard';
+import { Navigate } from 'react-router-dom';
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_WISHLISTS);
   const wishlists = data?.wishlists || [];
-
+  if (!Auth.loggedIn()){
+  return <Navigate replace to="/login" />
+  //this above is incorrect and needs to change (react router issue perhaps)
+  }
   return (
     <main>
       <div className="flex-row justify-center">
@@ -17,10 +21,7 @@ const Home = () => {
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <WishListCard
-              wishlists={wishlists}
-              title="Here's the current roster of friends..."
-            />
+            <WishListCard />
           )}
         </div>
       </div>
