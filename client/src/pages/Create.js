@@ -24,6 +24,7 @@ const Create = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    //create a new wishlistcard and display it on /me page
 
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -48,9 +49,9 @@ const Create = () => {
     });
   };
 
-  if (Auth.loggedIn()) {
-    return <Navigate replace to="/login" />
-  } 
+//   if (Auth.loggedIn()) {
+//     return <Navigate replace to="/login" />
+//   } 
 
   return (
     <div className="createFormContainer">
