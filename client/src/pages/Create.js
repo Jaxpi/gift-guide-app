@@ -3,6 +3,7 @@ import { Form, Button, Alert } from "react-bootstrap";
 import Auth from "../utils/auth";
 import { useMutation } from "@apollo/client";
 import { CREATE_WISHLIST } from "../utils/mutations";
+import { Navigate } from "react-router-dom";
 
 const Create = () => {
   const [list, setList] = useState({ title: "", friends: "" });
@@ -46,6 +47,10 @@ const Create = () => {
       friends: "",
     });
   };
+
+  if (Auth.loggedIn()) {
+    return <Navigate replace to="/login" />
+  } 
 
   return (
     <div className="createFormContainer">
