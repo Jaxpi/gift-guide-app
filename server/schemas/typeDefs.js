@@ -7,24 +7,15 @@ const typeDefs = gql`
     email: String
     password: String
     wishlists: [Wishlist]!
-  }
-
-  type Friend {
-    _id: ID
-    friendId: [User]
+    friends: [User]
   }
 
   type Wishlist {
     _id: ID
     title: String
-    items: [Item]
+    items: [String]
     userId: String
     friends: [User]
-  }
-
-  type Item {
-    _id: ID
-    itemText: String!
   }
 
   type Auth {
@@ -44,9 +35,9 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
-    createWishlist(userId: ID!, title: String!): User
+    createWishlist(userId: ID!, title: String!): Wishlist
     updateWishlist(wishlistId: ID!, title: String!): Wishlist
-    deleteWishlist(wishlistId: ID!): User
+    deleteWishlist(wishlistId: ID!): Wishlist
 
     addItem(wishlistId: ID!, itemText: String!): Wishlist
     deleteItem(itemId: ID!): Wishlist

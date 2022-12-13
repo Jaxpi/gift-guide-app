@@ -6,26 +6,29 @@ const wishlistSchema = new Schema({
         required: true,
         trim: true,
     },
-    items: [
-        {
-            type: String,
-            unique: true,
-            trim: true,
-        },
-    ],
+
     userId: {
         type: String,
         required: true,
-        unique: true,
+        //unique: true,
         trim: true,
+        // type: Schema.Types.ObjectId,
+        // ref: 'User',
     },
-
-    friends: [
+    items: [
         {
             type: String,
-            ref: 'User'
+            //required: true
+            unique: false
         }
-    ],
+    ]
+
+    // friends: [
+    //     {
+    //         type: String,
+    //         ref: 'User'
+    //     }
+    // ],
 });
 
 const Wishlist = model('Wishlist', wishlistSchema);

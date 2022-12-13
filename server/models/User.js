@@ -22,9 +22,15 @@ const userSchema = new Schema({
     wishlists: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Wishlist',
+            ref: 'Wishlist'
         },
     ],
+    friends: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+        }
+    ]
 });
 
 userSchema.pre('save', async function (next) {
