@@ -8,7 +8,7 @@ const resolvers = {
         if (context.user) {
           return User.findOne({_id: context.user._id}).select('-__v -password');
         }
-        //throw new AuthenticationError("Log In to Continue");
+        throw new AuthenticationError("Log In to Continue");
       },
       users: async () => {
         return User.find()
@@ -52,20 +52,6 @@ const resolvers = {
         return { token, user };
       },
   
-
-      
-      
-      // if (context.user) {
-        //   return await User.findOneAndUpdate(
-          //     { _id: context.user._id },
-          //     { $addToSet: { wishlists: title }},
-          //     { new: true }
-          //   );
-          // }
-          
-          
-          
-          
         // createWishlist: async (parent, { userId, title }, context) => {
         //   if (context.user) {
         //     return await User.findOneAndUpdate(
@@ -103,7 +89,7 @@ const resolvers = {
           )
           return wishlist;
         }
-        // throw new AuthenticationError("Log In to Continue");
+        //throw new AuthenticationError("Log In to Continue");
       },
 
       // deleteWishlist: async (parent, { wishlistId }, context) => {
@@ -133,8 +119,10 @@ const resolvers = {
             { _id: wishlistId }
           )
         }
-        //throw new AuthenticationError("Log In to Continue");
+        throw new AuthenticationError("Log In to Continue");
       },
+
+
       addItem: async (parent, { wishlistId, item }, context) => {
         if (context.user) {
           return Wishlist.findOneAndUpdate(
@@ -150,6 +138,18 @@ const resolvers = {
           return Wishlist.findOneAndUpdate(
             { _id: wishlistId },
             { $pull: { items: item }},
+            { new: true }
+          )
+        }
+        throw new AuthenticationError('You need to be logged in!');
+      },
+
+
+      addFriend: async (parent, { wishlistId, friend }, context) => {
+        if (context.user) {
+          return Wishlist.findOneAndUpdate(
+            { _id: wishlistId },
+            { $addToSet: { friends: friend }},
             { new: true }
           )
         }

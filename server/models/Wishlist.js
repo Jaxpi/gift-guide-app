@@ -21,14 +21,13 @@ const wishlistSchema = new Schema({
             //required: true
             unique: false
         }
-    ]
-
-    // friends: [
-    //     {
-    //         type: String,
-    //         ref: 'User'
-    //     }
-    // ],
+    ],
+    friends: [
+        {
+            type: String,
+            ref: 'User'
+        }
+    ],
 });
 
 const Wishlist = model('Wishlist', wishlistSchema);
