@@ -1,30 +1,61 @@
 import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
 import { Jumbotron, Button, Container } from "react-bootstrap";
+
+import { DELETE_WISHLIST } from "../utils/mutations";
+import Create from "../pages/Create";
+
 import { QUERY_WISHLISTS, QUERY_ME } from "../utils/queries";
 import {CREATE_WISHLIST} from "../utils/mutations"
 import Auth from "../utils/auth";
 //  when we create a new wishlist we want to render a new wishlist card. all of it to display on the home.js
+
 
 const WishListCard = (props) => {
   console.log(props);
   const { error, loading, data } = useQuery(QUERY_WISHLISTS);
   // const handleFormSubmit = async (event) => {
   //     event.preventDefault();}
-  // const [items, setItems] = useState([]);
-  // const handleAdd = () => {
-  //   const newItem = [[], ...items];
-  //   setItems(newItem);
+
+  // const handleDeleteList = async (wishlistId) => {
+  //   const [deleteList] = useMutation(DELETE_WISHLIST)
+
+  //   // const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+  //   // if (!token) {
+  //   //   return false;
+  //   // }
+
+  //   try {
+  //     const { user } = await deleteList({
+  //       variables: {
+  //         wishlistId: wishlistId,
+  //       },
+  //     });
+
+  //     //? what goes here?
+  //     // userData = user;
+  //     // removeBookId(bookId);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
   // };
-  // const handleChange = (onChangeItem, i) => {
-  //   const inputItem = [...items];
-  //   inputItem[i] = onChangeItem.target.value;
-  //   setItems(inputItem);
-  // };
-  // const handleDelete = (i) => {
-  //   const deleteItem = [...items];
-  //   deleteItem.splice(i, 1);
-  //   setItems(deleteItem);
-  // };
+
+  const [items, setItems] = useState([]);
+  const handleAdd = () => {
+    const newItem = [[], ...items];
+    setItems(newItem);
+  };
+  const handleChange = (onChangeItem, i) => {
+    const inputItem = [...items];
+    inputItem[i] = onChangeItem.target.value;
+    setItems(inputItem);
+  };
+  const handleDelete = (i) => {
+    const deleteItem = [...items];
+    deleteItem.splice(i, 1);
+    setItems(deleteItem);
+  };
   console.log(items, "ITEMS");
 
   const [style, setStyle] = useState(localStorage.getItem("theme") || "cont1");
@@ -55,12 +86,15 @@ const WishListCard = (props) => {
         >
           Theme
         </button>
+        {/* <button id="deleteList" onClick={() => handleDeleteList()}>
+          Delete List
+        </button> */}
         <button id="addItem" onClick={() => handleAdd()}>
           Add Item
         </button>
       </div>
       <h1 id="myListTitle">
-        Username's Wish List
+        Title created during "create"
       </h1>
       <Container>
         {items.map((data, i) => {

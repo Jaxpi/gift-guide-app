@@ -21,9 +21,9 @@ const Home = () => {
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <WishListCard />
-          )}
-        </div>
+            <> {wishlists.map((wishlist, index) => 
+              < WishListCard key={index} wishlist={wishlist} /> )} </> )}
+           </div>
       </div>
     </main>
   );
