@@ -10,13 +10,6 @@ const Header = () => {
     Auth.logout();
   };
 
-  const [list, setList] = useState([]);
-  const createList = (event) => {
-    event.preventDefault();
-    const newList = [[], ...list];
-    setList(newList);
-  }
-
   console.log(Auth.loggedIn())
   return (
     <section id="nav">
@@ -28,8 +21,12 @@ const Header = () => {
       {Auth.loggedIn() ? (
         <div className="navLinks">
           <button id="logout" onClick={logout}>Logout</button>
-          <button id="createList" onClick={() => createList()}>Create Wish List</button>
-       
+          <Link
+            id="createList"
+            to="/create"
+          >
+            Create Wish List
+          </Link>   
         </div>
       ) : (
         

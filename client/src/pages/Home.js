@@ -12,6 +12,7 @@ const Home = () => {
   const wishlists = data?.wishlists || [];
   if (!Auth.loggedIn()){
   return <Navigate replace to="/login" />
+  //this above is incorrect and needs to change (react router issue perhaps)
   }
   return (
     <main>
@@ -20,10 +21,7 @@ const Home = () => {
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <WishListCard
-              wishlists={wishlists}
-              title="Here's the current roster of friends..."
-            />
+            <WishListCard />
           )}
         </div>
       </div>

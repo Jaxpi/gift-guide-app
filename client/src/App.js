@@ -15,6 +15,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Wishlist from "./pages/Wishlist";
+import Create from "./pages/Create"
 import Signup from "./pages/Signup";
 import SignupForm from "./components/SignupForm";
 import Login from "./pages/Login";
@@ -80,6 +81,7 @@ function App() {
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignupForm />} />
+              <Route path="/create" element={<Create />} />
               <Route path="/me" element={<Home />} />
               <Route path="/wishlist" element={<Wishlist />} />
             </Routes>
@@ -90,26 +92,5 @@ function App() {
     </ApolloProvider>
   );
 }
-
-// import ThemeComponent from "./components/ThemeComponent";
-// import ThemeProvider, { ThemeContext } from "./utils/ThemeContext";
-
-// function App() {
-//   useEffect(() => {
-//     document.title = "Module 22.1: useReducer";
-//   }, []);
-
-//   return (
-//     <main>
-//       <section class="navbar">{/* <NavBar /> */}</section>
-//       <section class="dashboard">
-//         <Dashboard />
-//       </section>
-//       <ThemeProvider className="themeProvider">
-//         <ThemeComponent />
-//       </ThemeProvider>
-//     </main>
-//   );
-// }
 
 export default App;
