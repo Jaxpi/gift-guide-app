@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState }  from "react";
 import { Link } from "react-router-dom";
 
 import Auth from "../utils/auth";
@@ -9,11 +9,14 @@ const Header = () => {
     Auth.logout();
   };
 
-  // const createList = (event) => {
-  //   event.preventDefault();
-  //   const newList = [[], ...wishlists]
-  // }
+  const [list, setList] = useState([]);
+  const createList = (event) => {
+    event.preventDefault();
+    const newList = [[], ...list];
+    setList(newList);
+  }
 
+  console.log(Auth.loggedIn())
   return (
     <section id="nav">
       <img
@@ -23,9 +26,8 @@ const Header = () => {
       ></img>
       {Auth.loggedIn() ? (
         <div className="navLinks">
-          <Link to="/me">View My Wishlist</Link>
           <button id="logout" onClick={logout}>Logout</button>
-          {/* <button id="createList" onClick={() => createList()}>Create Wish List</button> */}
+          <button id="createList" onClick={() => createList()}>Create Wish List</button>
         </div>
       ) : (
         <div className="navLinks">
