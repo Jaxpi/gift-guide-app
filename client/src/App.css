@@ -39,7 +39,7 @@ main {
   border: none;
   color: black;
   font-size: 20px;
-  font-family: nav;
+  /* font-family: nav; */
   padding: 10px;
 }
 
@@ -112,10 +112,10 @@ Button {
   margin-bottom: 10px;
 }
 
-@font-face {
+/* @font-face {
   font-family: nav;
   src: url(./assets/fonts/navFont.TTF);
-}
+} */
 
 @font-face {
   font-family: genTitle;
