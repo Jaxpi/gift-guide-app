@@ -22,10 +22,13 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./App.css";
 import WishListCard from "./components/WishListCard";
+import { io } from "socket.io-client";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
+
+const socket = io();
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -45,6 +48,28 @@ const client = new ApolloClient({
 });
 
 function App() {
+  // const [isConnected, setIsConnected] = useState(socket.connected);
+  React.useEffect(() => {
+    socket.on('connect', () => {
+      // setIsConnected(true);
+      console.log("connected")
+    });
+
+    socket.on('disconnect', () => {
+      // setIsConnected(false);
+    });
+
+    socket.on('pong', () => {
+      // setLastPong(new Date().toISOString());
+    });
+
+    // return () => {
+    //   socket.off('connect');
+    //   socket.off('disconnect');
+    //   socket.off('pong');
+    // };
+  }, []);
+
   return (
     <ApolloProvider client={client}>
       <Router>
