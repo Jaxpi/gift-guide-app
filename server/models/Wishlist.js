@@ -1,36 +1,32 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const wishlistSchema = new Schema({
-    title: {
-        type: String,
-        required: true,
-        trim: true,
-    },
+  title: {
+    type: String,
+    required: true,
+    trim: true,
+  },
 
-    userId: {
-        type: String,
-        required: true,
-        //unique: true,
-        trim: true,
-        // type: Schema.Types.ObjectId,
-        // ref: 'User',
+  userId: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  items: [
+    {
+      type: String,
+      unique: false,
     },
-    items: [
-        {
-            type: String,
-            //required: true
-            unique: false
-        }
-    ]
+  ],
 
-    // friends: [
-    //     {
-    //         type: String,
-    //         ref: 'User'
-    //     }
-    // ],
+  friends: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
-const Wishlist = model('Wishlist', wishlistSchema);
+const Wishlist = model("Wishlist", wishlistSchema);
 
 module.exports = Wishlist;

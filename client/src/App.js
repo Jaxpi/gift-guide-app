@@ -66,25 +66,4 @@ function App() {
   );
 }
 
-// import ThemeComponent from "./components/ThemeComponent";
-// import ThemeProvider, { ThemeContext } from "./utils/ThemeContext";
-
-// function App() {
-//   useEffect(() => {
-//     document.title = "Module 22.1: useReducer";
-//   }, []);
-
-//   return (
-//     <main>
-//       <section class="navbar">{/* <NavBar /> */}</section>
-//       <section class="dashboard">
-//         <Dashboard />
-//       </section>
-//       <ThemeProvider className="themeProvider">
-//         <ThemeComponent />
-//       </ThemeProvider>
-//     </main>
-//   );
-// }
-
 export default App;

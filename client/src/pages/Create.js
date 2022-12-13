@@ -9,12 +9,12 @@ const Create = () => {
   const [list, setList] = useState({ title: "", friends: "" });
   const createList = (event) => {
     event.preventDefault();
-    const newList = [[], ...list];
+    const newList = { ...list };
     setList(newList);
   };
 
-  const [create, { error }] = useMutation(CREATE_WISHLIST);
-  const [validated] = useState(false);
+  const [createWishlist, { error }] = useMutation(CREATE_WISHLIST);
+//   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
   const handleInputChange = (event) => {
@@ -24,24 +24,16 @@ const Create = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    //create a new wishlistcard and display it on /me page
-
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+    console.log(list);
+    const { data } = await createWishlist({
+      variables: { ...list },
+    });
+    console.log(data);
+    if (data.createWishlist) {
+        window.location.assign("/me")
+    } else {
+        console.warn("error with form submit")
     }
-
-    // try {
-    //   const { data } = await login({
-    //     variables: { ...list },
-    //   });
-
-    //   Auth.login(data.login.token);
-    // } catch (e) {
-    //   console.error(e);
-    //   setShowAlert(true);
-    // }
 
     setList({
       title: "",
@@ -49,13 +41,13 @@ const Create = () => {
     });
   };
 
-//   if (Auth.loggedIn()) {
-//     return <Navigate replace to="/login" />
-//   } 
+  //   if (Auth.loggedIn()) {
+  //     return <Navigate replace to="/login" />
+  //   }
 
   return (
     <div className="createFormContainer">
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Form onSubmit={handleFormSubmit}>
         <Alert
           dismissible
           onClose={() => setShowAlert(false)}
@@ -89,11 +81,7 @@ const Create = () => {
             value={list.friends}
           />
         </Form.Group>
-        <Button
-          disabled={!(list.title && list.friends)}
-          type="submit"
-          variant="success"
-        >
+        <Button disabled={!list.title} type="submit" variant="success">
           Create Wish List
         </Button>
       </Form>

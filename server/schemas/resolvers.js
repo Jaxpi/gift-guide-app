@@ -50,40 +50,20 @@ const resolvers = {
         const token = signToken(user);
   
         return { token, user };
-      },
-  
-
-      
-      
-      // if (context.user) {
-        //   return await User.findOneAndUpdate(
-          //     { _id: context.user._id },
-          //     { $addToSet: { wishlists: title }},
-          //     { new: true }
-          //   );
-          // }
+      },         
           
-          
-          
-          
-        // createWishlist: async (parent, { userId, title }, context) => {
-        //   if (context.user) {
-        //     return await User.findOneAndUpdate(
-        //       { _id: userId },
-        //       { $addToSet: { wishlists: { "title": title } }},
-        //       { new: true }
-        //     );
-        //   }
-          
-          
-      createWishlist: async (parent, { userId, title }, context) => {
+      createWishlist: async (parent, { title, friends, items }, context) => {
+        console.log("LOOK AT ME")
         if (context.user) {
+          const myFriends = friends.length? friends.split(", "): [];
+          console.log(myFriends)
           const wishlist = await Wishlist.create({
             title,
             userId: context.user._id,
+            friends: myFriends,
             items: []
           });
-          console.log(wishlist)
+
           await User.findOneAndUpdate(
             { _id: context.user._id },
             { $addToSet: { wishlists: wishlist._id } }
