@@ -1,6 +1,7 @@
 import React, { useState }  from "react";
 import { Link } from "react-router-dom";
 
+
 import Auth from "../utils/auth";
 
 const Header = () => {
@@ -28,8 +29,10 @@ const Header = () => {
         <div className="navLinks">
           <button id="logout" onClick={logout}>Logout</button>
           <button id="createList" onClick={() => createList()}>Create Wish List</button>
+       
         </div>
       ) : (
+        
         <div className="navLinks">
           <Link
             id="login"
