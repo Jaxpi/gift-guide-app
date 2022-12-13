@@ -101,11 +101,12 @@ const resolvers = {
             { _id: wishlistId },
             { $set: { title: title }}
           )
+          return wishlist;
         }
         // throw new AuthenticationError("Log In to Continue");
       },
 
-      deleteWishlist: async (parent, {wishlistId}, context) => {
+      deleteWishlist: async (parent, { wishlistId }, context) => {
         if (context.user) {
           return User.findOneAndUpdate(
             { _id: context.user._id },
@@ -113,7 +114,7 @@ const resolvers = {
             { new: true }
           );
         }
-        //return Wishlist.findOneAndDelete({ _id: context.wishlist._id })
+        return Wishlist.findOneAndDelete({ _id: context.wishlist._id })
         //throw new AuthenticationError("Log In to Continue");
       },
       addItem: async (parent, { wishlistId, item }, context) => {
