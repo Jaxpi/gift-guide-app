@@ -81,6 +81,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignupForm />} />
               <Route path="/me" element={<Home />} />
+              <Route path="/wishlist" element={<Wishlist />} />
             </Routes>
           </div>
           <Footer />
