@@ -2,7 +2,7 @@ import decode from 'jwt-decode';
 
 class AuthService {
     getToken() {
-        localStorage.getItem('id_token');
+        return localStorage.getItem('id_token');
     }
     
     login(idToken) {
