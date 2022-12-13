@@ -1,25 +1,31 @@
 import React, { useState } from "react";
 import { Jumbotron, Button, Container } from "react-bootstrap";
+import { QUERY_WISHLISTS, QUERY_ME } from "../utils/queries";
+import {CREATE_WISHLIST} from "../utils/mutations"
+import Auth from "../utils/auth";
+//  when we create a new wishlist we want to render a new wishlist card. all of it to display on the home.js
 
-const WishListCard = () => {
+const WishListCard = (props) => {
+  console.log(props);
+  const { error, loading, data } = useQuery(QUERY_WISHLISTS);
   // const handleFormSubmit = async (event) => {
   //     event.preventDefault();}
-  const [item, setItem] = useState([]);
-  const handleAdd = () => {
-    const newItem = [[], ...item];
-    setItem(newItem);
-  };
-  const handleChange = (onChangeItem, i) => {
-    const inputItem = [...item];
-    inputItem[i] = onChangeItem.target.value;
-    setItem(inputItem);
-  };
-  const handleDelete = (i) => {
-    const deleteItem = [...item];
-    deleteItem.splice(i, 1);
-    setItem(deleteItem);
-  };
-  console.log(item, "ITEMS");
+  // const [items, setItems] = useState([]);
+  // const handleAdd = () => {
+  //   const newItem = [[], ...items];
+  //   setItems(newItem);
+  // };
+  // const handleChange = (onChangeItem, i) => {
+  //   const inputItem = [...items];
+  //   inputItem[i] = onChangeItem.target.value;
+  //   setItems(inputItem);
+  // };
+  // const handleDelete = (i) => {
+  //   const deleteItem = [...items];
+  //   deleteItem.splice(i, 1);
+  //   setItems(deleteItem);
+  // };
+  console.log(items, "ITEMS");
 
   const [style, setStyle] = useState(localStorage.getItem("theme") || "cont1");
 
@@ -57,7 +63,7 @@ const WishListCard = () => {
         Username's Wish List
       </h1>
       <Container>
-        {item.map((data, i) => {
+        {items.map((data, i) => {
           return (
             <div>
               <div id="listItem">
