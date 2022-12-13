@@ -4,8 +4,14 @@ const { User, Items, Wishlist, Friends } = require('../models');
 const userSeeds = require('./userSeeds.json');
 const wishSeeds = require('./wishlistSeeds.json');
 const itemSeeds = require('./itemSeeds.json');
+const mongoose = require('mongoose');
 
 db.once('open', async () => {
+  /* Connect to the DB */
+  mongoose.connect('mongodb://127.0.0.1:27017/g2gg',function(){
+      /* Drop the DB */
+      mongoose.connection.db.dropDatabase();
+});
   try {
     await Wishlist.deleteMany({});
     await User.deleteMany({});

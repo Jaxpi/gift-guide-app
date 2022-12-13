@@ -14,8 +14,8 @@ const resolvers = {
         return User.find()
         .populate('wishlists');
       },
-      user: async (parent, { username }) => {
-        return User.findOne({ username })
+      user: async (parent, { userId }) => {
+        return User.findOne({ _id: userId })
         .populate('wishlists');
       },
       wishlists: async (parent, { username }) => {
@@ -52,13 +52,38 @@ const resolvers = {
         return { token, user };
       },
   
-      createWishlist: async (parent, { title }, context) => {
+
+      
+      
+      // if (context.user) {
+        //   return await User.findOneAndUpdate(
+          //     { _id: context.user._id },
+          //     { $addToSet: { wishlists: title }},
+          //     { new: true }
+          //   );
+          // }
+          
+          
+          
+          
+        // createWishlist: async (parent, { userId, title }, context) => {
+        //   if (context.user) {
+        //     return await User.findOneAndUpdate(
+        //       { _id: userId },
+        //       { $addToSet: { wishlists: { "title": title } }},
+        //       { new: true }
+        //     );
+        //   }
+          
+          
+      createWishlist: async (parent, { userId, title }, context) => {
         if (context.user) {
           const wishlist = await Wishlist.create({
             title,
-            userId: context.user.username,
+            userId: context.user._id,
+            items: []
           });
-  
+          console.log(wishlist)
           await User.findOneAndUpdate(
             { _id: context.user._id },
             { $addToSet: { wishlists: wishlist._id } }
@@ -67,37 +92,69 @@ const resolvers = {
           return wishlist;
 
         }
-        //throw new AuthenticationError("Log In to Continue");
+        throw new AuthenticationError("Log In to Continue");
       },
   
-      updateWishlist: async (parent, { title }, context) => {
-        if (context.wishlist) {
+      updateWishlist: async (parent, { wishlistId, title }, context) => {
+        if (context.user) {
           await Wishlist.findOneAndUpdate(
-            { _id: context.wishlist._id }
+            { _id: wishlistId },
+            { $set: { title: title }}
           )
-
-
-          throw new Error('no wishlist exists with id ' + id);
+          return wishlist;
         }
-        // This replaces all old data, but some apps might want partial update.
-        wishlist[id] = input;
-        return new Message(id, input);
+        // throw new AuthenticationError("Log In to Continue");
       },
 
-      deleteWishlist: async (parent, {wishlistId}, context) => {
+      // deleteWishlist: async (parent, { wishlistId }, context) => {
+      //   if (context.user) {
+      //     const wishlist = await Wishlist.findOneAndDelete({
+      //       _id: wishlistId,
+      //       userId: context.user.username,
+      //     });
+  
+      //     await User.findOneAndUpdate(
+      //       { _id: context.user._id },
+      //       { $pull: { wishlists: wishlist._id } }
+      //     );
+  
+      //     return wishlist;
+      //   }
+        
+        
+      deleteWishlist: async (parent, { wishlistId }, context) => {
         if (context.user) {
-          return User.findOneAndUpdate(
+          await User.findOneAndUpdate(
             { _id: context.user._id },
-            {
-              $pull: { wishlists: {wishlistId} },
-            },
-            {
-              new: true,
-            }
+            { $pull: { wishlists: wishlistId }},
+            { new: true }
           );
+          return Wishlist.findOneAndDelete(
+            { _id: wishlistId }
+          )
         }
         //throw new AuthenticationError("Log In to Continue");
       },
+      addItem: async (parent, { wishlistId, item }, context) => {
+        if (context.user) {
+          return Wishlist.findOneAndUpdate(
+            { _id: wishlistId },
+            { $addToSet: { items: item }},
+            { new: true }
+          )
+        }
+        throw new AuthenticationError('You need to be logged in!');
+      },
+      deleteItem: async (parent, { wishlistId, item }, context) => {
+        if (context.user) {
+          return Wishlist.findOneAndUpdate(
+            { _id: wishlistId },
+            { $pull: { items: item }},
+            { new: true }
+          )
+        }
+        throw new AuthenticationError('You need to be logged in!');
+      }
     },
   };
 

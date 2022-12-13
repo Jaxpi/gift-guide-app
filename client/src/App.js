@@ -23,6 +23,7 @@ import Footer from "./components/Footer";
 import "./App.css";
 import WishListCard from "./components/WishListCard";
 import { io } from "socket.io-client";
+// import WishListCard from "./components/WishListCard";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -79,7 +80,7 @@ function App() {
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignupForm />} />
-              <Route path="/me" element={<WishListCard />} />
+              <Route path="/me" element={<Home />} />
             </Routes>
           </div>
           <Footer />

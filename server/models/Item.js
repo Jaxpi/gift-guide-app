@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const itemSchema = new Schema({
     itemText: {
         type: String,
-        unique: true
+        //unique: true
     }
 
 })
