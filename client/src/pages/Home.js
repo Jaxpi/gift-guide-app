@@ -21,10 +21,9 @@ const Home = () => {
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <WishListCard />
-            //neep map to render all stored wishlists
-          )}
-        </div>
+            <> {wishlists.map((wishlist, index) => 
+              < WishListCard key={index} wishlist={wishlist} /> )} </> )}
+           </div>
       </div>
     </main>
   );

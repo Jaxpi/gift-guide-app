@@ -1,9 +1,36 @@
 import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
 import { Jumbotron, Button, Container } from "react-bootstrap";
+import { DELETE_WISHLIST } from "../utils/mutations";
+import Create from "../pages/Create";
 
 const WishListCard = () => {
   // const handleFormSubmit = async (event) => {
   //     event.preventDefault();}
+  // const handleDeleteList = async (wishlistId) => {
+  //   const [deleteList] = useMutation(DELETE_WISHLIST)
+
+  //   // const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+  //   // if (!token) {
+  //   //   return false;
+  //   // }
+
+  //   try {
+  //     const { user } = await deleteList({
+  //       variables: {
+  //         wishlistId: wishlistId,
+  //       },
+  //     });
+
+  //     //? what goes here?
+  //     // userData = user;
+  //     // removeBookId(bookId);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
+
   const [item, setItem] = useState([]);
   const handleAdd = () => {
     const newItem = [[], ...item];
@@ -49,12 +76,15 @@ const WishListCard = () => {
         >
           Theme
         </button>
+        {/* <button id="deleteList" onClick={() => handleDeleteList()}>
+          Delete List
+        </button> */}
         <button id="addItem" onClick={() => handleAdd()}>
           Add Item
         </button>
       </div>
       <h1 id="myListTitle">
-        Username's Wish List
+        Title created during "create"
       </h1>
       <Container>
         {item.map((data, i) => {
