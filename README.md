@@ -1,7 +1,7 @@
 # gift-guide-project
 
-https://jaxpi.github.io/DEPLOYEDLINK/
-<br><img src="assets/images/mainscreenshot.jpg" style="width:300px; height auto;">
+https://group2-gift-guide.herokuapp.com/
+<br><img src="./client/src/assets/images/mainscreenshot.jpg" style="width:300px; height auto;">
 
 
 ## Description
