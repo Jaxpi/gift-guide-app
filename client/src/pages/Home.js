@@ -22,6 +22,7 @@ const Home = () => {
             <div>Loading...</div>
           ) : (
             <WishListCard />
+            //neep map to render all stored wishlists
           )}
         </div>
       </div>
