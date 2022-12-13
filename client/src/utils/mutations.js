@@ -49,8 +49,9 @@ export const UPDATE_WISHLIST = gql`
 
 export const DELETE_WISHLIST = gql`
   mutation deleteWishlist($wishlistId: ID!) {
-    updateWishlist(wishlistId: $wishlistId) {
+    deleteWishlist(wishlistId: $wishlistId) {
       _id
+      title
     }
   }
 `;
@@ -65,9 +66,10 @@ export const ADD_ITEM_TO_WISHLIST = gql`
 `
 
 export const REMOVE_ITEM_FROM_WISHLIST = gql`
-  mutation removeItemFromWishlist($itemId: ID!) {
-    removeItemFromWishlist(itemId: $itemId) {
+  mutation deleteItem($wishlistId: ID!, $item: String!) {
+    deleteItem(wishlistId: $wishlistId, item: $item) {
       _id
+      items
     }
   }
 `;

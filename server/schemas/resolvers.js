@@ -92,7 +92,7 @@ const resolvers = {
           return wishlist;
 
         }
-        //throw new AuthenticationError("Log In to Continue");
+        throw new AuthenticationError("Log In to Continue");
       },
   
       updateWishlist: async (parent, { wishlistId, title }, context) => {
@@ -106,30 +106,33 @@ const resolvers = {
         // throw new AuthenticationError("Log In to Continue");
       },
 
+      // deleteWishlist: async (parent, { wishlistId }, context) => {
+      //   if (context.user) {
+      //     const wishlist = await Wishlist.findOneAndDelete({
+      //       _id: wishlistId,
+      //       userId: context.user.username,
+      //     });
+  
+      //     await User.findOneAndUpdate(
+      //       { _id: context.user._id },
+      //       { $pull: { wishlists: wishlist._id } }
+      //     );
+  
+      //     return wishlist;
+      //   }
+        
+        
       deleteWishlist: async (parent, { wishlistId }, context) => {
         if (context.user) {
-          const wishlist = await Wishlist.findOneAndDelete({
-            _id: wishlistId,
-            userId: context.user.username,
-          });
-  
           await User.findOneAndUpdate(
             { _id: context.user._id },
-            { $pull: { wishlists: wishlist._id } }
+            { $pull: { wishlists: wishlistId }},
+            { new: true }
           );
-  
-          return wishlist;
+          return Wishlist.findOneAndDelete(
+            { _id: wishlistId }
+          )
         }
-        
-        
-        // deleteWishlist: async (parent, { wishlist }, context) => {
-        // if (context.user) {
-        //   return User.findOneAndUpdate(
-        //     { _id: context.user._id },
-        //     { $pull: { wishlists: wishlist }},
-        //     { new: true }
-        //   );
-        // }
         //throw new AuthenticationError("Log In to Continue");
       },
       addItem: async (parent, { wishlistId, item }, context) => {
@@ -140,17 +143,17 @@ const resolvers = {
             { new: true }
           )
         }
-        // throw new AuthenticationError('You need to be logged in!');
+        throw new AuthenticationError('You need to be logged in!');
       },
-      deleteItem: async (parent, { item }, context) => {
+      deleteItem: async (parent, { wishlistId, item }, context) => {
         if (context.user) {
           return Wishlist.findOneAndUpdate(
-            { _id: context.wishlist._id },
+            { _id: wishlistId },
             { $pull: { items: item }},
             { new: true }
           )
         }
-        // throw new AuthenticationError('You need to be logged in!');
+        throw new AuthenticationError('You need to be logged in!');
       }
     },
   };
