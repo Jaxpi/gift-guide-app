@@ -34,6 +34,7 @@ export const QUERY_WISHLISTS = gql`
       _id
       title
       userId
+      items
     }
   }
 `;
@@ -44,6 +45,7 @@ export const QUERY_ONE_WISHLIST = gql`
       _id
       title
       userId
+      items
     }
   }
 `;
