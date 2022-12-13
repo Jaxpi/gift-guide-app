@@ -1,6 +1,11 @@
 # Gift Guide
 
+
 ![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg "MIT badge")
+
+https://group2-gift-guide.herokuapp.com/
+<br><img src="./client/src/assets/images/mainscreenshot.jpg" style="width:300px; height auto;">
+
 
   ## Description
 
