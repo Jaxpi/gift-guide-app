@@ -8,8 +8,8 @@ const WishLists = () => {
 
     // const [lists, setLists] = useState([]);
     const { error, loading, data } = useQuery(QUERY_WISHLISTS);
-    //const wishlists = data?.wishlists || [];
-    const wishlists = data?.wishlists || {};
+    const wishlists = data?.wishlists || [];
+    // const wishlists = data?.wishlists || {};
 
     return (
     
@@ -17,7 +17,7 @@ const WishLists = () => {
             { loading ? ( <div> Loading ... </div> ) 
                 : 
             // <WishListCard userWishlists={wishlists} />
-            (<>{wishlists.map((wishlist, index) => <WishListCard key={index} wishlist={wishlist} /> )}</>)
+            (<> {wishlists.map((wishlist, index) => < WishListCard key={index} wishlist={wishlist} /> )} </>)
         }           
         </div>
     );

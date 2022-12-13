@@ -5,9 +5,8 @@ import {CREATE_WISHLIST} from "../utils/mutations"
 import Auth from "../utils/auth";
 //  when we create a new wishlist we want to render a new wishlist card. all of it to display on the home.js
 
-const WishListCard = (props) => {
-  console.log(props);
-  const { error, loading, data } = useQuery(QUERY_WISHLISTS);
+const WishListCard = () => {
+  {wishlist: index, }
   // const handleFormSubmit = async (event) => {
   //     event.preventDefault();}
   // const [items, setItems] = useState([]);
@@ -25,7 +24,7 @@ const WishListCard = (props) => {
   //   deleteItem.splice(i, 1);
   //   setItems(deleteItem);
   // };
-  console.log(items, "ITEMS");
+  // console.log(items, "ITEMS");
 
   const [style, setStyle] = useState(localStorage.getItem("theme") || "cont1");
 
