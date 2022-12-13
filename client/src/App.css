@@ -52,36 +52,9 @@ main {
 }
 
 Form {
-  background-image: linear-gradient(to top, white, gray);
+  background-image: linear-gradient(to top, rgb(220, 220, 220), gray);
   color: black;
-  width: 25%;
-}
-
-.form-group {
-  background-image: none;
-  color: black;
-}
-
-.form-label {
-  background-image: none;
-  color: black;
-}
-
-.form-control {
-  background-image: none;
-  color: black;
-}
-
-.invalid-feedback {
-  background-image: none;
-  color: black;
-}
-
-.fade.alert.alert-danger.alert-dismissible.show,
-.sr-only,
-span {
-  background-image: none;
-  color: black;
+  width: 45%;
 }
 
 .close {
@@ -101,6 +74,12 @@ Button {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.loginFormContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 /* width */
