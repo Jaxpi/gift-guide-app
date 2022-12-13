@@ -39,7 +39,6 @@ main {
   border: none;
   color: black;
   font-size: 20px;
-  font-family: nav;
   padding: 10px;
 }
 
@@ -52,36 +51,9 @@ main {
 }
 
 Form {
-  background-image: linear-gradient(to top, white, gray);
+  background-image: linear-gradient(to top, rgb(220, 220, 220), gray);
   color: black;
-  width: 25%;
-}
-
-.form-group {
-  background-image: none;
-  color: black;
-}
-
-.form-label {
-  background-image: none;
-  color: black;
-}
-
-.form-control {
-  background-image: none;
-  color: black;
-}
-
-.invalid-feedback {
-  background-image: none;
-  color: black;
-}
-
-.fade.alert.alert-danger.alert-dismissible.show,
-.sr-only,
-span {
-  background-image: none;
-  color: black;
+  width: 45%;
 }
 
 .close {
@@ -94,6 +66,19 @@ Button {
   background-color: white;
   color: black;
   border: black;
+}
+
+.col-12.col-md-10.my-3 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.loginFormContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 /* width */
@@ -124,11 +109,6 @@ Button {
   text-align: center;
   line-height: 40px;
   margin-bottom: 10px;
-}
-
-@font-face {
-  font-family: nav;
-  src: url(./assets/fonts/navFont.TTF);
 }
 
 @font-face {
@@ -186,7 +166,8 @@ Button {
   border: 1px solid black;
 }
 
-#themeButton:hover, #addItem:hover {
+#themeButton:hover,
+#addItem:hover {
   box-shadow: 1px 1px 1px black;
 }
 
@@ -270,7 +251,7 @@ Button {
   background-image: url(./assets/images/genback.png);
   padding: 10px;
   border-radius: 10px;
-  display: flex;  
+  display: flex;
   align-content: flex-start;
   background-size: 420px 450px;
   max-width: 370px;
@@ -297,10 +278,13 @@ h4 {
   background-image: none;
 }
 
-@media screen and (min-width: 375px) {
-  .cont1, .cont2, .cont3 {
-  margin-left: 0;
-
+@media screen and (max-width: 400px) {
+  .cont1,
+  .cont2,
+  .cont3 {
+    margin-left: 0;
+    margin-right: 0;
+    min-height: 100px;
+    max-height: 300px;
   }
-  }
-  
+}
