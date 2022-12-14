@@ -87,7 +87,6 @@ const WishListCard = (props) => {
   };
   // ENDS ADD ITEMS CODE *******************************
 
-
   const handleAdd = () => {
     const newItem = ["", ...items];
     setItems(newItem);
