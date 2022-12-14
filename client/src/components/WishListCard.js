@@ -9,16 +9,28 @@ const WishListCard = () => {
   const [item, setItem] = useState([]);
 
 const [removeItemFromWishlist, {err}] = useMutation(REMOVE_ITEM_FROM_WISHLIST);
+const [addItemToWishlist, {err}] = useMutation(ADD_ITEM_TO_WISHLIST);
 
-  const handleAdd = () => {
+  const handleAdd = (wishlistId, itemText) => {
+    try{
+      const {data} = await addItemToWishlist({
+        variables:{ wishlistId, itemText }
+      })
+      console.log("add",data)
+
     const newItem = [[], ...item];
-    setItem(newItem);
+    setItem(newItem);}
+    catch(err){
+      console.log("Unable to add", err)
+    }
   };
+
   const handleChange = (onChangeItem, i) => {
     const inputItem = [...item];
     inputItem[i] = onChangeItem.target.value;
     setItem(inputItem);
   };
+
   const handleDelete = (i) => {
     try{
       const {data} = await removeItemFromWishlist({
