@@ -130,7 +130,8 @@ Button {
 }
 
 #themeButton:hover,
-#addItem:hover {
+#addItem:hover,
+#deleteList:hover {
   box-shadow: 1px 1px 1px black;
 }
 
