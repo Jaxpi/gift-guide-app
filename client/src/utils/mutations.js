@@ -34,13 +34,13 @@ mutation createWishlist($title: String!, $friends: String) {
 `;
 
 export const UPDATE_WISHLIST = gql`
-  mutation updateWishlist($wishlistId: ID!, $title: String!) {
-    updateWishlist(wishlistId: $wishlistId, title: $title) {
-      _id
-      title
-    }
+mutation UpdateWishlist($wishlistId: ID!, $title: String!) {
+  updateWishlist(wishlistId: $wishlistId, title: $title) {
+    _id
+    title
   }
-`
+}
+`;
 
 export const DELETE_WISHLIST = gql`
   mutation deleteWishlist($wishlistId: ID!) {

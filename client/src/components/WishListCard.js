@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { Jumbotron, Button, Container } from "react-bootstrap";
 
-import { DELETE_WISHLIST, ADD_ITEM_TO_WISHLIST } from "../utils/mutations";
+import { DELETE_WISHLIST, ADD_ITEM_TO_WISHLIST, UPDATE_WISHLIST } from "../utils/mutations";
 import Create from "../pages/Create";
 
 import {
@@ -165,6 +165,24 @@ const WishListCard = (props) => {
       localStorage.setItem(`theme${props.cardNo}`, "cont1");
     }
   };
+  // Changing the wishlist name
+  const [newName, setNewName] = useState(null)
+
+  const [updateName , {error: nameError}] = useMutation(UPDATE_WISHLIST)
+
+  const [updatingName, setUpdatingName] = useState(false)
+  
+  const handleUpdateName = async (event) => {
+
+    const { data } = await updateName({
+      variables: {
+        wishlistId: props.wishlist._id,
+        title: newName
+      }
+
+    })
+    setUpdatingName(false)
+  }
 
 
   return (
@@ -189,7 +207,19 @@ const WishListCard = (props) => {
           Add Item
         </button>
       </div>
+      { !updatingName ? (
+      <>
       <h1 id="myListTitle">{props.wishlist.title}</h1>
+        <button onClick={(event) => setUpdatingName(true)}>Update Name</button>
+        </>
+      ) : (
+      <div>
+      <input  
+      type= "text" 
+      value={newName} 
+      onChange={(e) => setNewName ( e.target.value)} id="myListTitle" />
+      <button onClick={handleUpdateName}></button>
+      </div> )}
       <Container>
         {items.map((item, i) => {
           return (
