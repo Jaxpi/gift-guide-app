@@ -65,6 +65,14 @@ To contribute to social-network, clone this repo locally and commit your code on
 
 To test the app visit: https://jaxpi.github.io/DEPLOYEDLINK/
 
+It can also be tested by entering at command prompt:
+
+npm install (ensure all that dependencies are installed)
+
+npm init
+
+npm run develop ( cd to the correct directory)
+
 ## Technology Used
 
 This application is a MERN stack app using:
