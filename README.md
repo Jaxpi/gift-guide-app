@@ -83,6 +83,7 @@ Express.js and Node.js - Server (controller) - Method called to store and retrie
 *  [![NodeJS][Node.js]][Nodejs-url]
 
 React JS - Client (View) - User inputs data and Data display
+* [![ReactJS][React.js]][Reactjs-url]
 
 This application is fully functioning as a Graph API built with Apollo Server.
 
@@ -92,3 +93,5 @@ This application is fully functioning as a Graph API built with Apollo Server.
 [Node.js]: https://img.shields.io/badge/NodeJS-NodeJS-green
 [Mongodb-url]: https://www.mongodb.com/
 [Mongodb]: (https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+[Reactjs-url]: https://reactjs.org/
+[React.js]: (https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge)
