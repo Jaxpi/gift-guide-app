@@ -150,7 +150,7 @@ const WishListCard = (props) => {
       localStorage.setItem(`theme${props.cardNo}`, "cont1");
     }
   };
-  // 
+  // Changing the wishlist name
   const [newName, setNewName] = useState(null)
 
   const [updateName , {error: nameError}] = useMutation(UPDATE_WISHLIST)
@@ -158,8 +158,6 @@ const WishListCard = (props) => {
   const [updatingName, setUpdatingName] = useState(false)
   
   const handleUpdateName = async (event) => {
-    console.log(props.wishlist._id)
-    console.log(newName)
 
     const { data } = await updateName({
       variables: {
@@ -170,13 +168,6 @@ const WishListCard = (props) => {
     })
     setUpdatingName(false)
   }
-  // const changeName = event => {
-  //  const { name, value } = event.target.value
-
-
-  // const changeName = event => {
-  //   setNewName(event.target.value)
-  // }
 
   return (
     <section className={style}>
