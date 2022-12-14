@@ -24,7 +24,7 @@ Gift Guide is an app that helps with creating a wishlist of gifts you would like
 
 ## Installation
 
-To install this application, clone the code into your terminal for the respective repository. Then, install express package by entering the command npm i into the terminal.
+To install this application, clone the code into your terminal for the respective repository. Then, install express package by entering the command npm i into the terminal and run npm run develop.
 
 ## Usage
 
