@@ -37,7 +37,7 @@ If you would like to use the app you would need to sign up. Once logged in you c
 
 This application uses the MIT License.
 
-Copyright (c) 2022 Kevin Chen, Malvina Hasa, Jackson Impellizeri, Hasan Noor, Roody Senecal, Alice Shao
+Copyright (c) 2022 Kevin Chen, Malvina Hasa, Jackson Impellizeri, Hasan Noor, Roody Senecal, Alice Shao, Sindid
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
