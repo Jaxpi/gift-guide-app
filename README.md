@@ -8,8 +8,6 @@ Gift Guide is an app that allows you to create a wishlist of gifts you'd like to
 
 ## Table of Contents (Optional)
 
-If your README is long, add a table of contents to make it easy for users to find what they need.
-
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
@@ -85,14 +83,13 @@ React JS - Client (View) - User inputs data and Data display
 This application is fully functioning as a Graph API built with Apollo Server.
 *[![Apollo-GraphQl][Apollographql]][Apollographql-url]
 
+
+
 [Nodejs-url]: https://nodejs.org/en/ 
 [Node.js]: https://img.shields.io/badge/NodeJS-NodeJS-green
-
 [Mongodb-url]: https://www.mongodb.com/
 [Mongodb]: (https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
-
 [Reactjs-url]: https://reactjs.org/
 [React.js]: (https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge)
-
 [Apollographql-url]: https://www.apollographql.com/
 [Apollographql]: (https://img.shields.io/badge/-ApolloGraphQL-311C87?style=for-the-badge&logo=apollo-graphql)
