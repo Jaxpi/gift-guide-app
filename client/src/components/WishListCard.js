@@ -122,7 +122,7 @@ const WishListCard = (props) => {
 
 
   const handleAdd = () => {
-    const newItem = [...items, ""];
+    const newItem = ["", ...items];
     setItems(newItem);
   };
   const handleChange = (onChangeItem, i) => {
