@@ -7,6 +7,7 @@ import {
   DELETE_WISHLIST,
   ADD_ITEM_TO_WISHLIST,
   REMOVE_ITEM_FROM_WISHLIST,
+  UPDATE_WISHLIST
 } from "../utils/mutations";
 import Create from "../pages/Create";
 
@@ -14,6 +15,7 @@ import {
   QUERY_WISHLISTS,
   QUERY_ME,
   QUERY_ONE_WISHLIST,
+  QUERY_ITEMS,
 } from "../utils/queries";
 import Auth from "../utils/auth";
 //  when we create a new wishlist we want to render a new wishlist card. all of it to display on the home.js
@@ -66,6 +68,42 @@ const WishListCard = (props) => {
       console.error(err);
     }
   };
+  const handleDeleteWishlistItem=(item, wishlistId) => {
+    try {
+      const { data } =  removeItem({
+        variables: {
+          wishlistId: wishlistId,
+          item: item
+        }
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  // Add code to remove wishlist Items
+  const [removeItem] = useMutation(REMOVE_ITEM_FROM_WISHLIST, {
+    update(cache, { data }) {
+      try {
+        const { items } = cache.readQuery({ query: QUERY_ITEMS });
+        cache.writeQuery({
+          query: QUERY_ITEMS,
+
+          data: {
+            wishlists: items.filter(
+              (list) => list._id !== data.deleteWishlistItem._id
+            ),
+          },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  
+});
+  
+
+
+  //End Section to remove wish list item
 
   // ADD ITEM CODE ******************************
   const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST);
@@ -142,6 +180,25 @@ const WishListCard = (props) => {
       localStorage.setItem(`themeFor${props.wishlist._id}`, "cont1");
     }
   };
+
+// Changing the wishlist name
+const [newName, setNewName] = useState(null)
+
+const [updateName , {error: nameError}] = useMutation(UPDATE_WISHLIST)
+
+const [updatingName, setUpdatingName] = useState(false)
+
+const handleUpdateName = async (event) => {
+
+  const { data } = await updateName({
+    variables: {
+      wishlistId: props.wishlist._id,
+      title: newName
+    }
+
+  })
+  setUpdatingName(false)
+}
 
   const owned = props.wishlist.owner;
 
