@@ -49,6 +49,10 @@ const WishListCard = () => {
         >
           Theme
         </button>
+        <button
+          id="removeWishlist" onClick={() => handleDelete()}>
+          Remove Wishlist
+        </button>
         <button id="addItem" onClick={() => handleAdd()}>
           Add Item
         </button>
