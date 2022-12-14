@@ -5,7 +5,7 @@
 
 ## Description
 
-Gift Guide is an interactive wish list creation application that helps users with creating wishlists of gifts they would like to get from their loved ones. Users can create multiple wishlists with various themes, and even invite friends to view their lists. Their friends can select items from the list to "reserve" so that other friends know they are being taken care of, but the creator of the list cannot see this, so it will still be a surprise when they receive it.
+Gift Guide is an app that allows you to create a wishlist of gifts you'd like to receive from loved ones. You can create multiple wishlists and even invite friends to assigns themselves a gift to give to you while still keeping the gifts a surprise for the wishlist owner. The app makes it easy to keep track of the gifts you're hoping to receive and ensures that you get exactly what you want. The functionality of our app allows you to also changes themes of your wishlist catered towards the special event. Our goal was to make gift sharing less awkward all in one fun and user friendly app.
 
 
 ## Table of Contents
