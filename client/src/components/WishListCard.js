@@ -9,26 +9,39 @@ import {
   QUERY_WISHLISTS,
   QUERY_ME,
   QUERY_ONE_WISHLIST,
+  QUERY_ITEMS,
 } from "../utils/queries";
-import { CREATE_WISHLIST } from "../utils/mutations";
+import { CREATE_WISHLIST, REMOVE_ITEM_FROM_WISHLIST } from "../utils/mutations";
 import Auth from "../utils/auth";
 //  when we create a new wishlist we want to render a new wishlist card. all of it to display on the home.js
 
 const WishListCard = (props) => {
+  const [items, setItems] = useState([]);
+
+  const { loading, data } = useQuery(QUERY_ONE_WISHLIST, {
+    variables: {
+      wishlistId: props.wishlist._id
+    }
+  });
+
+  useEffect(() => {
+    if (!loading) {
+      const newItems = data?.wishlist.items || [];
+      setItems(newItems);
+    }
+  }, [loading, data])
+
   const [deleteList] = useMutation(DELETE_WISHLIST, {
     update(cache, { data }) {
-      
       try {
-        // First we retrieve existing profile data that is stored in the cache under the `QUERY_PROFILES` query
-        // Could potentially not exist yet, so wrap in a try/catch
         const { wishlists } = cache.readQuery({ query: QUERY_WISHLISTS });
-
-        // Then we update the cache by combining existing profile data with the newly created data returned from the mutation
         cache.writeQuery({
           query: QUERY_WISHLISTS,
 
           data: {
-            wishlists: wishlists.filter((list) => list._id !== data.deleteWishlist._id),
+            wishlists: wishlists.filter(
+              (list) => list._id !== data.deleteWishlist._id
+            ),
           },
         });
       } catch (e) {
@@ -37,14 +50,8 @@ const WishListCard = (props) => {
     },
   });
 
-  // console.log(props);
-  // const { error, loading, data } = useQuery(QUERY_WISHLISTS);
-  // const handleFormSubmit = async (event) => {
-  //     event.preventDefault();}
-
   const handleDeleteList = async (wishlistId) => {
     try {
-     
       const { user } = await deleteList({
         variables: {
           wishlistId: wishlistId,
@@ -54,36 +61,46 @@ const WishListCard = (props) => {
       console.error(err);
     }
   };
+  const handleDeleteWishlistItem=(item, wishlistId) => {
+    try {
+      const { data } =  removeItem({
+        variables: {
+          wishlistId: wishlistId,
+          item: item
+        }
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  // Add code to remove wishlist Items
+  const [removeItem] = useMutation(REMOVE_ITEM_FROM_WISHLIST, {
+    update(cache, { data }) {
+      try {
+        const { items } = cache.readQuery({ query: QUERY_ITEMS });
+        cache.writeQuery({
+          query: QUERY_ITEMS,
+
+          data: {
+            wishlists: items.filter(
+              (list) => list._id !== data.deleteWishlistItem._id
+            ),
+          },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  
+});
+  
+
+
+  //End Section to remove wish list item
 
   // ADD ITEM CODE ******************************
-  // const handleAdd = ({ itemId }) => {
-  // const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST, {
-  //   const { data } = addItem()
-  //   // update(cache, { data: { addItem } }) {
-
-  //   //   try {
-  //   //     const { item } = cache.readQuery({ query: QUERY_ITEMS });
-
-  //   //     cache.writeQuery({
-  //   //       query: QUERY_ITEMS,
-  //   //       data: { items: [addItems, ...items] },
-  //   //     });
-  //     } catch (e) {
-  //       console.error(e);
-  //     }
-
-  //     // update me object's cache
-  //     const { me } = cache.readQuery({ query: QUERY_ME });
-  //     cache.writeQuery({
-  //       query: QUERY_ME,
-  //       data: { me: { ...me, items: [...me.itemss, addItem] } },
-  //     });
-  //   },
-  // });
-  // }
-  const [items, setItems] = useState([]);
-
   const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST);
+
 
   const saveItem = async (e) => {
     const i = e.target.dataset.index;
@@ -107,12 +124,9 @@ const WishListCard = (props) => {
     }
   };
   // ENDS ADD ITEMS CODE *******************************
-  useEffect(() => {
-    console.log(items);
-  }, [items]);
 
   const handleAdd = () => {
-    const newItem = [...items, ""];
+    const newItem = ["", ...items];
     setItems(newItem);
   };
   const handleChange = (onChangeItem, i) => {
@@ -120,6 +134,7 @@ const WishListCard = (props) => {
     inputItem[i] = onChangeItem.target.value;
     setItems(inputItem);
   };
+
   const handleDelete = (i) => {
     const deleteItem = [...items];
     deleteItem.splice(i, 1);
@@ -169,9 +184,16 @@ const WishListCard = (props) => {
     setUpdatingName(false)
   }
 
+
   return (
     <section className={style}>
       <div className="wishButtonsWrap">
+        <button
+          id="deleteList"
+          onClick={() => handleDeleteList(props.wishlist._id)}
+        >
+          Delete List
+        </button>
         <button
           id="themeButton"
           // To change the theme we invoke dispatch and pass in an object containing action type and payload
@@ -180,12 +202,6 @@ const WishListCard = (props) => {
           type="button"
         >
           Theme
-        </button>
-        <button
-          id="deleteList"
-          onClick={() => handleDeleteList(props.wishlist._id)}
-        >
-          Delete List
         </button>
         <button id="addItem" onClick={() => handleAdd()}>
           Add Item
@@ -205,18 +221,18 @@ const WishListCard = (props) => {
       <button onClick={handleUpdateName}></button>
       </div> )}
       <Container>
-        {items.map((data, i) => {
+        {items.map((item, i) => {
           return (
             <div key={i}>
               <div id="listItem">
                 <input
                   id="itemName"
-                  onBlur={(i) => saveItem(i)}
-                  value={data}
+                  onBlur={(i) => handleDelete(i)}
+                  value={item}
                   data-index={i}
                   onChange={(e) => handleChange(e, i)}
                 />
-                <Button id="removeItem" onClick={() => handleDelete(i)}>
+                <Button id="removeItem" onClick={() => handleDeleteWishlistItem(item, props.wishlist._id)}>
                   X
                 </Button>
                 <Button id="received">Got!</Button>
