@@ -33,14 +33,15 @@ const WishListCard = (props) => {
   const [deleteList] = useMutation(DELETE_WISHLIST, {
     update(cache, { data }) {
       try {
-        const { wishlists } = cache.readQuery({ query: QUERY_WISHLISTS });
+        const { me } = cache.readQuery({ query: QUERY_ME });
         cache.writeQuery({
-          query: QUERY_WISHLISTS,
+          query: QUERY_ME,
 
           data: {
-            wishlists: wishlists.filter(
+            me: {
+              wishlists: me.wishlists.filter(
               (list) => list._id !== data.deleteWishlist._id
-            ),
+            )},
           },
         });
       } catch (e) {
@@ -127,56 +128,78 @@ const WishListCard = (props) => {
     }
   };
 
+  const owned = props.wishlist.owner;
 
-  return (
-    <section className={style}>
-      <div className="wishButtonsWrap">
-        <button
-          id="deleteList"
-          onClick={() => handleDeleteList(props.wishlist._id)}
-        >
-          Delete List
-        </button>
-        <button
-          id="themeButton"
-          // To change the theme we invoke dispatch and pass in an object containing action type and payload
-          onClick={changeStyle}
-          className="btn"
-          type="button"
-        >
-          Theme
-        </button>
-        <button id="addItem" onClick={() => handleAdd()}>
-          Add Item
-        </button>
-      </div>
-      <h1 id="myListTitle">{props.wishlist.title}</h1>
-      <Container>
-        {items.map((data, i) => {
-          return (
-            <div key={i}>
-              <div id="listItem">
-                <input
-                  id="itemName"
-                  onBlur={(i) => saveItem(i)}
-                  value={data}
-                  data-index={i}
-                  onChange={(e) => handleChange(e, i)}
-                />
-                <Button id="removeItem" onClick={() => handleDelete(i)}>
-                  X
-                </Button>
-                <Button id="received">Got!</Button>
+  if (owned === true) {
+    return (
+      <section className={style}>
+        <div className="wishButtonsWrap">
+          <button
+            id="deleteList"
+            onClick={() => handleDeleteList(props.wishlist._id)}
+          >
+            Delete List
+          </button>
+          <button
+            id="themeButton"
+            // To change the theme we invoke dispatch and pass in an object containing action type and payload
+            onClick={changeStyle}
+            className="btn"
+            type="button"
+          >
+            Theme
+          </button>
+          <button id="addItem" onClick={() => handleAdd()}>
+            Add Item
+          </button>
+        </div>
+        <h1 id="myListTitle">{props.wishlist.title}</h1>
+        <Container>
+          {items.map((data, i) => {
+            return (
+              <div key={i}>
+                <div id="listItem">
+                  <input
+                    id="itemName"
+                    onBlur={(i) => saveItem(i)}
+                    value={data}
+                    data-index={i}
+                    onChange={(e) => handleChange(e, i)}
+                  />
+                  <Button id="removeItem" onClick={() => handleDelete(i)}>
+                    X
+                  </Button>
+                  <Button id="received">Got!</Button>
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </Container>
-      {/* <Form onSubmit={handleFormSubmit}>
+            );
+          })}
+        </Container>
+        {/* <Form onSubmit={handleFormSubmit}>
+  
+          </Form> */}
+      </section>
+    );
+  } else {
+    return (
+      <section className={style}>
 
-        </Form> */}
-    </section>
-  );
+        <h1 id="myListTitle">{props.wishlist.title}</h1>
+        <Container>
+          {items.map((data, i) => {
+            return (
+              <div key={i}>
+                <ul>
+                  //items inputted
+                </ul>
+                  <Button id="onIt">I'm On It!</Button>
+              </div>
+            );
+          })};
+        </Container>
+      </section>
+    );
+  }
 };
 
 export default WishListCard;
