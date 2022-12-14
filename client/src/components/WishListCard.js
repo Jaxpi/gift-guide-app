@@ -223,8 +223,8 @@ const WishListCard = (props) => {
         {!updatingName ? (
           <>
             <h1 id="myListTitle">{props.wishlist.title}</h1>
-            <button onClick={(event) => setUpdatingName(true)}>
-              Update Name
+            <button id="updateTitle" onClick={(event) => setUpdatingName(true)}>
+              📝
             </button>
           </>
         ) : (

@@ -192,6 +192,14 @@ Button {
   margin-top: 2px;
 }
 
+#updateTitle {
+  width: 25px;
+  background-color: transparent;
+  padding: 0;
+  border: 1px solid black;
+  text-align: center;
+}
+
 @font-face {
   font-family: genTitle;
   src: url(./assets/fonts/genFont.TTF);
