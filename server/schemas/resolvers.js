@@ -76,13 +76,15 @@ const resolvers = {
       
       updateWishlist: async (parent, { wishlistId, title }, context) => {
         if (context.user) {
-          await Wishlist.findOneAndUpdate(
+          const wishlist = await Wishlist.findOneAndUpdate(
             { _id: wishlistId },
-            { $set: { title: title }}
+            { $set: { title: title }},
+            {new: true}
             )
             return wishlist;
           }
-          // throw new AuthenticationError("Log In to Continue");
+
+          throw new AuthenticationError("Log In to Continue");
         },
         
         // deleteWishlist: async (parent, { wishlistId }, context) => {

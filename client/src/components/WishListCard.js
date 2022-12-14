@@ -150,17 +150,33 @@ const WishListCard = (props) => {
       localStorage.setItem(`theme${props.cardNo}`, "cont1");
     }
   };
+  // 
   const [newName, setNewName] = useState(null)
 
   const [updateName , {error: nameError}] = useMutation(UPDATE_WISHLIST)
 
+  const [updatingName, setUpdatingName] = useState(false)
+  
+  const handleUpdateName = async (event) => {
+    console.log(props.wishlist._id)
+    console.log(newName)
+
+    const { data } = await updateName({
+      variables: {
+        wishlistId: props.wishlist._id,
+        title: newName
+      }
+
+    })
+    setUpdatingName(false)
+  }
   // const changeName = event => {
   //  const { name, value } = event.target.value
 
 
   // const changeName = event => {
   //   setNewName(event.target.value)
-  }
+  // }
 
   return (
     <section className={style}>
@@ -184,15 +200,19 @@ const WishListCard = (props) => {
           Add Item
         </button>
       </div>
-      return newName ? (<h1 id="myListTitle">{props.wishlist.title}</h1>
+      { !updatingName ? (
+      <>
+      <h1 id="myListTitle">{props.wishlist.title}</h1>
+        <button onClick={(event) => setUpdatingName(true)}>Update Name</button>
+        </>
       ) : (
       <div>
       <input  
       type= "text" 
-      value={newName.text} 
-      onChange={(e) => setNewName ({...newName, text: e.target.value})} id="myListTitle" />
-      <button onClick={updateName}>Update Name</button>
-      </div> )
+      value={newName} 
+      onChange={(e) => setNewName ( e.target.value)} id="myListTitle" />
+      <button onClick={handleUpdateName}></button>
+      </div> )}
       <Container>
         {items.map((data, i) => {
           return (
