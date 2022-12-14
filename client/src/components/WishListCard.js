@@ -6,25 +6,25 @@ import Auth from "../utils/auth";
 //  when we create a new wishlist we want to render a new wishlist card. all of it to display on the home.js
 
 const WishListCard = () => {
-  {wishlist: index, }
   // const handleFormSubmit = async (event) => {
   //     event.preventDefault();}
-  // const [items, setItems] = useState([]);
-  // const handleAdd = () => {
-  //   const newItem = [[], ...items];
-  //   setItems(newItem);
-  // };
-  // const handleChange = (onChangeItem, i) => {
-  //   const inputItem = [...items];
-  //   inputItem[i] = onChangeItem.target.value;
-  //   setItems(inputItem);
-  // };
-  // const handleDelete = (i) => {
-  //   const deleteItem = [...items];
-  //   deleteItem.splice(i, 1);
-  //   setItems(deleteItem);
-  // };
-  // console.log(items, "ITEMS");
+  
+  const [items, setItems] = useState([]);
+  const handleAdd = () => {
+    const newItem = [[], ...items];
+    setItems(newItem);
+  };
+  const handleChange = (onChangeItem, i) => {
+    const inputItem = [...items];
+    inputItem[i] = onChangeItem.target.value;
+    setItems(inputItem);
+  };
+  const handleDelete = (i) => {
+    const deleteItem = [...items];
+    deleteItem.splice(i, 1);
+    setItems(deleteItem);
+  };
+  console.log(items, "ITEMS");
 
   const [style, setStyle] = useState(localStorage.getItem("theme") || "cont1");
 
