@@ -32,18 +32,15 @@ const WishListCard = (props) => {
 
   const [deleteList] = useMutation(DELETE_WISHLIST, {
     update(cache, { data }) {
-      
       try {
-        // First we retrieve existing profile data that is stored in the cache under the `QUERY_PROFILES` query
-        // Could potentially not exist yet, so wrap in a try/catch
         const { wishlists } = cache.readQuery({ query: QUERY_WISHLISTS });
-
-        // Then we update the cache by combining existing profile data with the newly created data returned from the mutation
         cache.writeQuery({
           query: QUERY_WISHLISTS,
 
           data: {
-            wishlists: wishlists.filter((list) => list._id !== data.deleteWishlist._id),
+            wishlists: wishlists.filter(
+              (list) => list._id !== data.deleteWishlist._id
+            ),
           },
         });
       } catch (e) {
@@ -52,15 +49,8 @@ const WishListCard = (props) => {
     },
   });
 
-
-  // console.log(props);
-  // const { error, loading, data } = useQuery(QUERY_WISHLISTS);
-  // const handleFormSubmit = async (event) => {
-  //     event.preventDefault();}
-
   const handleDeleteList = async (wishlistId) => {
     try {
-     
       const { user } = await deleteList({
         variables: {
           wishlistId: wishlistId,
@@ -72,33 +62,6 @@ const WishListCard = (props) => {
   };
 
   // ADD ITEM CODE ******************************
-  // const handleAdd = ({ itemId }) => {
-  // const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST, {
-  //   const { data } = addItem()
-  //   // update(cache, { data: { addItem } }) {
-
-  //   //   try {
-  //   //     const { item } = cache.readQuery({ query: QUERY_ITEMS });
-
-  //   //     cache.writeQuery({
-  //   //       query: QUERY_ITEMS,
-  //   //       data: { items: [addItems, ...items] },
-  //   //     });
-  //     } catch (e) {
-  //       console.error(e);
-  //     }
-
-  //     // update me object's cache
-  //     const { me } = cache.readQuery({ query: QUERY_ME });
-  //     cache.writeQuery({
-  //       query: QUERY_ME,
-  //       data: { me: { ...me, items: [...me.itemss, addItem] } },
-  //     });
-  //   },
-  // });
-  // }
-
-
   const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST);
 
   const saveItem = async (e) => {
@@ -126,7 +89,7 @@ const WishListCard = (props) => {
 
 
   const handleAdd = () => {
-    const newItem = [...items, ""];
+    const newItem = ["", ...items];
     setItems(newItem);
   };
   const handleChange = (onChangeItem, i) => {
@@ -170,6 +133,12 @@ const WishListCard = (props) => {
     <section className={style}>
       <div className="wishButtonsWrap">
         <button
+          id="deleteList"
+          onClick={() => handleDeleteList(props.wishlist._id)}
+        >
+          Delete List
+        </button>
+        <button
           id="themeButton"
           // To change the theme we invoke dispatch and pass in an object containing action type and payload
           onClick={changeStyle}
@@ -177,12 +146,6 @@ const WishListCard = (props) => {
           type="button"
         >
           Theme
-        </button>
-        <button
-          id="deleteList"
-          onClick={() => handleDeleteList(props.wishlist._id)}
-        >
-          Delete List
         </button>
         <button id="addItem" onClick={() => handleAdd()}>
           Add Item
