@@ -6,7 +6,9 @@ const resolvers = {
     Query: {
       me: async (parent, args, context) => {
         if (context.user) {
-          return User.findOne({_id: context.user._id}).select('-__v -password');
+          return User.findOne({_id: context.user._id})
+          .select('-__v -password')
+          .populate('wishlists');
         }
         throw new AuthenticationError("Log In to Continue");
       },
@@ -76,7 +78,7 @@ const resolvers = {
       
       updateWishlist: async (parent, { wishlistId, title }, context) => {
         if (context.user) {
-          await Wishlist.findOneAndUpdate(
+          const wishlist = await Wishlist.findOneAndUpdate(
             { _id: wishlistId },
             { $set: { title: title }}
             )
@@ -101,19 +103,19 @@ const resolvers = {
                 //   }
                 
                 
-  deleteWishlist: async (parent, { wishlistId }, context) => {
-    if (context.user) {
-      await User.findOneAndUpdate(
-        { _id: context.user._id },
-        { $pull: { wishlists: wishlistId }},
-        { new: true }
-        );
-        return Wishlist.findOneAndDelete(
-          { _id: wishlistId }
-          )
-        }
-        throw new AuthenticationError("Log In to Continue");
-      },
+      deleteWishlist: async (parent, { wishlistId }, context) => {
+        if (context.user) {
+          await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $pull: { wishlists: wishlistId }},
+            { new: true }
+            );
+            return Wishlist.findOneAndDelete(
+              { _id: wishlistId }
+              )
+            }
+            throw new AuthenticationError("Log In to Continue");
+          },
 
 
       addItem: async (parent, { wishlistId, item }, context) => {
