@@ -113,7 +113,8 @@ Button {
   margin-top: 0;
 }
 
-#themeButton, #deleteList {
+#themeButton,
+#deleteList {
   border: none;
   width: fit-content;
   padding: 2px;
