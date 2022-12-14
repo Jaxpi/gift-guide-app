@@ -22,7 +22,7 @@ const Home = () => {
             <div>Loading...</div>
           ) : (
             <> {wishlists.map((wishlist, index) => 
-              < WishListCard key={index} wishlist={wishlist} /> )} </> )}
+              < WishListCard key={index} wishlist={wishlist} cardNo={index} /> )} </> )}
            </div>
       </div>
     </main>

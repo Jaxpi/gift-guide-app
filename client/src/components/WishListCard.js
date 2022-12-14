@@ -5,11 +5,14 @@ import { Jumbotron, Button, Container } from "react-bootstrap";
 import { DELETE_WISHLIST } from "../utils/mutations";
 import Create from "../pages/Create";
 
-import { QUERY_WISHLISTS, QUERY_ME } from "../utils/queries";
-import {CREATE_WISHLIST} from "../utils/mutations"
+import {
+  QUERY_WISHLISTS,
+  QUERY_ME,
+  QUERY_ONE_WISHLIST,
+} from "../utils/queries";
+import { CREATE_WISHLIST } from "../utils/mutations";
 import Auth from "../utils/auth";
 //  when we create a new wishlist we want to render a new wishlist card. all of it to display on the home.js
-
 
 const WishListCard = (props) => {
   console.log(props);
@@ -57,20 +60,22 @@ const WishListCard = (props) => {
     setItems(deleteItem);
   };
   console.log(items, "ITEMS");
-
-  const [style, setStyle] = useState(localStorage.getItem("theme") || "cont1");
+  console.log(props.cardNo);
+  const [style, setStyle] = useState(
+    localStorage.getItem(`theme${props.cardNo}`) || "cont1"
+  );
 
   const changeStyle = function () {
     console.log("you just clicked");
     if (style === "cont1") {
       setStyle("cont2");
-      localStorage.setItem("theme", "cont2");
+      localStorage.setItem(`theme${props.cardNo}`, "cont2");
     } else if (style === "cont2") {
       setStyle("cont3");
-      localStorage.setItem("theme", "cont3");
+      localStorage.setItem(`theme${props.cardNo}`, "cont3");
     } else {
       setStyle("cont1");
-      localStorage.setItem("theme", "cont1");
+      localStorage.setItem(`theme${props.cardNo}`, "cont1");
     }
   };
 
@@ -93,9 +98,7 @@ const WishListCard = (props) => {
           Add Item
         </button>
       </div>
-      <h1 id="myListTitle">
-        Title created during "create"
-      </h1>
+      <h1 id="myListTitle">{props.wishlist.title}</h1>
       <Container>
         {items.map((data, i) => {
           return (
