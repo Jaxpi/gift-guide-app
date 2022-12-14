@@ -77,6 +77,7 @@ npm run develop ( cd to the correct directory)
 This application is a MERN stack app using:
 
 MongoDb - Database (model) - Stores raw data and contains no logic.
+* [![MongoDB][Mongodb]][Mongodb -url]
 
 Express.js and Node.js - Server (controller) - Method called to store and retrieve data in database.
 *  [![NodeJS][Node.js]][Nodejs-url]
@@ -89,3 +90,5 @@ This application is fully functioning as a Graph API built with Apollo Server.
 
 [Nodejs-url]: https://nodejs.org/en/ 
 [Node.js]: https://img.shields.io/badge/NodeJS-NodeJS-green
+[Mongodb-url]: https://www.mongodb.com/
+[Mongodb]: (https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
