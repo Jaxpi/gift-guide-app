@@ -79,7 +79,12 @@ This application is a MERN stack app using:
 MongoDb - Database (model) - Stores raw data and contains no logic.
 
 Express.js and Node.js - Server (controller) - Method called to store and retrieve data in database.
-
+*  [![NodeJS][Node.js]][Nodejs-url]
 React JS - Client (View) - User inputs data and Data display
 
 This application is fully functioning as a Graph API built with Apollo Server.
+
+
+
+[Nodejs-url]: https://nodejs.org/en/ 
+[Node.js]: https://img.shields.io/badge/NodeJS-NodeJS-green
