@@ -44,66 +44,64 @@ const WishListCard = (props) => {
   //   }
   // };
 
-// ADD ITEM CODE ******************************
-// const handleAdd = ({ itemId }) => {
-// const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST, {
-//   const { data } = addItem()
-//   // update(cache, { data: { addItem } }) {
-    
-//   //   try {
-//   //     const { item } = cache.readQuery({ query: QUERY_ITEMS });
+  // ADD ITEM CODE ******************************
+  // const handleAdd = ({ itemId }) => {
+  // const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST, {
+  //   const { data } = addItem()
+  //   // update(cache, { data: { addItem } }) {
 
-//   //     cache.writeQuery({
-//   //       query: QUERY_ITEMS,
-//   //       data: { items: [addItems, ...items] },
-//   //     });
-//     } catch (e) {
-//       console.error(e);
-//     }
+  //   //   try {
+  //   //     const { item } = cache.readQuery({ query: QUERY_ITEMS });
 
-//     // update me object's cache
-//     const { me } = cache.readQuery({ query: QUERY_ME });
-//     cache.writeQuery({
-//       query: QUERY_ME,
-//       data: { me: { ...me, items: [...me.itemss, addItem] } },
-//     });
-//   },
-// });
-// }
-const [items, setItems] = useState([]);
+  //   //     cache.writeQuery({
+  //   //       query: QUERY_ITEMS,
+  //   //       data: { items: [addItems, ...items] },
+  //   //     });
+  //     } catch (e) {
+  //       console.error(e);
+  //     }
 
-const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST);
+  //     // update me object's cache
+  //     const { me } = cache.readQuery({ query: QUERY_ME });
+  //     cache.writeQuery({
+  //       query: QUERY_ME,
+  //       data: { me: { ...me, items: [...me.itemss, addItem] } },
+  //     });
+  //   },
+  // });
+  // }
+  const [items, setItems] = useState([]);
 
-const saveItem = async (e) => {
-  const i = e.target.dataset.index;
+  const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST);
 
-  try {
-   
-    const { data } = await addItem({
-    variables: {
-      wishlistId: props.wishlist._id,
-      item: items[i]
-      } 
-    });
+  const saveItem = async (e) => {
+    const i = e.target.dataset.index;
 
-    if (data.addItem.items) {
-        console.log('success!')
-        console.log("wishlist: ", data.addItem.items)
-    } else {
-        console.warn("error with form submit")
+    try {
+      const { data } = await addItem({
+        variables: {
+          wishlistId: props.wishlist._id,
+          item: items[i],
+        },
+      });
+
+      if (data.addItem.items) {
+        console.log("success!");
+        console.log("wishlist: ", data.addItem.items);
+      } else {
+        console.warn("error with form submit");
+      }
+    } catch (err) {
+      console.log(err);
     }
-  } catch(err) {
-    console.log(err)
-  }
-}
-// ENDS ADD ITEMS CODE *******************************
-useEffect(() => {
-  console.log(items);
-}, [items])
-
+  };
+  // ENDS ADD ITEMS CODE *******************************
+  useEffect(() => {
+    console.log(items);
+  }, [items]);
 
   const handleAdd = () => {
-    const newItem = [...items, ''];
+    const newItem = [...items, ""];
     setItems(newItem);
   };
   const handleChange = (onChangeItem, i) => {
@@ -129,6 +127,12 @@ useEffect(() => {
     } else if (style === "cont2") {
       setStyle("cont3");
       localStorage.setItem(`theme${props.cardNo}`, "cont3");
+    } else if (style === "cont3") {
+      setStyle("cont4");
+      localStorage.setItem(`theme${props.cardNo}`, "cont4");
+    } else if (style === "cont4") {
+      setStyle("cont5");
+      localStorage.setItem(`theme${props.cardNo}`, "cont5");
     } else {
       setStyle("cont1");
       localStorage.setItem(`theme${props.cardNo}`, "cont1");
@@ -161,7 +165,8 @@ useEffect(() => {
             <div key={i}>
               <div id="listItem">
                 <input
-                  id="itemName" onBlur={(i) => saveItem(i)}
+                  id="itemName"
+                  onBlur={(i) => saveItem(i)}
                   value={data}
                   data-index={i}
                   onChange={(e) => handleChange(e, i)}
