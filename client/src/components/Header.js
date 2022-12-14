@@ -1,16 +1,15 @@
 import React, { useState }  from "react";
 import { Link, Navigate } from "react-router-dom";
-
+import CountDownTimer from "./CountDownTimer";
 
 import Auth from "../utils/auth";
 
-const Header = () => {  
+const Header = () => {
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
 
-  console.log(Auth.loggedIn())
   return (
     <section id="nav">
       <img
@@ -18,19 +17,20 @@ const Header = () => {
         src="./assets/images/logotrans.png"
         alt="Gift Guide Logo"
       ></img>
+       <CountDownTimer/>
       {Auth.loggedIn() ? (
-        <div className="navLinks">
+        <div className="navLinks" class = "container borderYtoX">
           <button id="logout" onClick={logout}>Logout</button>
           <Link
             id="createList"
             to="/create"
           >
             Create Wish List
-          </Link>   
+          </Link>
         </div>
       ) : (
-        
-        <div className="navLinks">
+
+        <div className="navLinks" class = "container borderYtoX">
           <Link
             id="login"
             to="/login"
@@ -45,6 +45,7 @@ const Header = () => {
           </Link>
           <Link
             className="btn btn-dark mb-3"
+            class = "container borderYtoX"
             id="donate"
             to="/donate"
           >
