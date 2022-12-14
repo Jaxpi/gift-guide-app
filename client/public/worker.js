@@ -27,3 +27,20 @@ self.addEventListener('fetch', event => {
         })
     )
 })
+
+// UPDATE SERVICE WORKER
+self.addEventListener('activate', event => {
+    let cacheWhiteList = ['gift-guide-project'];
+    event.waitUntil(
+        caches.keys()
+        .then(cacheNames => {
+            return Promise.all(
+                cacheNames.map(cacheName => {
+                    if(cacheWhiteList.indexOf(cacheName) === -1) {
+                        return caches.delete(cacheName);
+                    }
+                })
+            )
+        })
+    )
+})
