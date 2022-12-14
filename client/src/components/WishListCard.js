@@ -15,34 +15,45 @@ import Auth from "../utils/auth";
 //  when we create a new wishlist we want to render a new wishlist card. all of it to display on the home.js
 
 const WishListCard = (props) => {
-  console.log(props);
+  const [deleteList] = useMutation(DELETE_WISHLIST, {
+    update(cache, { data }) {
+      
+      try {
+        // First we retrieve existing profile data that is stored in the cache under the `QUERY_PROFILES` query
+        // Could potentially not exist yet, so wrap in a try/catch
+        const { wishlists } = cache.readQuery({ query: QUERY_WISHLISTS });
+
+        // Then we update the cache by combining existing profile data with the newly created data returned from the mutation
+        cache.writeQuery({
+          query: QUERY_WISHLISTS,
+
+          data: {
+            wishlists: wishlists.filter((list) => list._id !== data.deleteWishlist._id),
+          },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  });
+
+  // console.log(props);
   // const { error, loading, data } = useQuery(QUERY_WISHLISTS);
   // const handleFormSubmit = async (event) => {
   //     event.preventDefault();}
 
-  // const handleDeleteList = async (wishlistId) => {
-  //   const [deleteList] = useMutation(DELETE_WISHLIST)
-
-  //   // const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-  //   // if (!token) {
-  //   //   return false;
-  //   // }
-
-  //   try {
-  //     const { user } = await deleteList({
-  //       variables: {
-  //         wishlistId: wishlistId,
-  //       },
-  //     });
-
-  //     //? what goes here?
-  //     // userData = user;
-  //     // removeBookId(bookId);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
+  const handleDeleteList = async (wishlistId) => {
+    try {
+     
+      const { user } = await deleteList({
+        variables: {
+          wishlistId: wishlistId,
+        },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   // ADD ITEM CODE ******************************
   // const handleAdd = ({ itemId }) => {
@@ -119,6 +130,7 @@ const WishListCard = (props) => {
     localStorage.getItem(`theme${props.cardNo}`) || "cont1"
   );
 
+  //move from local storage to db (if there's time)
   const changeStyle = function () {
     console.log("you just clicked");
     if (style === "cont1") {
@@ -151,9 +163,12 @@ const WishListCard = (props) => {
         >
           Theme
         </button>
-        {/* <button id="deleteList" onClick={() => handleDeleteList()}>
+        <button
+          id="deleteList"
+          onClick={() => handleDeleteList(props.wishlist._id)}
+        >
           Delete List
-        </button> */}
+        </button>
         <button id="addItem" onClick={() => handleAdd()}>
           Add Item
         </button>
