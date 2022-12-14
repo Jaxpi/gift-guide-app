@@ -7,11 +7,11 @@ https://group2-gift-guide.herokuapp.com/
 <br><img src="./client/src/assets/images/mainscreenshot.jpg" style="width:300px; height auto;">
 
 
-  ## Description
+## Description
 
 
 
-  ## Table of Contents
+## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -21,16 +21,16 @@ https://group2-gift-guide.herokuapp.com/
 - [Technology Used](#technology-used)
 - [Questions](#questions)
 
-  ## Installation
+## Installation
 
-To install this application, clone the code into your terminal for the respective repository. Then, install express package by entering the command npm i into the terminal. 
+To install this application, clone the code into your terminal for the respective repository. Then, install express package by entering the command npm i into the terminal.
 
-  ## Usage
+## Usage
 
 Install npm and dependencies: npm i.
 Run npm run develop on your terminal (command line)
 
-  ## License
+## License
 
 This application uses the MIT License.
 
@@ -54,14 +54,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-  ## Contribute
+## Contribute
 
 To contribute to social-network, clone this repo locally and commit your code on a separate branch. Or fork the repo and make your pull requests with suggested improvements.
 
-  ## Tests
+## Tests
 
 To test the app visit: https://jaxpi.github.io/DEPLOYEDLINK/
 
-  ## Technology Used
+## Technology Used
 
 Node, ExpressJs, React, GraphQl
