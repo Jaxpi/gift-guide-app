@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { Jumbotron, Button, Container } from "react-bootstrap";
 
-import { DELETE_WISHLIST, ADD_ITEM_TO_WISHLIST } from "../utils/mutations";
+import { DELETE_WISHLIST, ADD_ITEM_TO_WISHLIST, UPDATE_WISHLIST } from "../utils/mutations";
 import Create from "../pages/Create";
 
 import {
@@ -150,6 +150,17 @@ const WishListCard = (props) => {
       localStorage.setItem(`theme${props.cardNo}`, "cont1");
     }
   };
+  const [newName, setNewName] = useState(null)
+
+  const [updateName , {error: nameError}] = useMutation(UPDATE_WISHLIST)
+
+  // const changeName = event => {
+  //  const { name, value } = event.target.value
+
+
+  // const changeName = event => {
+  //   setNewName(event.target.value)
+  }
 
   return (
     <section className={style}>
@@ -173,7 +184,15 @@ const WishListCard = (props) => {
           Add Item
         </button>
       </div>
-      <h1 id="myListTitle">{props.wishlist.title}</h1>
+      return newName ? (<h1 id="myListTitle">{props.wishlist.title}</h1>
+      ) : (
+      <div>
+      <input  
+      type= "text" 
+      value={newName.text} 
+      onChange={(e) => setNewName ({...newName, text: e.target.value})} id="myListTitle" />
+      <button onClick={updateName}>Update Name</button>
+      </div> )
       <Container>
         {items.map((data, i) => {
           return (
