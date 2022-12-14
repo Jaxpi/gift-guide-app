@@ -84,23 +84,8 @@ const resolvers = {
             )
             return wishlist;
           }
-          // throw new AuthenticationError("Log In to Continue");
+          throw new AuthenticationError("Log In to Continue");
         },
-        
-        // deleteWishlist: async (parent, { wishlistId }, context) => {
-          //   if (context.user) {
-            //     const wishlist = await Wishlist.findOneAndDelete({
-              //       _id: wishlistId,
-              //       userId: context.user.username,
-              //     });
-              
-              //     await User.findOneAndUpdate(
-                //       { _id: context.user._id },
-                //       { $pull: { wishlists: wishlist._id } }
-                //     );
-                
-                //     return wishlist;
-                //   }
                 
                 
       deleteWishlist: async (parent, { wishlistId }, context) => {
