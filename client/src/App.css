@@ -17,6 +17,12 @@ main {
   flex-direction: column;
 }
 
+.landing {
+  color: white;
+  font-size: 40px;
+  margin: 20px;
+}
+
 #nav {
   width: 100%;
   min-width: 370px;
