@@ -56,16 +56,17 @@ const resolvers = {
       if (context.user) {
         const myFriends = friends.length ? friends.split(", ") : [];
         console.log(myFriends);
-        const friendIds = await myFriends.map((friend) =>
-          User.find({
+        const friendIds = await Promise.all(myFriends.map(async (friend) =>
+          await User.find({
             username: friend,
-          }).then((friendData) => {
+          })
+          .then((friendData) => {
             if (friendData) {
               console.log(friendData);
               return friendData[0]._id;
             }
           })
-        );
+        ));
         console.log("Friends", friendIds);
         const wishlist = await Wishlist.create({
           title,

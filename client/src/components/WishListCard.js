@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { Jumbotron, Button, Container } from "react-bootstrap";
 
-import { DELETE_WISHLIST, ADD_ITEM_TO_WISHLIST } from "../utils/mutations";
+import {
+  CREATE_WISHLIST,
+  DELETE_WISHLIST,
+  ADD_ITEM_TO_WISHLIST,
+  REMOVE_ITEM_FROM_WISHLIST,
+} from "../utils/mutations";
 import Create from "../pages/Create";
 
 import {
@@ -10,7 +15,6 @@ import {
   QUERY_ME,
   QUERY_ONE_WISHLIST,
 } from "../utils/queries";
-import { CREATE_WISHLIST } from "../utils/mutations";
 import Auth from "../utils/auth";
 //  when we create a new wishlist we want to render a new wishlist card. all of it to display on the home.js
 
@@ -19,8 +23,8 @@ const WishListCard = (props) => {
 
   const { loading, data } = useQuery(QUERY_ONE_WISHLIST, {
     variables: {
-      wishlistId: props.wishlist._id
-    }
+      wishlistId: props.wishlist._id,
+    },
   });
 
   useEffect(() => {
@@ -28,7 +32,7 @@ const WishListCard = (props) => {
       const newItems = data?.wishlist.items || [];
       setItems(newItems);
     }
-  }, [loading, data])
+  }, [loading, data]);
 
   const [deleteList] = useMutation(DELETE_WISHLIST, {
     update(cache, { data }) {
@@ -40,8 +44,9 @@ const WishListCard = (props) => {
           data: {
             me: {
               wishlists: me.wishlists.filter(
-              (list) => list._id !== data.deleteWishlist._id
-            )},
+                (list) => list._id !== data.deleteWishlist._id
+              ),
+            },
           },
         });
       } catch (e) {
@@ -64,6 +69,8 @@ const WishListCard = (props) => {
 
   // ADD ITEM CODE ******************************
   const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST);
+
+  const [removeItem, { itemError }] = useMutation(REMOVE_ITEM_FROM_WISHLIST);
 
   const saveItem = async (e) => {
     const i = e.target.dataset.index;
@@ -97,14 +104,22 @@ const WishListCard = (props) => {
     inputItem[i] = onChangeItem.target.value;
     setItems(inputItem);
   };
-  const handleDelete = (i) => {
+  const handleDelete = async (e, i) => {
     const deleteItem = [...items];
     deleteItem.splice(i, 1);
     setItems(deleteItem);
+    const item = e.target.dataset.item;
+    const { data } = await removeItem({
+      variables: {
+        wishlistId: props.wishlist._id,
+        item,
+      },
+    });
+    //console.log('deleted item from wishlist\nthis is the newlist\n', data.deleteItem.items)
   };
 
   const [style, setStyle] = useState(
-    localStorage.getItem(`theme${props.cardNo}`) || "cont1"
+    localStorage.getItem(`themeFor${props.wishlist._id}`) || "cont1"
   );
 
   //move from local storage to db (if there's time)
@@ -112,19 +127,19 @@ const WishListCard = (props) => {
     console.log("you just clicked");
     if (style === "cont1") {
       setStyle("cont2");
-      localStorage.setItem(`theme${props.cardNo}`, "cont2");
+      localStorage.setItem(`themeFor${props.wishlist._id}`, "cont2");
     } else if (style === "cont2") {
       setStyle("cont3");
-      localStorage.setItem(`theme${props.cardNo}`, "cont3");
+      localStorage.setItem(`themeFor${props.wishlist._id}`, "cont3");
     } else if (style === "cont3") {
       setStyle("cont4");
-      localStorage.setItem(`theme${props.cardNo}`, "cont4");
+      localStorage.setItem(`themeFor${props.wishlist._id}`, "cont4");
     } else if (style === "cont4") {
       setStyle("cont5");
-      localStorage.setItem(`theme${props.cardNo}`, "cont5");
+      localStorage.setItem(`themeFor${props.wishlist._id}`, "cont5");
     } else {
       setStyle("cont1");
-      localStorage.setItem(`theme${props.cardNo}`, "cont1");
+      localStorage.setItem(`themeFor${props.wishlist._id}`, "cont1");
     }
   };
 
@@ -166,7 +181,11 @@ const WishListCard = (props) => {
                     data-index={i}
                     onChange={(e) => handleChange(e, i)}
                   />
-                  <Button id="removeItem" onClick={() => handleDelete(i)}>
+                  <Button
+                    id="removeItem"
+                    data-item={data}
+                    onClick={(e) => handleDelete(e, i)}
+                  >
                     X
                   </Button>
                   <Button id="received">Got!</Button>
@@ -183,19 +202,21 @@ const WishListCard = (props) => {
   } else {
     return (
       <section className={style}>
-
         <h1 id="myListTitle">{props.wishlist.title}</h1>
         <Container>
           {items.map((data, i) => {
             return (
               <div key={i}>
-                <ul>
-                  //items inputted
-                </ul>
-                  <Button id="onIt">I'm On It!</Button>
+                <p>{data}</p>
+                <Button
+                  id="onIt"
+                  onClick={(e) => (e.target.textContent = "Reserved")}
+                >
+                  I'm On It!
+                </Button>
               </div>
             );
-          })};
+          })}
         </Container>
       </section>
     );
