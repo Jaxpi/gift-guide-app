@@ -115,7 +115,6 @@ const resolvers = {
         //throw new AuthenticationError("Log In to Continue");
       },
       addItem: async (parent, { wishlistId, item }, context) => {
-        console.log("LOOK AT ME")
         if (context.user) {
           return Wishlist.findOneAndUpdate(
             { _id: wishlistId },
