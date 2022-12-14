@@ -3,10 +3,6 @@
 
 ![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg "MIT badge")
 
-https://group2-gift-guide.herokuapp.com/
-<br><img src="./client/src/assets/images/mainscreenshot.jpg" style="width:300px; height auto;">
-
-
 ## Description
 
 Gift Guide is an app that helps with creating a wishlist of gifts you would like to get from you loved ones. One can create different wishlists, and even invite friends to add items from that wishlist for them to get while still being a surprise.
@@ -32,6 +28,9 @@ Install npm and dependencies: npm i.
 Run npm run develop on your terminal (command line).
 
 If you would like to use the app you would need to sign up. Once logged in you can click on Create Wishlist and invite friends to choose their gifts from the wishlist created.
+
+<br><img src="./client/src/assets/images/mainscreenshot.jpg" style="width:300px; height auto;">
+
 
 ## License
 
@@ -73,7 +72,7 @@ npm init
 
 npm run develop ( cd to the correct directory)
 
-## Technology Used
+## Technologies Used
 
 This application is a MERN stack app using:
 
