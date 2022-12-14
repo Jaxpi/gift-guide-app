@@ -77,7 +77,7 @@ Button {
   justify-content: center;
 }
 
-.loginFormContainer {
+.loginFormContainer, .signupFormContainer {
   display: flex;
   justify-content: center;
   margin-top: 20px;
