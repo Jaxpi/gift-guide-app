@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState }  from "react";
 import { Link } from "react-router-dom";
+
 
 import Auth from "../utils/auth";
 
@@ -9,6 +10,7 @@ const Header = () => {
     Auth.logout();
   };
 
+  console.log(Auth.loggedIn())
   return (
     <section id="nav">
       <img
@@ -18,10 +20,16 @@ const Header = () => {
       ></img>
       {Auth.loggedIn() ? (
         <div className="navLinks">
-          <Link to="/me">View My Wishlist</Link>
           <button id="logout" onClick={logout}>Logout</button>
+          <Link
+            id="createList"
+            to="/create"
+          >
+            Create Wish List
+          </Link>   
         </div>
       ) : (
+        
         <div className="navLinks">
           <Link
             id="login"

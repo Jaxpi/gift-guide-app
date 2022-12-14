@@ -14,6 +14,18 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
+// const http = require('http');
+// const httpServer = http.createServer(app);
+// const { Server } = require("socket.io");
+// const io = new Server(httpServer);
+
+// io.on('connection', (socket) => {
+//   console.log('a user connected');
+// });
+// httpServer.listen(3000, () => {
+//   console.log('listening on *:3002');
+// });
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 

@@ -25,10 +25,10 @@ export const ADD_USER = gql`
 `;
 
 export const CREATE_WISHLIST = gql`
-  mutation createWishlist($title: String!) {
-    createWishlist(title: $title) {
-      _id
-      title
+mutation createWishlist($title: String!, $friends: String) {
+    createWishlist(title: $title, friends: $friends) {
+     _id
+     title
     }
   }
 `;
@@ -44,28 +44,27 @@ export const UPDATE_WISHLIST = gql`
 
 export const DELETE_WISHLIST = gql`
   mutation deleteWishlist($wishlistId: ID!) {
-    updateWishlist(wishlistId: $wishlistId) {
+    deleteWishlist(wishlistId: $wishlistId) {
       _id
+      title
     }
   }
 `;
 
 export const ADD_ITEM_TO_WISHLIST = gql`
-  mutation addItemToWishlist($wishlistId: ID!, $itemText: String!) {
-    addItemToWishlist(wishlistId: $wishlistId, itemText: $itemText) {
+  mutation addItem($wishlistId: ID!, $item: String!) {
+    addItem(wishlistId: $wishlistId, item: $item) {
       _id
-      items {
-        _id
-        itemText
-      }
+      items
     }
   }
 `
 
 export const REMOVE_ITEM_FROM_WISHLIST = gql`
-  mutation removeItemFromWishlist($itemId: ID!) {
-    removeItemFromWishlist(itemId: $itemId) {
+  mutation deleteItem($wishlistId: ID!, $item: String!) {
+    deleteItem(wishlistId: $wishlistId, item: $item) {
       _id
+      items
     }
   }
 `;

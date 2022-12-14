@@ -22,7 +22,7 @@ const userSchema = new Schema({
     wishlists: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Wishlist',
+            ref: 'Wishlist'
         },
     ],
 });

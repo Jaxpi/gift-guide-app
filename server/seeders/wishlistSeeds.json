@@ -1,20 +1,20 @@
 [
-    {
-      "title": "Winter",
-      "items": "1",
-      "userId": "q2qq",
-      "friends": []
-    },
-    {
-      "title": "Fall",
-      "items": "2",
-      "userId": "q3qq",
-      "friends": ["q2qq"]
-    },
-    {
-      "title": "Summer",
-      "items": "3",
-      "userId": "q1qq",
-      "friends": ["q2qq"]
-    }
-    ]
+  {
+    "title": "Winter",
+    "items": ["hat"],
+    "userId": "q2qq",
+    "friends": []
+  },
+  {
+    "title": "Fall",
+    "items": ["socks"],
+    "userId": "q3qq",
+    "friends": []
+  },
+  {
+    "title": "Summer",
+    "items": ["world peace"],
+    "userId": "q1qq",
+    "friends": []
+  }
+]

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
+import { Navigate } from "react-router-dom";
 
 // import { loginUser } from '../utils/API';
 import Auth from '../utils/auth';
@@ -44,9 +45,11 @@ const Login = () => {
       password: '',
     });
   };
-
+  if (Auth.loggedIn()){
+    return <Navigate replace to="/me" />
+    }
   return (
-    <>
+    <div className="loginFormContainer">
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your login credentials!
@@ -83,7 +86,7 @@ const Login = () => {
           Submit
         </Button>
       </Form>
-    </>
+    </div>
   );
 };
 
