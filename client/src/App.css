@@ -104,45 +104,6 @@ Button {
   background: #555;
 }
 
-#myListTitle {
-  background-image: none;
-  font-size: 50px;
-  font-weight: normal;
-  text-align: center;
-  line-height: 40px;
-  margin-bottom: 10px;
-}
-
-@font-face {
-  font-family: genTitle;
-  src: url(./assets/fonts/genFont.TTF);
-}
-
-.cont3 #myListTitle {
-  font-family: genTitle;
-  background: -webkit-linear-gradient(rgb(0, 204, 255), rgb(255, 0, 217));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-@font-face {
-  font-family: christmasTitle;
-  src: url(./assets/fonts/christmasFont.TTF);
-}
-
-.cont2 #myListTitle {
-  font-family: christmasTitle;
-}
-
-@font-face {
-  font-family: loveTitle;
-  src: url(./assets/fonts/heartFont.ttf);
-}
-
-.cont1 #myListTitle {
-  font-family: loveTitle;
-}
-
 .wishButtonsWrap {
   display: flex;
   justify-content: space-between;
@@ -208,8 +169,65 @@ Button {
   color: black;
 }
 
+#myListTitle {
+  background-image: none;
+  font-size: 50px;
+  font-weight: normal;
+  text-align: center;
+  line-height: 40px;
+  margin-bottom: 10px;
+}
+
+@font-face {
+  font-family: genTitle;
+  src: url(./assets/fonts/genFont.TTF);
+}
+
+.cont3 #myListTitle {
+  font-family: genTitle;
+  background: -webkit-linear-gradient(rgb(0, 204, 255), rgb(255, 0, 217));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@font-face {
+  font-family: christmasTitle;
+  src: url(./assets/fonts/christmasFont.TTF);
+}
+
+.cont2 #myListTitle {
+  font-family: christmasTitle;
+}
+
+@font-face {
+  font-family: loveTitle;
+  src: url(./assets/fonts/heartFont.ttf);
+}
+
+.cont1 #myListTitle {
+  font-family: loveTitle;
+}
+
+@font-face {
+  font-family: babyTitle;
+  src: url(./assets/fonts/babyFont.otf);
+}
+
+.cont4 #myListTitle {
+  font-family: babyTitle;
+}
+
+@font-face {
+  font-family: wedTitle;
+  src: url(./assets/fonts/wedFont.otf);
+}
+
+.cont5 #myListTitle {
+  font-family: wedTitle;
+}
+
 .cont1 {
-  background-image: url(./assets/images/heartsbackgray.jpg);
+  background-image: url(./assets/images/heartsback.jpg);
   padding: 10px;
   border-radius: 10px;
   display: flex;
@@ -217,7 +235,7 @@ Button {
   background-size: 420px 450px;
   max-width: 370px;
   max-height: 400px;
-  width: 370px;
+  width: 320px;
   min-height: 400px;
   margin: 20px;
   align-items: center;
@@ -238,7 +256,7 @@ Button {
   background-size: 420px 450px;
   max-width: 370px;
   max-height: 400px;
-  width: 370px;
+  width: 320px;
   min-height: 400px;
   margin: 20px;
   align-items: center;
@@ -255,10 +273,10 @@ Button {
   border-radius: 10px;
   display: flex;
   align-content: flex-start;
-  background-size: 420px 450px;
+  background-size: 400px 450px;
   max-width: 370px;
   max-height: 400px;
-  width: 370px;
+  width: 320px;
   min-height: 400px;
   margin: 20px;
   align-items: center;
@@ -266,6 +284,46 @@ Button {
   box-shadow: black 5px 5px 5px;
   overflow-y: scroll;
   color: gold;
+  -webkit-text-stroke: 1px black;
+}
+
+.cont4 {
+  background-image: url(./assets/images/babyback.jpg);
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-content: flex-start;
+  background-size: 420px 450px;
+  max-width: 370px;
+  max-height: 400px;
+  width: 320px;
+  min-height: 400px;
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: black 5px 5px 5px;
+  overflow-y: scroll;
+  color: gold;
+  -webkit-text-stroke: 1px black;
+}
+
+.cont5 {
+  background-image: url(./assets/images/heartsbackgray.jpg);
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-content: flex-start;
+  background-size: 550px 450px;
+  max-width: 370px;
+  max-height: 400px;
+  width: 320px;
+  min-height: 400px;
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: black 5px 5px 5px;
+  overflow-y: scroll;
+  color: black;
   -webkit-text-stroke: 1px black;
 }
 

@@ -15,95 +15,104 @@ import Auth from "../utils/auth";
 //  when we create a new wishlist we want to render a new wishlist card. all of it to display on the home.js
 
 const WishListCard = (props) => {
-  console.log(props);
+  const [deleteList] = useMutation(DELETE_WISHLIST, {
+    update(cache, { data }) {
+      
+      try {
+        // First we retrieve existing profile data that is stored in the cache under the `QUERY_PROFILES` query
+        // Could potentially not exist yet, so wrap in a try/catch
+        const { wishlists } = cache.readQuery({ query: QUERY_WISHLISTS });
+
+        // Then we update the cache by combining existing profile data with the newly created data returned from the mutation
+        cache.writeQuery({
+          query: QUERY_WISHLISTS,
+
+          data: {
+            wishlists: wishlists.filter((list) => list._id !== data.deleteWishlist._id),
+          },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  });
+
+  // console.log(props);
   // const { error, loading, data } = useQuery(QUERY_WISHLISTS);
   // const handleFormSubmit = async (event) => {
   //     event.preventDefault();}
 
-  // const handleDeleteList = async (wishlistId) => {
-  //   const [deleteList] = useMutation(DELETE_WISHLIST)
-
-  //   // const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-  //   // if (!token) {
-  //   //   return false;
-  //   // }
-
-  //   try {
-  //     const { user } = await deleteList({
-  //       variables: {
-  //         wishlistId: wishlistId,
-  //       },
-  //     });
-
-  //     //? what goes here?
-  //     // userData = user;
-  //     // removeBookId(bookId);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
-// ADD ITEM CODE ******************************
-// const handleAdd = ({ itemId }) => {
-// const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST, {
-//   const { data } = addItem()
-//   // update(cache, { data: { addItem } }) {
-    
-//   //   try {
-//   //     const { item } = cache.readQuery({ query: QUERY_ITEMS });
-
-//   //     cache.writeQuery({
-//   //       query: QUERY_ITEMS,
-//   //       data: { items: [addItems, ...items] },
-//   //     });
-//     } catch (e) {
-//       console.error(e);
-//     }
-
-//     // update me object's cache
-//     const { me } = cache.readQuery({ query: QUERY_ME });
-//     cache.writeQuery({
-//       query: QUERY_ME,
-//       data: { me: { ...me, items: [...me.itemss, addItem] } },
-//     });
-//   },
-// });
-// }
-const [items, setItems] = useState([]);
-
-const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST);
-
-const saveItem = async (e) => {
-  const i = e.target.dataset.index;
-
-  try {
-   
-    const { data } = await addItem({
-    variables: {
-      wishlistId: props.wishlist._id,
-      item: items[i]
-      } 
-    });
-
-    if (data.addItem.items) {
-        console.log('success!')
-        console.log("wishlist: ", data.addItem.items)
-    } else {
-        console.warn("error with form submit")
+  const handleDeleteList = async (wishlistId) => {
+    try {
+     
+      const { user } = await deleteList({
+        variables: {
+          wishlistId: wishlistId,
+        },
+      });
+    } catch (err) {
+      console.error(err);
     }
-  } catch(err) {
-    console.log(err)
-  }
-}
-// ENDS ADD ITEMS CODE *******************************
-useEffect(() => {
-  console.log(items);
-}, [items])
+  };
 
+  // ADD ITEM CODE ******************************
+  // const handleAdd = ({ itemId }) => {
+  // const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST, {
+  //   const { data } = addItem()
+  //   // update(cache, { data: { addItem } }) {
+
+  //   //   try {
+  //   //     const { item } = cache.readQuery({ query: QUERY_ITEMS });
+
+  //   //     cache.writeQuery({
+  //   //       query: QUERY_ITEMS,
+  //   //       data: { items: [addItems, ...items] },
+  //   //     });
+  //     } catch (e) {
+  //       console.error(e);
+  //     }
+
+  //     // update me object's cache
+  //     const { me } = cache.readQuery({ query: QUERY_ME });
+  //     cache.writeQuery({
+  //       query: QUERY_ME,
+  //       data: { me: { ...me, items: [...me.itemss, addItem] } },
+  //     });
+  //   },
+  // });
+  // }
+  const [items, setItems] = useState([]);
+
+  const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST);
+
+  const saveItem = async (e) => {
+    const i = e.target.dataset.index;
+
+    try {
+      const { data } = await addItem({
+        variables: {
+          wishlistId: props.wishlist._id,
+          item: items[i],
+        },
+      });
+
+      if (data.addItem.items) {
+        console.log("success!");
+        console.log("wishlist: ", data.addItem.items);
+      } else {
+        console.warn("error with form submit");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  // ENDS ADD ITEMS CODE *******************************
+  useEffect(() => {
+    console.log(items);
+  }, [items]);
 
   const handleAdd = () => {
-    const newItem = [...items, ''];
+    const newItem = [...items, ""];
     setItems(newItem);
   };
   const handleChange = (onChangeItem, i) => {
@@ -121,6 +130,7 @@ useEffect(() => {
     localStorage.getItem(`theme${props.cardNo}`) || "cont1"
   );
 
+  //move from local storage to db (if there's time)
   const changeStyle = function () {
     console.log("you just clicked");
     if (style === "cont1") {
@@ -129,6 +139,12 @@ useEffect(() => {
     } else if (style === "cont2") {
       setStyle("cont3");
       localStorage.setItem(`theme${props.cardNo}`, "cont3");
+    } else if (style === "cont3") {
+      setStyle("cont4");
+      localStorage.setItem(`theme${props.cardNo}`, "cont4");
+    } else if (style === "cont4") {
+      setStyle("cont5");
+      localStorage.setItem(`theme${props.cardNo}`, "cont5");
     } else {
       setStyle("cont1");
       localStorage.setItem(`theme${props.cardNo}`, "cont1");
@@ -147,9 +163,12 @@ useEffect(() => {
         >
           Theme
         </button>
-        {/* <button id="deleteList" onClick={() => handleDeleteList()}>
+        <button
+          id="deleteList"
+          onClick={() => handleDeleteList(props.wishlist._id)}
+        >
           Delete List
-        </button> */}
+        </button>
         <button id="addItem" onClick={() => handleAdd()}>
           Add Item
         </button>
@@ -161,7 +180,8 @@ useEffect(() => {
             <div key={i}>
               <div id="listItem">
                 <input
-                  id="itemName" onBlur={(i) => saveItem(i)}
+                  id="itemName"
+                  onBlur={(i) => saveItem(i)}
                   value={data}
                   data-index={i}
                   onChange={(e) => handleChange(e, i)}
