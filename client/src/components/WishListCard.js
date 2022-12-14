@@ -49,12 +49,6 @@ const WishListCard = (props) => {
     },
   });
 
-
-  // console.log(props);
-  // const { error, loading, data } = useQuery(QUERY_WISHLISTS);
-  // const handleFormSubmit = async (event) => {
-  //     event.preventDefault();}
-
   const handleDeleteList = async (wishlistId) => {
     try {
       const { user } = await deleteList({
@@ -68,33 +62,6 @@ const WishListCard = (props) => {
   };
 
   // ADD ITEM CODE ******************************
-  // const handleAdd = ({ itemId }) => {
-  // const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST, {
-  //   const { data } = addItem()
-  //   // update(cache, { data: { addItem } }) {
-
-  //   //   try {
-  //   //     const { item } = cache.readQuery({ query: QUERY_ITEMS });
-
-  //   //     cache.writeQuery({
-  //   //       query: QUERY_ITEMS,
-  //   //       data: { items: [addItems, ...items] },
-  //   //     });
-  //     } catch (e) {
-  //       console.error(e);
-  //     }
-
-  //     // update me object's cache
-  //     const { me } = cache.readQuery({ query: QUERY_ME });
-  //     cache.writeQuery({
-  //       query: QUERY_ME,
-  //       data: { me: { ...me, items: [...me.itemss, addItem] } },
-  //     });
-  //   },
-  // });
-  // }
-
-
   const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST);
 
   const saveItem = async (e) => {
