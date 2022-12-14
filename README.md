@@ -9,6 +9,7 @@ https://group2-gift-guide.herokuapp.com/
 
 ## Description
 
+Gift Guide is an app that helps with creating a wishlist of gifts you would like to get from you loved ones. One can create different wishlists, and even invite friends to add items from that wishlist for them to get while still being a surprise.
 
 
 ## Table of Contents
