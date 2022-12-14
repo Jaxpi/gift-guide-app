@@ -1,54 +1,42 @@
-# gift-guide-project
+# Gift Guide
 
-https://jaxpi.github.io/DEPLOYEDLINK/
-<br><img src="assets/images/mainscreenshot.jpg" style="width:300px; height auto;">
 
+![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg "MIT badge")
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+Gift Guide is an app that helps with creating a wishlist of gifts you would like to get from you loved ones. One can create different wishlists, and even invite friends to add items from that wishlist for them to get while still being a surprise.
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
 
-## Table of Contents (Optional)
-
-If your README is long, add a table of contents to make it easy for users to find what they need.
+## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Credits](#credits)
 - [License](#license)
+- [Contribute](#contribute)
+- [Tests](#tests)
+- [Technology Used](#technology-used)
+- [Questions](#questions)
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+To install this application, clone the code into your terminal for the respective repository. Then, install express package by entering the command npm i into the terminal and run: npm run develop.
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+Install npm and dependencies: npm i.
+Run npm run develop on your terminal (command line).
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+If you would like to use the app you would need to sign up. Once logged in you can click on Create Wishlist and invite friends to choose their gifts from the wishlist created.
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+<br><img src="./client/src/assets/images/mainscreenshot.jpg" style="width:300px; height auto;">
 
-## Credits
-
-List your collaborators, if any, with links to their GitHub profiles.
-
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
 
 ## License
 
-MIT License
+This application uses the MIT License.
 
-Copyright (c) 2022 Kevin Chen, Malvina Hasa, Jackson Impellizeri, Hasan Noor, Roody Senecal, Alice Shao
+Copyright (c) 2022 Kevin Chen, Malvina Hasa, Jackson Impellizeri, Hasan Noor, Roody Senecal, Alice Shao, Sindid
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -67,3 +55,31 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+## Contribute
+
+To contribute to social-network, clone this repo locally and commit your code on a separate branch. You can also fork the repo and make your pull requests with suggested improvements.
+
+## Tests
+
+To test the app visit: https://jaxpi.github.io/DEPLOYEDLINK/
+
+It can also be tested by entering at command prompt:
+
+npm install (ensure all that dependencies are installed)
+
+npm init
+
+npm run develop ( cd to the correct directory)
+
+## Technologies Used
+
+This application is a MERN stack app using:
+
+MongoDb - Database (model) - Stores raw data and contains no logic.
+
+Express.js and Node.js - Server (controller) - Method called to store and retrieve data in database.
+
+React JS - Client (View) - User inputs data and Data display
+
+This application is fully functioning as a Graph API built with Apollo Server.

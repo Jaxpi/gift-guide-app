@@ -50,73 +50,66 @@ const resolvers = {
         const token = signToken(user);
   
         return { token, user };
-      },
-  
-        // createWishlist: async (parent, { userId, title }, context) => {
-        //   if (context.user) {
-        //     return await User.findOneAndUpdate(
-        //       { _id: userId },
-        //       { $addToSet: { wishlists: { "title": title } }},
-        //       { new: true }
-        //     );
-        //   }
+      },         
           
-          
-      createWishlist: async (parent, { userId, title }, context) => {
+      createWishlist: async (parent, { title, friends, items }, context) => {
         if (context.user) {
+          const myFriends = friends.length? friends.split(", "): [];
+          console.log(myFriends)
           const wishlist = await Wishlist.create({
             title,
             userId: context.user._id,
+            friends: myFriends,
             items: []
           });
-          console.log(wishlist)
+          
           await User.findOneAndUpdate(
             { _id: context.user._id },
             { $addToSet: { wishlists: wishlist._id } }
-          );
-  
-          return wishlist;
-
+            );
+            
+            return wishlist;
+            
         }
         throw new AuthenticationError("Log In to Continue");
       },
-  
+      
       updateWishlist: async (parent, { wishlistId, title }, context) => {
         if (context.user) {
           await Wishlist.findOneAndUpdate(
             { _id: wishlistId },
             { $set: { title: title }}
-          )
-          return wishlist;
-        }
-        //throw new AuthenticationError("Log In to Continue");
-      },
-
-      // deleteWishlist: async (parent, { wishlistId }, context) => {
-      //   if (context.user) {
-      //     const wishlist = await Wishlist.findOneAndDelete({
-      //       _id: wishlistId,
-      //       userId: context.user.username,
-      //     });
-  
-      //     await User.findOneAndUpdate(
-      //       { _id: context.user._id },
-      //       { $pull: { wishlists: wishlist._id } }
-      //     );
-  
-      //     return wishlist;
-      //   }
+            )
+            return wishlist;
+          }
+          // throw new AuthenticationError("Log In to Continue");
+        },
         
-        
-      deleteWishlist: async (parent, { wishlistId }, context) => {
-        if (context.user) {
-          await User.findOneAndUpdate(
-            { _id: context.user._id },
-            { $pull: { wishlists: wishlistId }},
-            { new: true }
-          );
-          return Wishlist.findOneAndDelete(
-            { _id: wishlistId }
+        // deleteWishlist: async (parent, { wishlistId }, context) => {
+          //   if (context.user) {
+            //     const wishlist = await Wishlist.findOneAndDelete({
+              //       _id: wishlistId,
+              //       userId: context.user.username,
+              //     });
+              
+              //     await User.findOneAndUpdate(
+                //       { _id: context.user._id },
+                //       { $pull: { wishlists: wishlist._id } }
+                //     );
+                
+                //     return wishlist;
+                //   }
+                
+                
+  deleteWishlist: async (parent, { wishlistId }, context) => {
+    if (context.user) {
+      await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $pull: { wishlists: wishlistId }},
+        { new: true }
+        );
+        return Wishlist.findOneAndDelete(
+          { _id: wishlistId }
           )
         }
         throw new AuthenticationError("Log In to Continue");

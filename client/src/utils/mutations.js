@@ -25,15 +25,10 @@ export const ADD_USER = gql`
 `;
 
 export const CREATE_WISHLIST = gql`
-  mutation createWishlist($userId: ID!, $title: String!) {
-    createWishlist(userId: $userId, title: $title) {
-      _id
-      email
-      username
-      wishlists {
-        _id
-        title
-      }
+mutation createWishlist($title: String!, $friends: String) {
+    createWishlist(title: $title, friends: $friends) {
+     _id
+     title
     }
   }
 `;
