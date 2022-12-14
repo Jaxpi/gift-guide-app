@@ -21,6 +21,7 @@ import SignupForm from "./components/SignupForm";
 import Login from "./pages/Login";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Landing from "./pages/Landing";
 import "./App.css";
 import WishListCard from "./components/WishListCard";
 // import { io } from "socket.io-client";
@@ -79,6 +80,7 @@ function App() {
           <Header />
           <div>
             <Routes>
+              <Route path="/" element={<Landing />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignupForm />} />
               <Route path="/create" element={<Create />} />

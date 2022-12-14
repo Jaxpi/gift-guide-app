@@ -4,8 +4,6 @@
 ![giftGuide Logo](./client/public/assets/images/logotrans.png "giftGuide Logo")
 ## Description
 
-Gift Guide is an app that allows you to create a wishlist of gifts you'd like to receive from loved ones. You can create multiple wishlists and even invite friends to assigns themselves a gift to give to you while still keeping the gifts a surprise for the wishlist owner. The app makes it easy to keep track of the gifts you're hoping to receive and ensures that you get exactly what you want. The functionality of our app allows you to also changes themes of your wishlist catered towards the special event. Our goal was to make gift sharing less awkward all in one fun and user friendly app.
-
 
 ## Table of Contents
 
