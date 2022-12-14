@@ -1,7 +1,7 @@
 # Gift Guide
 
-
 ![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg "MIT badge")
+![giftGuide Logo](./client/public/assets/images/logotrans.png "giftGuide Logo")
 
 ## Description
 
