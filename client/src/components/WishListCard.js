@@ -17,18 +17,15 @@ import Auth from "../utils/auth";
 const WishListCard = (props) => {
   const [deleteList] = useMutation(DELETE_WISHLIST, {
     update(cache, { data }) {
-      
       try {
-        // First we retrieve existing profile data that is stored in the cache under the `QUERY_PROFILES` query
-        // Could potentially not exist yet, so wrap in a try/catch
         const { wishlists } = cache.readQuery({ query: QUERY_WISHLISTS });
-
-        // Then we update the cache by combining existing profile data with the newly created data returned from the mutation
         cache.writeQuery({
           query: QUERY_WISHLISTS,
 
           data: {
-            wishlists: wishlists.filter((list) => list._id !== data.deleteWishlist._id),
+            wishlists: wishlists.filter(
+              (list) => list._id !== data.deleteWishlist._id
+            ),
           },
         });
       } catch (e) {
@@ -44,7 +41,6 @@ const WishListCard = (props) => {
 
   const handleDeleteList = async (wishlistId) => {
     try {
-     
       const { user } = await deleteList({
         variables: {
           wishlistId: wishlistId,
@@ -155,6 +151,12 @@ const WishListCard = (props) => {
     <section className={style}>
       <div className="wishButtonsWrap">
         <button
+          id="deleteList"
+          onClick={() => handleDeleteList(props.wishlist._id)}
+        >
+          Delete List
+        </button>
+        <button
           id="themeButton"
           // To change the theme we invoke dispatch and pass in an object containing action type and payload
           onClick={changeStyle}
@@ -162,12 +164,6 @@ const WishListCard = (props) => {
           type="button"
         >
           Theme
-        </button>
-        <button
-          id="deleteList"
-          onClick={() => handleDeleteList(props.wishlist._id)}
-        >
-          Delete List
         </button>
         <button id="addItem" onClick={() => handleAdd()}>
           Add Item
