@@ -77,7 +77,7 @@ Button {
   justify-content: center;
 }
 
-.loginFormContainer {
+.loginFormContainer, .signupFormContainer {
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -117,8 +117,13 @@ Button {
 #deleteList {
   border: none;
   width: fit-content;
-  padding: 5px;
+  padding: 2px;
+  height: 30px;
   border: 1px solid black;
+}
+
+#deleteList {
+  background-color: red;
 }
 
 #addItem {
@@ -126,7 +131,7 @@ Button {
   height: 30px;
   width: fit-content;
   padding: 2px;
-  background-color: red;
+  background-color: lightgray;
   border: 1px solid black;
 }
 
