@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
-import WishListCardList from '../components/WishListCard';
+// import WishListCardList from '../components/WishListCard';
 
 import { QUERY_WISHLISTS } from '../utils/queries';
 import WishListCard from '../components/WishListCard';
@@ -21,9 +21,9 @@ const Home = () => {
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <WishListCard />
-          )}
-        </div>
+            <> {wishlists.map((wishlist, index) => 
+              < WishListCard key={index} wishlist={wishlist} cardNo={index} /> )} </> )}
+           </div>
       </div>
     </main>
   );
