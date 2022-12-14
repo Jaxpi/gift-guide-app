@@ -14,7 +14,7 @@ const typeDefs = gql`
     title: String
     items: [String]
     userId: String
-    friends: [User]
+    friends: [String]
   }
 
   type Auth {
@@ -40,6 +40,8 @@ const typeDefs = gql`
 
     addItem(wishlistId: ID!, item: String!): Wishlist
     deleteItem(wishlistId: ID!, item: String!): Wishlist
+
+    addFriend(wishlistId: ID!, friend: String!): Wishlist
   }
 `;
 
