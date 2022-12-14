@@ -9,9 +9,8 @@ import {
   QUERY_WISHLISTS,
   QUERY_ME,
   QUERY_ONE_WISHLIST,
-  QUERY_ITEMS,
 } from "../utils/queries";
-import { CREATE_WISHLIST, REMOVE_ITEM_FROM_WISHLIST } from "../utils/mutations";
+import { CREATE_WISHLIST } from "../utils/mutations";
 import Auth from "../utils/auth";
 //  when we create a new wishlist we want to render a new wishlist card. all of it to display on the home.js
 
@@ -55,42 +54,6 @@ const WishListCard = (props) => {
       console.error(err);
     }
   };
-  const handleDeleteWishlistItem=(item, wishlistId) => {
-    try {
-      const { data } =  removeItem({
-        variables: {
-          wishlistId: wishlistId,
-          item: item
-        }
-      })
-    } catch (err) {
-      console.log(err)
-    }
-  }
-  // Add code to remove wishlist Items
-  const [removeItem] = useMutation(REMOVE_ITEM_FROM_WISHLIST, {
-    update(cache, { data }) {
-      try {
-        const { items } = cache.readQuery({ query: QUERY_ITEMS });
-        cache.writeQuery({
-          query: QUERY_ITEMS,
-
-          data: {
-            wishlists: items.filter(
-              (list) => list._id !== data.deleteWishlistItem._id
-            ),
-          },
-        });
-      } catch (e) {
-        console.error(e);
-      }
-    },
-  
-});
-  
-
-
-  //End Section to remove wish list item
 
   // ADD ITEM CODE ******************************
   // const handleAdd = ({ itemId }) => {
@@ -122,7 +85,6 @@ const WishListCard = (props) => {
 
   const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST);
 
-
   const saveItem = async (e) => {
     const i = e.target.dataset.index;
 
@@ -145,6 +107,9 @@ const WishListCard = (props) => {
     }
   };
   // ENDS ADD ITEMS CODE *******************************
+  useEffect(() => {
+    console.log(items);
+  }, [items]);
 
   const handleAdd = () => {
     const newItem = [...items, ""];
@@ -155,7 +120,6 @@ const WishListCard = (props) => {
     inputItem[i] = onChangeItem.target.value;
     setItems(inputItem);
   };
-
   const handleDelete = (i) => {
     const deleteItem = [...items];
     deleteItem.splice(i, 1);
@@ -211,18 +175,18 @@ const WishListCard = (props) => {
       </div>
       <h1 id="myListTitle">{props.wishlist.title}</h1>
       <Container>
-        {items.map((item, i) => {
+        {items.map((data, i) => {
           return (
             <div key={i}>
               <div id="listItem">
                 <input
                   id="itemName"
-                  onBlur={(i) => handleDelete(i)}
-                  value={item}
+                  onBlur={(i) => saveItem(i)}
+                  value={data}
                   data-index={i}
                   onChange={(e) => handleChange(e, i)}
                 />
-                <Button id="removeItem" onClick={() => handleDeleteWishlistItem(item, props.wishlist._id)}>
+                <Button id="removeItem" onClick={() => handleDelete(i)}>
                   X
                 </Button>
                 <Button id="received">Got!</Button>
