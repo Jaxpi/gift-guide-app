@@ -68,3 +68,13 @@ export const REMOVE_ITEM_FROM_WISHLIST = gql`
     }
   }
 `;
+
+
+export const ADD_FRIEND = gql`
+  mutation Mutation($wishlistId: ID!, $friend: String!) {
+    addFriend(wishlistId: $wishlistId, friend: $friend) {
+      _id
+      friends
+    }
+  }
+`;

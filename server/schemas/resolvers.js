@@ -8,7 +8,7 @@ const resolvers = {
         if (context.user) {
           return User.findOne({_id: context.user._id}).select('-__v -password');
         }
-        //throw new AuthenticationError("Log In to Continue");
+        throw new AuthenticationError("Log In to Continue");
       },
       users: async () => {
         return User.find()
@@ -53,7 +53,6 @@ const resolvers = {
       },         
           
       createWishlist: async (parent, { title, friends, items }, context) => {
-        console.log("LOOK AT ME")
         if (context.user) {
           const myFriends = friends.length? friends.split(", "): [];
           console.log(myFriends)
@@ -63,58 +62,60 @@ const resolvers = {
             friends: myFriends,
             items: []
           });
-
+          
           await User.findOneAndUpdate(
             { _id: context.user._id },
             { $addToSet: { wishlists: wishlist._id } }
-          );
-  
-          return wishlist;
-
+            );
+            
+            return wishlist;
+            
         }
         throw new AuthenticationError("Log In to Continue");
       },
-  
+      
       updateWishlist: async (parent, { wishlistId, title }, context) => {
         if (context.user) {
           await Wishlist.findOneAndUpdate(
             { _id: wishlistId },
             { $set: { title: title }}
+            )
+            return wishlist;
+          }
+          // throw new AuthenticationError("Log In to Continue");
+        },
+        
+        // deleteWishlist: async (parent, { wishlistId }, context) => {
+          //   if (context.user) {
+            //     const wishlist = await Wishlist.findOneAndDelete({
+              //       _id: wishlistId,
+              //       userId: context.user.username,
+              //     });
+              
+              //     await User.findOneAndUpdate(
+                //       { _id: context.user._id },
+                //       { $pull: { wishlists: wishlist._id } }
+                //     );
+                
+                //     return wishlist;
+                //   }
+                
+                
+  deleteWishlist: async (parent, { wishlistId }, context) => {
+    if (context.user) {
+      await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $pull: { wishlists: wishlistId }},
+        { new: true }
+        );
+        return Wishlist.findOneAndDelete(
+          { _id: wishlistId }
           )
-          return wishlist;
         }
-        // throw new AuthenticationError("Log In to Continue");
+        throw new AuthenticationError("Log In to Continue");
       },
 
-      // deleteWishlist: async (parent, { wishlistId }, context) => {
-      //   if (context.user) {
-      //     const wishlist = await Wishlist.findOneAndDelete({
-      //       _id: wishlistId,
-      //       userId: context.user.username,
-      //     });
-  
-      //     await User.findOneAndUpdate(
-      //       { _id: context.user._id },
-      //       { $pull: { wishlists: wishlist._id } }
-      //     );
-  
-      //     return wishlist;
-      //   }
-        
-        
-      deleteWishlist: async (parent, { wishlistId }, context) => {
-        if (context.user) {
-          await User.findOneAndUpdate(
-            { _id: context.user._id },
-            { $pull: { wishlists: wishlistId }},
-            { new: true }
-          );
-          return Wishlist.findOneAndDelete(
-            { _id: wishlistId }
-          )
-        }
-        //throw new AuthenticationError("Log In to Continue");
-      },
+
       addItem: async (parent, { wishlistId, item }, context) => {
         if (context.user) {
           return Wishlist.findOneAndUpdate(
@@ -130,6 +131,18 @@ const resolvers = {
           return Wishlist.findOneAndUpdate(
             { _id: wishlistId },
             { $pull: { items: item }},
+            { new: true }
+          )
+        }
+        throw new AuthenticationError('You need to be logged in!');
+      },
+
+
+      addFriend: async (parent, { wishlistId, friend }, context) => {
+        if (context.user) {
+          return Wishlist.findOneAndUpdate(
+            { _id: wishlistId },
+            { $addToSet: { friends: friend }},
             { new: true }
           )
         }
