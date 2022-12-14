@@ -1,10 +1,15 @@
+import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import { Jumbotron, Button, Container } from "react-bootstrap";
+import { ADD_ITEM_TO_WISHLIST, REMOVE_ITEM_FROM_WISHLIST } from '../utils/mutations'
 
 const WishListCard = () => {
   // const handleFormSubmit = async (event) => {
   //     event.preventDefault();}
   const [item, setItem] = useState([]);
+
+const [removeItemFromWishlist, {err}] = useMutation(REMOVE_ITEM_FROM_WISHLIST);
+
   const handleAdd = () => {
     const newItem = [[], ...item];
     setItem(newItem);
@@ -15,9 +20,18 @@ const WishListCard = () => {
     setItem(inputItem);
   };
   const handleDelete = (i) => {
+    try{
+      const {data} = await removeItemFromWishlist({
+        variables:{itemId: i},
+      })
+      console.log("delete",data)
     const deleteItem = [...item];
     deleteItem.splice(i, 1);
     setItem(deleteItem);
+   }catch(err){
+    console.log("Unable to delete",err)
+   }
+   }
   };
   console.log(item, "ITEMS");
 
