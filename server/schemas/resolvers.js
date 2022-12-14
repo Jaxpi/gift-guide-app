@@ -80,7 +80,8 @@ const resolvers = {
         if (context.user) {
           const wishlist = await Wishlist.findOneAndUpdate(
             { _id: wishlistId },
-            { $set: { title: title }}
+            { $set: { title: title }},
+            { new: true }
             )
             return wishlist;
           }

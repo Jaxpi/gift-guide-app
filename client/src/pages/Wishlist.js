@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
-import { QUERY_WISHLISTS } from "../utils/queries";
+import { QUERY_WISHLISTS, QUERY_ME } from "../utils/queries";
 
 import WishListCard from "../components/WishListCard";
 
