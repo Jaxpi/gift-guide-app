@@ -10,6 +10,7 @@ const Header = () => {
     Auth.logout();
   };
 
+  console.log(Auth.loggedIn())
   return (
     <section id="nav">
       <img
@@ -17,9 +18,8 @@ const Header = () => {
         src="./assets/images/logotrans.png"
         alt="Gift Guide Logo"
       ></img>
-       <CountDownTimer/>
       {Auth.loggedIn() ? (
-        <div className="navLinks" class = "container borderYtoX">
+        <div className="navLinks">
           <button id="logout" onClick={logout}>Logout</button>
           <Link
             id="createList"
@@ -30,7 +30,7 @@ const Header = () => {
         </div>
       ) : (
 
-        <div className="navLinks" class = "container borderYtoX">
+        <div className="navLinks">
           <Link
             id="login"
             to="/login"
@@ -45,7 +45,6 @@ const Header = () => {
           </Link>
           <Link
             className="btn btn-dark mb-3"
-            class = "container borderYtoX"
             id="donate"
             to="/donate"
           >
