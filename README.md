@@ -59,7 +59,7 @@ SOFTWARE.
 
 ## Contribute
 
-To contribute to social-network, clone this repo locally and commit your code on a separate branch. Or fork the repo and make your pull requests with suggested improvements.
+To contribute to social-network, clone this repo locally and commit your code on a separate branch. You can also fork the repo and make your pull requests with suggested improvements.
 
 ## Tests
 
@@ -67,4 +67,12 @@ To test the app visit: https://jaxpi.github.io/DEPLOYEDLINK/
 
 ## Technology Used
 
-Node, ExpressJs, React, GraphQl
+This application is a MERN stack app using:
+
+MongoDb - Database (model) - Stores raw data and contains no logic.
+
+Express.js and Node.js - Server (controller) - Method called to store and retrieve data in database.
+
+React JS - Client (View) - User inputs data and Data display
+
+This application is fully functioning as a Graph API built with Apollo Server.
