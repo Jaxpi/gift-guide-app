@@ -7,7 +7,7 @@ import {
   DELETE_WISHLIST,
   ADD_ITEM_TO_WISHLIST,
   REMOVE_ITEM_FROM_WISHLIST,
-  UPDATE_WISHLIST
+  UPDATE_WISHLIST,
 } from "../utils/mutations";
 import Create from "../pages/Create";
 
@@ -68,18 +68,18 @@ const WishListCard = (props) => {
       console.error(err);
     }
   };
-  const handleDeleteWishlistItem=(item, wishlistId) => {
+  const handleDeleteWishlistItem = (item, wishlistId) => {
     try {
-      const { data } =  removeItem({
+      const { data } = removeItem({
         variables: {
           wishlistId: wishlistId,
-          item: item
-        }
-      })
+          item: item,
+        },
+      });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
   // Add code to remove wishlist Items
   const [removeItem] = useMutation(REMOVE_ITEM_FROM_WISHLIST, {
     update(cache, { data }) {
@@ -98,17 +98,14 @@ const WishListCard = (props) => {
         console.error(e);
       }
     },
-  
-});
-  
-
+  });
 
   //End Section to remove wish list item
 
   // ADD ITEM CODE ******************************
   const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST);
 
-  const [removeItem, { itemError }] = useMutation(REMOVE_ITEM_FROM_WISHLIST);
+  // const [removeItem, { itemError }] = useMutation(REMOVE_ITEM_FROM_WISHLIST);
 
   const saveItem = async (e) => {
     const i = e.target.dataset.index;
@@ -181,24 +178,22 @@ const WishListCard = (props) => {
     }
   };
 
-// Changing the wishlist name
-const [newName, setNewName] = useState(null)
+  // Changing the wishlist name
+  const [newName, setNewName] = useState(null);
 
-const [updateName , {error: nameError}] = useMutation(UPDATE_WISHLIST)
+  const [updateName, { error: nameError }] = useMutation(UPDATE_WISHLIST);
 
-const [updatingName, setUpdatingName] = useState(false)
+  const [updatingName, setUpdatingName] = useState(false);
 
-const handleUpdateName = async (event) => {
-
-  const { data } = await updateName({
-    variables: {
-      wishlistId: props.wishlist._id,
-      title: newName
-    }
-
-  })
-  setUpdatingName(false)
-}
+  const handleUpdateName = async (event) => {
+    const { data } = await updateName({
+      variables: {
+        wishlistId: props.wishlist._id,
+        title: newName,
+      },
+    });
+    setUpdatingName(false);
+  };
 
   const owned = props.wishlist.owner;
 
@@ -225,7 +220,24 @@ const handleUpdateName = async (event) => {
             Add Item
           </button>
         </div>
-        <h1 id="myListTitle">{props.wishlist.title}</h1>
+        {!updatingName ? (
+          <>
+            <h1 id="myListTitle">{props.wishlist.title}</h1>
+            <button onClick={(event) => setUpdatingName(true)}>
+              Update Name
+            </button>
+          </>
+        ) : (
+          <div>
+            <input
+              type="text"
+              value={newName}
+              onChange={(e) => setNewName(e.target.value)}
+              id="myListTitle"
+            />
+            <button onClick={handleUpdateName}></button>
+          </div>
+        )}
         <Container>
           {items.map((data, i) => {
             return (
