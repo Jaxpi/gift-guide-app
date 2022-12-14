@@ -15,6 +15,21 @@ import Auth from "../utils/auth";
 //  when we create a new wishlist we want to render a new wishlist card. all of it to display on the home.js
 
 const WishListCard = (props) => {
+  const [items, setItems] = useState([]);
+
+  const { loading, data } = useQuery(QUERY_ONE_WISHLIST, {
+    variables: {
+      wishlistId: props.wishlist._id
+    }
+  });
+
+  useEffect(() => {
+    if (!loading) {
+      const newItems = data?.wishlist.items || [];
+      setItems(newItems);
+    }
+  }, [loading, data])
+
   const [deleteList] = useMutation(DELETE_WISHLIST, {
     update(cache, { data }) {
       try {
@@ -33,6 +48,7 @@ const WishListCard = (props) => {
       }
     },
   });
+
 
   // console.log(props);
   // const { error, loading, data } = useQuery(QUERY_WISHLISTS);
@@ -77,7 +93,7 @@ const WishListCard = (props) => {
   //   },
   // });
   // }
-  const [items, setItems] = useState([]);
+
 
   const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST);
 
@@ -103,9 +119,7 @@ const WishListCard = (props) => {
     }
   };
   // ENDS ADD ITEMS CODE *******************************
-  useEffect(() => {
-    console.log(items);
-  }, [items]);
+
 
   const handleAdd = () => {
     const newItem = [...items, ""];
@@ -146,6 +160,7 @@ const WishListCard = (props) => {
       localStorage.setItem(`theme${props.cardNo}`, "cont1");
     }
   };
+
 
   return (
     <section className={style}>
