@@ -2,6 +2,7 @@
 
 ![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg "MIT badge")
 ![giftGuide Logo](./client/public/assets/images/logotransread.png "giftGuide Logo")
+https://group2-gift-guide.herokuapp.com/
 
 ## Description
 
