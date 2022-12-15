@@ -17,6 +17,12 @@ main {
   flex-direction: column;
 }
 
+.landing {
+  color: white;
+  font-size: 40px;
+  margin: 20px;
+}
+
 #nav {
   width: 100%;
   min-width: 370px;
@@ -77,7 +83,8 @@ Button {
   justify-content: center;
 }
 
-.loginFormContainer {
+.loginFormContainer,
+.signupFormContainer {
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -104,45 +111,6 @@ Button {
   background: #555;
 }
 
-#myListTitle {
-  background-image: none;
-  font-size: 50px;
-  font-weight: normal;
-  text-align: center;
-  line-height: 40px;
-  margin-bottom: 10px;
-}
-
-@font-face {
-  font-family: genTitle;
-  src: url(./assets/fonts/genFont.TTF);
-}
-
-.cont3 #myListTitle {
-  font-family: genTitle;
-  background: -webkit-linear-gradient(rgb(0, 204, 255), rgb(255, 0, 217));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-@font-face {
-  font-family: christmasTitle;
-  src: url(./assets/fonts/christmasFont.TTF);
-}
-
-.cont2 #myListTitle {
-  font-family: christmasTitle;
-}
-
-@font-face {
-  font-family: loveTitle;
-  src: url(./assets/fonts/heartFont.ttf);
-}
-
-.cont1 #myListTitle {
-  font-family: loveTitle;
-}
-
 .wishButtonsWrap {
   display: flex;
   justify-content: space-between;
@@ -152,11 +120,17 @@ Button {
   margin-top: 0;
 }
 
-#themeButton {
+#themeButton,
+#deleteList {
   border: none;
   width: fit-content;
-  padding: 5px;
+  padding: 2px;
+  height: 30px;
   border: 1px solid black;
+}
+
+#deleteList {
+  background-color: red;
 }
 
 #addItem {
@@ -164,12 +138,13 @@ Button {
   height: 30px;
   width: fit-content;
   padding: 2px;
-  background-color: red;
+  background-color: lightgray;
   border: 1px solid black;
 }
 
 #themeButton:hover,
-#addItem:hover {
+#addItem:hover,
+#deleteList:hover {
   box-shadow: 1px 1px 1px black;
 }
 
@@ -208,8 +183,106 @@ Button {
   color: black;
 }
 
+#myListTitle {
+  background-image: none;
+  font-size: 50px;
+  font-weight: normal;
+  text-align: center;
+  line-height: 40px;
+  margin-bottom: 10px;
+  margin-top: 2px;
+}
+
+#updateTitle, #saveTitle {
+  width: 25px;
+  background-color: white;
+  padding: 0;
+  margin-left: 10px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+#updateTitle:hover, #saveTitle:hover {
+  background-color: black;
+  border: 1px solid black;
+  color: white;
+}
+
+#friendListContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#friendItems {
+  width: 180px;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+}
+
+#onIt {
+  font-size: 12px;
+  width: 80px;
+  line-height: 10px;
+  padding: 5px;
+  margin-left: 5px;
+}
+
+#onIt:hover {
+  box-shadow: 1px 1px 1px black;
+}
+
+@font-face {
+  font-family: genTitle;
+  src: url(./assets/fonts/genFont.TTF);
+}
+
+.cont3 #myListTitle {
+  font-family: genTitle;
+  background: -webkit-linear-gradient(rgb(0, 204, 255), rgb(255, 0, 217));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@font-face {
+  font-family: christmasTitle;
+  src: url(./assets/fonts/christmasFont.TTF);
+}
+
+.cont2 #myListTitle {
+  font-family: christmasTitle;
+}
+
+@font-face {
+  font-family: loveTitle;
+  src: url(./assets/fonts/heartFont.ttf);
+}
+
+.cont1 #myListTitle {
+  font-family: loveTitle;
+}
+
+@font-face {
+  font-family: babyTitle;
+  src: url(./assets/fonts/babyFont.otf);
+}
+
+.cont4 #myListTitle {
+  font-family: babyTitle;
+}
+
+@font-face {
+  font-family: wedTitle;
+  src: url(./assets/fonts/wedFont.otf);
+}
+
+.cont5 #myListTitle {
+  font-family: wedTitle;
+}
+
 .cont1 {
-  background-image: url(./assets/images/heartsbackgray.jpg);
+  background-image: url(./assets/images/heartsback.jpg);
   padding: 10px;
   border-radius: 10px;
   display: flex;
@@ -217,7 +290,7 @@ Button {
   background-size: 420px 450px;
   max-width: 370px;
   max-height: 400px;
-  width: 370px;
+  width: 320px;
   min-height: 400px;
   margin: 20px;
   align-items: center;
@@ -238,7 +311,7 @@ Button {
   background-size: 420px 450px;
   max-width: 370px;
   max-height: 400px;
-  width: 370px;
+  width: 320px;
   min-height: 400px;
   margin: 20px;
   align-items: center;
@@ -255,10 +328,10 @@ Button {
   border-radius: 10px;
   display: flex;
   align-content: flex-start;
-  background-size: 420px 450px;
+  background-size: 400px 450px;
   max-width: 370px;
   max-height: 400px;
-  width: 370px;
+  width: 320px;
   min-height: 400px;
   margin: 20px;
   align-items: center;
@@ -266,6 +339,46 @@ Button {
   box-shadow: black 5px 5px 5px;
   overflow-y: scroll;
   color: gold;
+  -webkit-text-stroke: 1px black;
+}
+
+.cont4 {
+  background-image: url(./assets/images/babyback.jpg);
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-content: flex-start;
+  background-size: 420px 450px;
+  max-width: 370px;
+  max-height: 400px;
+  width: 320px;
+  min-height: 400px;
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: black 5px 5px 5px;
+  overflow-y: scroll;
+  color: gold;
+  -webkit-text-stroke: 1px black;
+}
+
+.cont5 {
+  background-image: url(./assets/images/heartsbackgray.jpg);
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-content: flex-start;
+  background-size: 550px 450px;
+  max-width: 370px;
+  max-height: 400px;
+  width: 320px;
+  min-height: 400px;
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: black 5px 5px 5px;
+  overflow-y: scroll;
+  color: black;
   -webkit-text-stroke: 1px black;
 }
 

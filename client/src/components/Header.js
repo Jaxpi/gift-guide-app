@@ -1,10 +1,10 @@
 import React, { useState }  from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 
 import Auth from "../utils/auth";
 
-const Header = () => {
+const Header = () => {  
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
@@ -43,12 +43,13 @@ const Header = () => {
           >
             Signup
           </Link>
-          <Link
-            className="btn btn-dark mb-3"
-            id="donate"
-            to="/donate"
+          <Link>
+           <a className="btn btn-dark mb-3" id="donate"
+            href="https://buy.stripe.com/test_3cs6rWcBJ0SEe9a000"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            Donate
+            Donate</a>
           </Link>
         </div>
       )}

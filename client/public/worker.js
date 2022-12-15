@@ -29,7 +29,7 @@ self.addEventListener('fetch', event => {
 })
 
 // UPDATE SERVICE WORKER
-self.addEventListener('activate', event => {
+self.addEventListener('activate', event => { 
     let cacheWhiteList = ['gift-guide-project'];
     event.waitUntil(
         caches.keys()

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
-
+import { Navigate } from "react-router-dom";
 import Auth from '../utils/auth';
 import{useMutation} from '@apollo/client'
 import { ADD_USER } from '../utils/mutations';
@@ -49,8 +49,12 @@ const SignupForm = () => {
           });
         };
 
+        if (Auth.loggedIn()){
+          return <Navigate replace to="/me" />
+          }
+
   return (
-  <>
+  <div className="signupFormContainer">
     {/* This is needed for the validation functionality above */}
     <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
       {/* show alert if server response is bad */}
@@ -103,7 +107,7 @@ const SignupForm = () => {
         Submit
       </Button>
     </Form>
-  </>
+  </div>
   )
 }
 

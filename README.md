@@ -1,11 +1,11 @@
 # Gift Guide
 
-
 ![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg "MIT badge")
+![giftGuide Logo](./client/public/assets/images/logotrans.png "giftGuide Logo")
 
 ## Description
 
-Gift Guide is an app that helps with creating a wishlist of gifts you would like to get from you loved ones. One can create different wishlists, and even invite friends to add items from that wishlist for them to get while still being a surprise.
+Gift Guide is an app that allows you to create a wishlist of gifts you'd like to receive from loved ones. You can create multiple wishlists and even invite friends to assigns themselves a gift to give to you while still keeping the gifts a surprise for the wishlist owner. The app makes it easy to keep track of the gifts you're hoping to receive and ensures that you get exactly what you want. The functionality of our app allows you to also changes themes of your wishlist catered towards the special event. Our goal was to make gift sharing less awkward all in one fun and user friendly app.
 
 
 ## Table of Contents
@@ -77,9 +77,23 @@ npm run develop ( cd to the correct directory)
 This application is a MERN stack app using:
 
 MongoDb - Database (model) - Stores raw data and contains no logic.
+* [![MongoDB][Mongodb]][Mongodb -url]
 
 Express.js and Node.js - Server (controller) - Method called to store and retrieve data in database.
+*  [![NodeJS][Node.js]][Nodejs-url]
 
 React JS - Client (View) - User inputs data and Data display
+* [![ReactJS][React.js]][Reactjs-url]
 
 This application is fully functioning as a Graph API built with Apollo Server.
+* [![Apollo-GraphQl][Apollographql]][Apollographql-url]
+
+
+[Nodejs-url]: https://nodejs.org/en/ 
+[Node.js]: https://img.shields.io/badge/NodeJS-NodeJS-green
+[Mongodb-url]: https://www.mongodb.com/
+[Mongodb]: (https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+[Reactjs-url]: https://reactjs.org/
+[React.js]: (https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge)
+[Apollographql-url]: https://www.apollographql.com/
+[Apollographql]: (https://img.shields.io/badge/-ApolloGraphQL-311C87?style=for-the-badge&logo=apollo-graphql)

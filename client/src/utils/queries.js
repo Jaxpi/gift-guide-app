@@ -35,6 +35,7 @@ export const QUERY_WISHLISTS = gql`
       title
       userId
       items
+      friends
     }
   }
 `;
@@ -46,8 +47,17 @@ export const QUERY_ONE_WISHLIST = gql`
       title
       userId
       items
+      friends
     }
   }
+`;
+
+export const QUERY_ITEMS = gql`
+query Wishlist($wishlistId: ID!) {
+  wishlist(wishlistId: $wishlistId) {
+    items
+  }
+}
 `;
 
 export const QUERY_ME = gql`
