@@ -20,7 +20,6 @@ const SignupForm = () => {
     setUserFormData({ ...userFormData, [name]: value });
   };
 
-  //Need to redirect to /me if successful at signing up (if (it worked) {window.location.assign("/me")} else {console.warn("error with signing up")})
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     

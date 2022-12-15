@@ -19,8 +19,8 @@ main {
 
 .landing {
   color: white;
-  font-size: 40px;
-  margin: 20px;
+  font-size: 24px;
+  margin: 100px;
 }
 
 #timer {
@@ -448,5 +448,9 @@ h4 {
     margin-right: 0;
     min-height: 100px;
     max-height: 300px;
+  }
+  .landing {
+    font-size: 20px;
+    margin: 10px;
   }
 }
