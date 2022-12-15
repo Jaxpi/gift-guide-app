@@ -23,9 +23,10 @@ const Header = () => {
        <CountDownTimer />
       </div>
       {Auth.loggedIn() ? (
-        <div className="navLinks">
-          <button id="logout" onClick={logout}>Logout</button>
+        <div className="navLinks" class="container borderYtoX">
+          <button id="logout" class="container borderYtoX" onClick={logout}>Logout</button>
           <Link
+            class="container borderYtoX"
             id="createList"
             to="/create"
           >
@@ -34,7 +35,7 @@ const Header = () => {
         </div>
       ) : (
 
-        <div className="navLinks">
+        <div className="navLinks" class="container borderYtoX">
           <Link
             id="login"
             to="/login"
@@ -49,6 +50,7 @@ const Header = () => {
           </Link>
           <Link
             className="btn btn-dark mb-3"
+            class="container borderYtoX"
             id="donate"
             to="/donate"
           >
