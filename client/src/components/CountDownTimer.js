@@ -1,8 +1,19 @@
-
 import React from 'react'
 
 const CountDownTimer = () => {
     const hoursMinSecs = {hours:1, minutes: 20, seconds: 40}
+
+    var differenceInTime = new Date(2022, 11, 25, 0, 0, 0, 0).getTime()- Date.now()
+    function dhm (ms) {
+        const days = Math.floor(ms / (24*60*60*1000));
+        const daysms = ms % (24*60*60*1000);
+        const hours = Math.floor(daysms / (60*60*1000));
+        const hoursms = ms % (60*60*1000);
+        const minutes = Math.floor(hoursms / (60*1000));
+        const minutesms = ms % (60*1000);
+        const seconds = Math.floor(minutesms / 1000);
+        return `${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds left till Christmas!`
+    }
 
     const { hours = 0, minutes = 0, seconds = 60 } = hoursMinSecs;
     const [[hrs, mins, secs], setTime] = React.useState([hours, minutes, seconds]);
@@ -23,12 +34,9 @@ const CountDownTimer = () => {
 
     const reset = () => setTime([parseInt(hours), parseInt(minutes), parseInt(seconds)]);
 
-
     return (
         <div>
-            <p>{`${hrs.toString().padStart(2, '0')}:${mins
-            .toString()
-            .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`}</p>
+            <p>{dhm(differenceInTime)}</p>
         </div>
     );
 }
