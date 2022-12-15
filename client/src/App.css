@@ -126,7 +126,8 @@ Button {
   justify-content: center;
 }
 
-.loginFormContainer, .signupFormContainer {
+.loginFormContainer,
+.signupFormContainer {
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -233,6 +234,46 @@ Button {
   line-height: 40px;
   margin-bottom: 10px;
   margin-top: 2px;
+}
+
+#updateTitle, #saveTitle {
+  width: 25px;
+  background-color: white;
+  padding: 0;
+  margin-left: 10px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+#updateTitle:hover, #saveTitle:hover {
+  background-color: black;
+  border: 1px solid black;
+  color: white;
+}
+
+#friendListContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#friendItems {
+  width: 180px;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+}
+
+#onIt {
+  font-size: 12px;
+  width: 80px;
+  line-height: 10px;
+  padding: 5px;
+  margin-left: 5px;
+}
+
+#onIt:hover {
+  box-shadow: 1px 1px 1px black;
 }
 
 @font-face {

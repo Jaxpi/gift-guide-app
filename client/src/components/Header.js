@@ -48,13 +48,13 @@ const Header = () => {
           >
             Signup
           </Link>
-          <Link
-            className="btn btn-dark mb-3"
-            class="container borderYtoX"
-            id="donate"
-            to="/donate"
+          <Link>
+           <a className="btn btn-dark mb-3" id="donate" class="container borderYtoX"
+            href="https://buy.stripe.com/test_3cs6rWcBJ0SEe9a000"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            Donate
+            Donate</a>
           </Link>
         </div>
       )}
