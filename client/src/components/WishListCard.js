@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { Jumbotron, Button, Container } from "react-bootstrap";
 
-import { DELETE_WISHLIST, ADD_ITEM_TO_WISHLIST, UPDATE_WISHLIST } from "../utils/mutations";
+import {
+  CREATE_WISHLIST,
+  DELETE_WISHLIST,
+  ADD_ITEM_TO_WISHLIST,
+  REMOVE_ITEM_FROM_WISHLIST,
+  UPDATE_WISHLIST,
+} from "../utils/mutations";
 import Create from "../pages/Create";
 
 import {
@@ -11,7 +17,6 @@ import {
   QUERY_ONE_WISHLIST,
   QUERY_ITEMS,
 } from "../utils/queries";
-import { CREATE_WISHLIST, REMOVE_ITEM_FROM_WISHLIST } from "../utils/mutations";
 import Auth from "../utils/auth";
 //  when we create a new wishlist we want to render a new wishlist card. all of it to display on the home.js
 
@@ -20,8 +25,8 @@ const WishListCard = (props) => {
 
   const { loading, data } = useQuery(QUERY_ONE_WISHLIST, {
     variables: {
-      wishlistId: props.wishlist._id
-    }
+      wishlistId: props.wishlist._id,
+    },
   });
 
   useEffect(() => {
@@ -29,19 +34,21 @@ const WishListCard = (props) => {
       const newItems = data?.wishlist.items || [];
       setItems(newItems);
     }
-  }, [loading, data])
+  }, [loading, data]);
 
   const [deleteList] = useMutation(DELETE_WISHLIST, {
     update(cache, { data }) {
       try {
-        const { wishlists } = cache.readQuery({ query: QUERY_WISHLISTS });
+        const { me } = cache.readQuery({ query: QUERY_ME });
         cache.writeQuery({
-          query: QUERY_WISHLISTS,
+          query: QUERY_ME,
 
           data: {
-            wishlists: wishlists.filter(
-              (list) => list._id !== data.deleteWishlist._id
-            ),
+            me: {
+              wishlists: me.wishlists.filter(
+                (list) => list._id !== data.deleteWishlist._id
+              ),
+            },
           },
         });
       } catch (e) {
@@ -61,18 +68,18 @@ const WishListCard = (props) => {
       console.error(err);
     }
   };
-  const handleDeleteWishlistItem=(item, wishlistId) => {
+  const handleDeleteWishlistItem = (item, wishlistId) => {
     try {
-      const { data } =  removeItem({
+      const { data } = removeItem({
         variables: {
           wishlistId: wishlistId,
-          item: item
-        }
-      })
+          item: item,
+        },
+      });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
   // Add code to remove wishlist Items
   const [removeItem] = useMutation(REMOVE_ITEM_FROM_WISHLIST, {
     update(cache, { data }) {
@@ -91,16 +98,14 @@ const WishListCard = (props) => {
         console.error(e);
       }
     },
-  
-});
-  
-
+  });
 
   //End Section to remove wish list item
 
   // ADD ITEM CODE ******************************
   const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST);
 
+  // const [removeItem, { itemError }] = useMutation(REMOVE_ITEM_FROM_WISHLIST);
 
   const saveItem = async (e) => {
     const i = e.target.dataset.index;
@@ -134,15 +139,22 @@ const WishListCard = (props) => {
     inputItem[i] = onChangeItem.target.value;
     setItems(inputItem);
   };
-
-  const handleDelete = (i) => {
+  const handleDelete = async (e, i) => {
     const deleteItem = [...items];
     deleteItem.splice(i, 1);
     setItems(deleteItem);
+    const item = e.target.dataset.item;
+    const { data } = await removeItem({
+      variables: {
+        wishlistId: props.wishlist._id,
+        item,
+      },
+    });
+    //console.log('deleted item from wishlist\nthis is the newlist\n', data.deleteItem.items)
   };
 
   const [style, setStyle] = useState(
-    localStorage.getItem(`theme${props.cardNo}`) || "cont1"
+    localStorage.getItem(`themeFor${props.wishlist._id}`) || "cont1"
   );
 
   //move from local storage to db (if there's time)
@@ -150,102 +162,134 @@ const WishListCard = (props) => {
     console.log("you just clicked");
     if (style === "cont1") {
       setStyle("cont2");
-      localStorage.setItem(`theme${props.cardNo}`, "cont2");
+      localStorage.setItem(`themeFor${props.wishlist._id}`, "cont2");
     } else if (style === "cont2") {
       setStyle("cont3");
-      localStorage.setItem(`theme${props.cardNo}`, "cont3");
+      localStorage.setItem(`themeFor${props.wishlist._id}`, "cont3");
     } else if (style === "cont3") {
       setStyle("cont4");
-      localStorage.setItem(`theme${props.cardNo}`, "cont4");
+      localStorage.setItem(`themeFor${props.wishlist._id}`, "cont4");
     } else if (style === "cont4") {
       setStyle("cont5");
-      localStorage.setItem(`theme${props.cardNo}`, "cont5");
+      localStorage.setItem(`themeFor${props.wishlist._id}`, "cont5");
     } else {
       setStyle("cont1");
-      localStorage.setItem(`theme${props.cardNo}`, "cont1");
+      localStorage.setItem(`themeFor${props.wishlist._id}`, "cont1");
     }
   };
+
   // Changing the wishlist name
-  const [newName, setNewName] = useState(null)
+  const [newName, setNewName] = useState(null);
 
-  const [updateName , {error: nameError}] = useMutation(UPDATE_WISHLIST)
+  const [updateName, { error: nameError }] = useMutation(UPDATE_WISHLIST);
 
-  const [updatingName, setUpdatingName] = useState(false)
-  
+  const [updatingName, setUpdatingName] = useState(false);
+
   const handleUpdateName = async (event) => {
-
     const { data } = await updateName({
       variables: {
         wishlistId: props.wishlist._id,
-        title: newName
-      }
+        title: newName,
+      },
+    });
+    setUpdatingName(false);
+  };
 
-    })
-    setUpdatingName(false)
-  }
+  const owned = props.wishlist.owner;
 
-
-  return (
-    <section className={style}>
-      <div className="wishButtonsWrap">
-        <button
-          id="deleteList"
-          onClick={() => handleDeleteList(props.wishlist._id)}
-        >
-          Delete List
-        </button>
-        <button
-          id="themeButton"
-          // To change the theme we invoke dispatch and pass in an object containing action type and payload
-          onClick={changeStyle}
-          className="btn"
-          type="button"
-        >
-          Theme
-        </button>
-        <button id="addItem" onClick={() => handleAdd()}>
-          Add Item
-        </button>
-      </div>
-      { !updatingName ? (
-      <>
-      <h1 id="myListTitle">{props.wishlist.title}</h1>
-        <button onClick={(event) => setUpdatingName(true)}>Update Name</button>
-        </>
-      ) : (
-      <div>
-      <input  
-      type= "text" 
-      value={newName} 
-      onChange={(e) => setNewName ( e.target.value)} id="myListTitle" />
-      <button onClick={handleUpdateName}></button>
-      </div> )}
-      <Container>
-        {items.map((item, i) => {
-          return (
-            <div key={i}>
-              <div id="listItem">
-                <input
-                  id="itemName"
-                  onBlur={(i) => handleDelete(i)}
-                  value={item}
-                  data-index={i}
-                  onChange={(e) => handleChange(e, i)}
-                />
-                <Button id="removeItem" onClick={() => handleDeleteWishlistItem(item, props.wishlist._id)}>
-                  X
-                </Button>
-                <Button id="received">Got!</Button>
+  if (owned === true) {
+    return (
+      <section className={style}>
+        <div className="wishButtonsWrap">
+          <button
+            id="deleteList"
+            onClick={() => handleDeleteList(props.wishlist._id)}
+          >
+            Delete List
+          </button>
+          <button
+            id="themeButton"
+            // To change the theme we invoke dispatch and pass in an object containing action type and payload
+            onClick={changeStyle}
+            className="btn"
+            type="button"
+          >
+            Theme
+          </button>
+          <button id="addItem" onClick={() => handleAdd()}>
+            Add Item
+          </button>
+        </div>
+        {!updatingName ? (
+          <>
+            <h1 id="myListTitle">{props.wishlist.title}</h1>
+            <button id="updateTitle" onClick={(event) => setUpdatingName(true)}>
+              📝
+            </button>
+          </>
+        ) : (
+          <div>
+            <input
+              type="text"
+              value={newName}
+              onChange={(e) => setNewName(e.target.value)}
+              id="myListTitle"
+            />
+            <button id="saveTitle" onClick={handleUpdateName}>✔</button>
+          </div>
+        )}
+        <Container>
+          {items.map((data, i) => {
+            return (
+              <div key={i}>
+                <div id="listItem">
+                  <input
+                    id="itemName"
+                    onBlur={(i) => saveItem(i)}
+                    value={data}
+                    data-index={i}
+                    onChange={(e) => handleChange(e, i)}
+                  />
+                  <Button
+                    id="removeItem"
+                    data-item={data}
+                    onClick={(e) => handleDelete(e, i)}
+                  >
+                    X
+                  </Button>
+                  <Button id="received">Got!</Button>
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </Container>
-      {/* <Form onSubmit={handleFormSubmit}>
-
-        </Form> */}
-    </section>
-  );
+            );
+          })}
+        </Container>
+        {/* <Form onSubmit={handleFormSubmit}>
+  
+          </Form> */}
+      </section>
+    );
+  } else {
+    return (
+      <section className={style}>
+        <h1 id="myListTitle">{props.wishlist.title}</h1>
+        <Container>
+          {items.map((data, i) => {
+            return (
+              <div id="friendListContainer" key={i}>
+                <p id="friendItems">{data}</p>
+                <Button
+                  id="onIt"
+                  onClick={(e) => (e.target.textContent = "Reserved")}
+                >
+                  I'm On It!
+                </Button>
+              </div>
+            );
+          })}
+        </Container>
+      </section>
+    );
+  }
 };
 
 export default WishListCard;
