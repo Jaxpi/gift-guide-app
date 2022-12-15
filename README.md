@@ -1,7 +1,7 @@
 # Gift Guide
 
 ![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg "MIT badge")
-![giftGuide Logo](./client/public/assets/images/logotrans.png "giftGuide Logo")
+![giftGuide Logo](./client/public/assets/images/logotransread.png "giftGuide Logo")
 
 ## Description
 
@@ -29,7 +29,7 @@ Run npm run develop on your terminal (command line).
 
 If you would like to use the app you would need to sign up. Once logged in you can click on Create Wishlist and invite friends to choose their gifts from the wishlist created.
 
-<br><img src="./client/src/assets/images/mainscreenshot.jpg" style="width:300px; height auto;">
+<br><img src="./client/src/assets/images/mainscreenshot.jpg" style="width:650px; height auto;">
 
 
 ## License
@@ -62,7 +62,7 @@ To contribute to social-network, clone this repo locally and commit your code on
 
 ## Tests
 
-To test the app visit: https://jaxpi.github.io/DEPLOYEDLINK/
+To test the app visit: https://group2-gift-guide.herokuapp.com/
 
 It can also be tested by entering at command prompt:
 
