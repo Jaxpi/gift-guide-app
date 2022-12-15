@@ -1,8 +1,9 @@
 import React, { useState }  from "react";
 import { Link, Navigate } from "react-router-dom";
-import CountDownTimer from "./CountDownTimer";
+
 
 import Auth from "../utils/auth";
+import CountDownTimer from "./CountDownTimer";
 
 const Header = () => {
   const logout = (event) => {
@@ -18,6 +19,9 @@ const Header = () => {
         src="./assets/images/logotrans.png"
         alt="Gift Guide Logo"
       ></img>
+      <div>
+       <CountDownTimer />
+      </div>
       {Auth.loggedIn() ? (
         <div className="navLinks">
           <button id="logout" onClick={logout}>Logout</button>
