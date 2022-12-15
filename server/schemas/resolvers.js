@@ -81,10 +81,11 @@ const resolvers = {
           const wishlist = await Wishlist.findOneAndUpdate(
             { _id: wishlistId },
             { $set: { title: title }},
-            { new: true }
-            )
+            {new: true}
+            );
             return wishlist;
           }
+
           throw new AuthenticationError("Log In to Continue");
         },
                 
