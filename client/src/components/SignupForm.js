@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
-
+import { Navigate } from "react-router-dom";
 import Auth from '../utils/auth';
 import{useMutation} from '@apollo/client'
 import { ADD_USER } from '../utils/mutations';
@@ -48,6 +48,10 @@ const SignupForm = () => {
             password: '',
           });
         };
+
+        if (Auth.loggedIn()){
+          return <Navigate replace to="/me" />
+          }
 
   return (
   <div className="signupFormContainer">
