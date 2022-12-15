@@ -235,7 +235,7 @@ const WishListCard = (props) => {
               onChange={(e) => setNewName(e.target.value)}
               id="myListTitle"
             />
-            <button onClick={handleUpdateName}></button>
+            <button id="saveTitle" onClick={handleUpdateName}>✔</button>
           </div>
         )}
         <Container>
@@ -275,8 +275,8 @@ const WishListCard = (props) => {
         <Container>
           {items.map((data, i) => {
             return (
-              <div key={i}>
-                <p>{data}</p>
+              <div id="friendListContainer" key={i}>
+                <p id="friendItems">{data}</p>
                 <Button
                   id="onIt"
                   onClick={(e) => (e.target.textContent = "Reserved")}
