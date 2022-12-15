@@ -91,9 +91,9 @@ const WishListCard = (props) => {
         console.error(e);
       }
     },
-  
+
 });
-  
+
 
 
   //End Section to remove wish list item
