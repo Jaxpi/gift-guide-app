@@ -59,6 +59,3 @@ const Home = () => {
 };
 
 export default Home;
-
-//fix the ul for returning unowned card
-//make add friends work - convert username to id in input on submit, and it's expecting an array (so only one friend means...) in handlesubmit

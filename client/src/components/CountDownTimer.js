@@ -12,7 +12,7 @@ const CountDownTimer = () => {
         const minutes = Math.floor(hoursms / (60*1000));
         const minutesms = ms % (60*1000);
         const seconds = Math.floor(minutesms / 1000);
-        return `${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds left till Christmas!`
+        return `${days} d, ${hours} h, ${minutes} m, and ${seconds} s till Christmas!`
     }
 
     const { hours = 0, minutes = 0, seconds = 60 } = hoursMinSecs;
@@ -40,7 +40,7 @@ const CountDownTimer = () => {
     });
 
     return (
-        <div>
+        <div id="timer">
             <p>{dhm(differenceInTime)}</p>
         </div>
     );

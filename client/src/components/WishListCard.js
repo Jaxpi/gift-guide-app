@@ -105,8 +105,6 @@ const WishListCard = (props) => {
   // ADD ITEM CODE ******************************
   const [addItem, { error }] = useMutation(ADD_ITEM_TO_WISHLIST);
 
-  // const [removeItem, { itemError }] = useMutation(REMOVE_ITEM_FROM_WISHLIST);
-
   const saveItem = async (e) => {
     const i = e.target.dataset.index;
 
@@ -150,7 +148,6 @@ const WishListCard = (props) => {
         item,
       },
     });
-    //console.log('deleted item from wishlist\nthis is the newlist\n', data.deleteItem.items)
   };
 
   const [style, setStyle] = useState(
@@ -209,7 +206,6 @@ const WishListCard = (props) => {
           </button>
           <button
             id="themeButton"
-            // To change the theme we invoke dispatch and pass in an object containing action type and payload
             onClick={changeStyle}
             className="btn"
             type="button"
