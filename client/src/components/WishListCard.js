@@ -264,7 +264,7 @@ const WishListCard = (props) => {
           })}
         </Container>
         {/* <Form onSubmit={handleFormSubmit}>
-  
+
           </Form> */}
       </section>
     );

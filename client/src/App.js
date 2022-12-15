@@ -24,6 +24,7 @@ import Footer from "./components/Footer";
 import Landing from "./pages/Landing";
 import "./App.css";
 import WishListCard from "./components/WishListCard";
+
 // import { io } from "socket.io-client";
 // import WishListCard from "./components/WishListCard";
 
@@ -94,5 +95,6 @@ function App() {
     </ApolloProvider>
   );
 }
+
 
 export default App;
