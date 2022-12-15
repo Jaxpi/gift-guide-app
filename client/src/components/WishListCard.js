@@ -1,3 +1,4 @@
+import { useMutation } from "@apollo/client";
 import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { Jumbotron, Button, Container } from "react-bootstrap";
@@ -18,7 +19,10 @@ import {
   QUERY_ITEMS,
 } from "../utils/queries";
 import Auth from "../utils/auth";
-//  when we create a new wishlist we want to render a new wishlist card. all of it to display on the home.js
+//  when we // I added this to import them from the mutations.js file. - Hasan
+import { ADD_ITEM_TO_WISHLIST, REMOVE_ITEM_FROM_WISHLIST } from '../utils/mutations'
+
+create a new wishlist we want to render a new wishlist card. all of it to display on the home.js
 
 const WishListCard = (props) => {
   const [items, setItems] = useState([]);
@@ -132,6 +136,8 @@ const WishListCard = (props) => {
     const newItem = ["", ...items];
     setItems(newItem);
   };
+  //
+
   const handleChange = (onChangeItem, i) => {
     const inputItem = [...items];
     inputItem[i] = onChangeItem.target.value;
@@ -174,6 +180,22 @@ const WishListCard = (props) => {
       localStorage.setItem(`themeFor${props.wishlist._id}`, "cont1");
     }
   };
+    try {
+      const { data } = await removeItemFromWishlist({
+        variables: { itemId: i },
+      })
+      console.log("delete", data)
+      const deleteItem = [...item];
+      deleteItem.splice(i, 1);
+      setItem(deleteItem);
+    } catch (err) {
+      console.log("Unable to delete", err)
+    }
+  }
+};
+//
+
+console.log(item, "ITEMS");
 
   // Changing the wishlist name
   const [newName, setNewName] = useState(null);
